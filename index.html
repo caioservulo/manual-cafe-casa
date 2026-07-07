@@ -292,6 +292,37 @@
   }
   .d-step-text { font-size: 14px; line-height: 1.55; padding-top: 3px; }
 
+  .g-theme {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 34px; padding-top: 22px;
+    border-top: 1px solid rgba(196,103,60,0.3);
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 17px; color: var(--crema);
+    scroll-margin-top: calc(56px + var(--safe-top) + 54px);
+  }
+  .g-theme.first { margin-top: 4px; padding-top: 0; border-top: none; }
+
+  .g-nav {
+    position: sticky; top: calc(56px + var(--safe-top)); z-index: 30;
+    display: flex; gap: 8px; overflow-x: auto;
+    margin: 0 -16px; padding: 10px 16px;
+    background: var(--milk);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .g-nav::-webkit-scrollbar { display: none; }
+  .g-nav-chip {
+    flex-shrink: 0; border: 1px solid rgba(196,103,60,0.4);
+    background: var(--steam); color: var(--text);
+    border-radius: 20px; padding: 6px 14px;
+    font-family: 'Inter', sans-serif; font-size: 12px; cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .g-nav-chip.active {
+    background: var(--crema); border-color: var(--crema);
+    color: #fff; font-weight: 700;
+  }
+
   .d-bullet { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
   .d-bullet-dot { color: var(--crema); font-size: 16px; flex-shrink: 0; line-height: 1.4; }
   .d-bullet-text { font-size: 14px; line-height: 1.5; }
@@ -521,6 +552,18 @@
         <div class="chapter-info">
           <div class="chapter-title">Limpeza e Descalcificação</div>
           <div class="chapter-sub">Rotinas, periodicidade e descalcificação</div>
+        </div>
+        <div class="chapter-arrow">›</div>
+      </div>
+    </div>
+
+    <div class="section-label">Conhecimentos Gerais</div>
+    <div style="padding: 0 16px 8px; display: flex; flex-direction: column; gap: 8px;">
+      <div class="chapter-item" onclick="openChapter('geral')">
+        <div class="chapter-num"><i data-lucide="book-open" style="width:14px;height:14px;"></i></div>
+        <div class="chapter-info">
+          <div class="chapter-title">Teoria do Café</div>
+          <div class="chapter-sub">Torras · grãos · métodos · ratios · moagem</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -1255,6 +1298,163 @@ const chapterData = {
         <div class="callout tip">Café oleoso (torra escura) suja o moedor muito mais rápido — se usar, encurte a limpeza profunda para a cada 2–3 semanas.</div>
       </div>
     `
+  },
+  geral: {
+    cap: 'Conhecimentos Gerais', title: 'Teoria do Café',
+    content: `
+      <div class="g-nav">
+        <button class="g-nav-chip active" onclick="scrollToTheme('tema-torras')">Torras</button>
+        <button class="g-nav-chip" onclick="scrollToTheme('tema-graos')">Grãos</button>
+        <button class="g-nav-chip" onclick="scrollToTheme('tema-metodos')">Métodos</button>
+        <button class="g-nav-chip" onclick="scrollToTheme('tema-ratios')">Ratios</button>
+        <button class="g-nav-chip" onclick="scrollToTheme('tema-moagem')">Moagem</button>
+      </div>
+      <div class="g-theme first" id="tema-torras"><i data-lucide="flame" style="width:18px;height:18px;stroke:var(--crema);"></i>Torras do Café</div>
+      <div class="d-section">
+        <div class="d-section-title">O Que Acontece na Torra</div>
+        <div class="d-body">O grão verde é quase sem sabor. É a torra que cria o café que conhecemos, através de reações químicas em cadeia:</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>Secagem (~0–5 min):</b> o grão perde umidade e amarela.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>Reação de Maillard:</b> açúcares + aminoácidos criam centenas de compostos aromáticos e a cor marrom.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Primeiro crack:</b> o grão estala e expande — a partir daqui já é café "torrado". Torras claras param logo depois.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>Caramelização:</b> açúcares viram caramelo — doçura e corpo. Território da torra média.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>Segundo crack:</b> óleos migram para a superfície. Torra escura — o sabor da torra domina o sabor da origem.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Clara × Média × Escura</div>
+        <table class="d-table">
+          <tr><th>Perfil</th><th>Clara</th><th>Média</th><th>Escura</th></tr>
+          <tr><td><b>Acidez</b></td><td class="good-cell">Alta, frutada</td><td>Equilibrada</td><td>Baixa</td></tr>
+          <tr><td><b>Doçura</b></td><td>Delicada</td><td class="good-cell">Máxima</td><td>Caramelo queimado</td></tr>
+          <tr><td><b>Amargor</b></td><td>Quase zero</td><td>Leve</td><td class="warn-cell">Dominante</td></tr>
+          <tr><td><b>Corpo</b></td><td>Leve, "chá"</td><td>Médio</td><td>Pesado</td></tr>
+          <tr><td><b>Notas</b></td><td>Florais, cítricas</td><td>Chocolate, nozes, frutas</td><td>Cacau, tostado, defumado</td></tr>
+          <tr><td><b>Solubilidade</b></td><td class="warn-cell">Baixa — difícil extrair</td><td>Média</td><td>Alta — extrai rápido</td></tr>
+        </table>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Impacto na Sua Extração</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra clara:</b> menos solúvel → moagem mais fina + temperatura <b>nível 3</b> na Dedica. Aceita sair um pouco mais lenta.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> o ponto de partida de tudo — posição 3–5 no moedor, temperatura <b>nível 2</b>, 1:2 em 25–30s.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra escura:</b> muito solúvel → moagem um passo mais grossa + temperatura <b>nível 1</b>, senão amarga.</div></div>
+        <div class="callout info">Regra mental: <b>quanto mais clara a torra, mais energia (moagem fina + calor) você precisa dar</b>. Quanto mais escura, mais suave deve ser a extração.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Data de Torra e Descanso</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Degasagem:</b> após a torra o grão libera CO₂ por dias. Café muito fresco (0–5 dias) borbulha demais e extrai irregular.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Janela ideal para espresso:</b> 10 a 35 dias após a torra</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Depois de ~2 meses o café não "estraga", mas perde aroma semana a semana</div></div>
+        <div class="callout tip">Café de supermercado sem <b>data de torra</b> (só validade) pode ter mais de 1 ano. É por isso que specialty sempre estampa a data — procure sempre por ela.</div>
+      </div>
+      <div class="g-theme" id="tema-graos"><i data-lucide="sprout" style="width:18px;height:18px;stroke:var(--crema);"></i>Espécies, Variedades e Processos</div>
+      <div class="d-section">
+        <div class="d-section-title">Arabica × Robusta</div>
+        <div class="d-body">Existem mais de 100 espécies de café, mas duas dominam o mundo: <b>Coffea arabica</b> (~60% da produção) e <b>Coffea canephora</b>, a robusta (~40%).</div>
+        <table class="d-table" style="margin-top:10px">
+          <tr><th></th><th>Arabica</th><th>Robusta</th></tr>
+          <tr><td><b>Altitude</b></td><td>800–2.200m</td><td>0–800m</td></tr>
+          <tr><td><b>Cafeína</b></td><td>~1,2%</td><td>~2,2%</td></tr>
+          <tr><td><b>Sabor</b></td><td class="good-cell">Doce, ácido, complexo</td><td>Amargo, terroso, amadeirado</td></tr>
+          <tr><td><b>Crema</b></td><td>Delicada</td><td>Abundante e estável</td></tr>
+          <tr><td><b>Preço</b></td><td>Mais caro</td><td>Mais barato</td></tr>
+        </table>
+        <div class="callout info">O espresso italiano tradicional usa blends com 10–40% robusta (crema + corpo + preço). O movimento specialty trabalha quase sempre com <b>100% arabica</b> — é o padrão do Pausa.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Variedades Comuns de Arabica</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Typica e Bourbon:</b> as "mães" de quase todas as outras — doçura clássica e equilíbrio</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Caturra:</b> mutação compacta do Bourbon — acidez cítrica brilhante</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Catuaí e Mundo Novo:</b> as variedades que sustentam o Brasil — corpo, chocolate e nozes</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Geisha:</b> a diva — floral como jasmim, e a mais cara do mundo (lotes de leilão passam de €1.000/kg)</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Processamento Pós-Colheita</div>
+        <div class="d-body">Como a fruta é removida do grão muda tanto o sabor quanto a torra e a variedade:</div>
+        <table class="d-table" style="margin-top:10px">
+          <tr><th>Processo</th><th>Como</th><th>Na xícara</th></tr>
+          <tr><td><b>Lavado</b></td><td>Polpa removida antes de secar</td><td>Limpo, acidez brilhante</td></tr>
+          <tr><td><b>Natural</b></td><td>Seca com a fruta inteira</td><td>Frutado, doce, mais corpo</td></tr>
+          <tr><td><b>Honey</b></td><td>Seca com parte da mucilagem</td><td>Meio-termo — doçura de mel</td></tr>
+        </table>
+        <div class="callout tip">O Brasil é o rei do <b>natural</b> — clima seco na colheita permite secar a fruta inteira. É o perfil "chocolate + frutas" da nossa raiz, e conversa direto com o portfólio do Puchero em Valladolid.</div>
+      </div>
+      <div class="g-theme" id="tema-metodos"><i data-lucide="filter" style="width:18px;height:18px;stroke:var(--crema);"></i>Métodos de Extração</div>
+      <div class="d-section">
+        <div class="d-section-title">As Três Famílias</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressão:</b> água forçada através do café. Espresso (9 bar), moka (~1,5 bar), AeroPress (pressão manual leve).</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Percolação (gravidade):</b> água atravessa o café por peso próprio. V60, Chemex, coado de pano, cafeteira de filtro.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Imersão:</b> café fica de molho na água. French press, cold brew, cupping.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">O Que a Pressão Muda</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Crema:</b> só existe com pressão — é CO₂ + óleos emulsionados. Nenhum coado tem crema.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Concentração:</b> espresso tem ~8–12% de sólidos dissolvidos; coado, ~1,2–1,5%. Por isso 30ml de espresso equivalem em intensidade a uma xícara grande de filtrado.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Velocidade:</b> pressão extrai em segundos o que a gravidade leva minutos para fazer.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Corpo:</b> métodos sem filtro de papel (espresso, french press, moka) deixam óleos passar → mais corpo. Papel retém óleos → xícara mais limpa.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Tabela Mestre por Método</div>
+        <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+        <table class="d-table" style="min-width:480px">
+          <tr><th>Método</th><th>Moagem (KG521.M)</th><th>Ratio</th><th>Tempo</th><th>Água</th></tr>
+          <tr><td><b>Espresso</b></td><td>Fina (3–5)</td><td>1:2</td><td>25–30s</td><td>90–96°C</td></tr>
+          <tr><td><b>Moka</b></td><td>Fina-média (7–8)</td><td>1:10</td><td>~4 min</td><td>Fogo baixo</td></tr>
+          <tr><td><b>AeroPress</b></td><td>Média-fina (8–9)</td><td>1:12–1:15</td><td>1,5–2 min</td><td>85–92°C</td></tr>
+          <tr><td><b>V60 / coado</b></td><td>Média (10–12)</td><td>1:15–1:17</td><td>2,5–3,5 min</td><td>92–96°C</td></tr>
+          <tr><td><b>French press</b></td><td>Grossa (14–16)</td><td>1:15</td><td>4 min</td><td>93–96°C</td></tr>
+          <tr><td><b>Cold brew</b></td><td>Muito grossa (17–18)</td><td>1:8 (concentrado)</td><td>12–18h</td><td>Fria</td></tr>
+        </table>
+        </div>
+        <div class="callout tip">Repare no padrão: <b>quanto menor o tempo de contato, mais fina a moagem</b>. Espresso = segundos + pó fino. Cold brew = horas + pó grosso. É a mesma física em todos os métodos.</div>
+      </div>
+      <div class="g-theme" id="tema-ratios"><i data-lucide="scale" style="width:18px;height:18px;stroke:var(--crema);"></i>Pesos, Ratios e Extração</div>
+      <div class="d-section">
+        <div class="d-section-title">Ratio: a Receita em Números</div>
+        <div class="d-body">Ratio é a proporção entre <b>café seco (g)</b> e <b>bebida na xícara (g)</b>. É a linguagem universal de receita de café — sempre pese, nunca meça por volume.</div>
+        <table class="d-table" style="margin-top:10px">
+          <tr><th>Bebida</th><th>Ratio</th><th>Exemplo (18g)</th><th>Perfil</th></tr>
+          <tr><td><b>Ristretto</b></td><td>1:1–1:1,5</td><td>18g → 18–27g</td><td>Denso, doce, intenso</td></tr>
+          <tr style="background:var(--good-bg)"><td><b>Espresso</b></td><td><b>1:2</b></td><td><b>18g → 36g</b></td><td class="good-cell">✔ Receita-âncora</td></tr>
+          <tr><td><b>Lungo</b></td><td>1:3</td><td>18g → 54g</td><td>Mais suave, mais amargo</td></tr>
+          <tr><td><b>Coado</b></td><td>1:15–1:17</td><td>18g → 270–306g</td><td>Leve, aromático</td></tr>
+        </table>
+        <div class="callout info">A receita-âncora do espresso: <b>18g de pó → 36g na xícara em 25–30s</b>. Memorize esse triângulo (dose, rendimento, tempo) — todo ajuste parte dele.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">A Ordem Química da Extração</div>
+        <div class="d-body">A água não extrai tudo de uma vez — os compostos saem em ordem:</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>Primeiro os ácidos e frutados</b> — saem rápido, nos primeiros segundos.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>Depois os açúcares</b> — o meio da extração é onde mora a doçura.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Por último os amargos e adstringentes</b> — se você extrair demais, eles dominam.</div></div>
+        <div class="d-body" style="margin-top:8px">Por isso:</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Sub-extração</b> (parou cedo demais): ácido, salgado, aguado, final curto</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Ponto ideal:</b> doçura no centro, acidez viva, amargor só de contorno</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Sobre-extração</b> (foi longe demais): amargo, adstringente, boca seca</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">As 5 Variáveis</div>
+        <div class="d-body">Toda extração é controlada por: <b>moagem · dose · tempo · temperatura · água</b>. A regra de ouro: <b>mude UMA variável por vez</b> — mudou duas, você não sabe mais o que causou o quê.</div>
+        <div class="callout tip">O upgrade mais barato e de maior impacto do setup caseiro: uma <b>balança com precisão de 0,1g</b>. Sem pesar, você está sempre chutando.</div>
+      </div>
+      <div class="g-theme" id="tema-moagem"><i data-lucide="settings" style="width:18px;height:18px;stroke:var(--crema);"></i>Moagem em Profundidade</div>
+      <div class="d-section">
+        <div class="d-section-title">Por Que Moagem é a Variável nº 1</div>
+        <div class="d-body">A extração acontece na <b>superfície de contato</b> entre água e café. Moer mais fino multiplica essa superfície — a mesma dose de 18g moída fina expõe muitas vezes mais área que moída grossa. Nenhuma outra variável tem efeito tão grande e tão imediato na xícara.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Partículas, Finos e Mós</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Uniformidade importa:</b> partículas do mesmo tamanho extraem juntas. Mistura de grossos + finos = sub e sobre-extração <b>na mesma xícara</b>.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Finos:</b> todo moedor gera pó ultrafino. Um pouco é bom (corpo); demais entope a cesta e amarga.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mós cônicas</b> (KG521.M): silenciosas, esquentam menos o pó. <b>Mós planas</b> (padrão em cafeteria): mais uniformes, mais caras.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moedor de lâmina não serve:</b> ele pica em tamanhos aleatórios em vez de moer — impossível calibrar.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Frescor: Moa na Hora</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Café moído perde a maior parte dos aromas voláteis em <b>~15 minutos</b> — a área exposta ao oxigênio explode</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Grão inteiro bem guardado (pote hermético, escuro, longe do calor) dura semanas; moído, minutos</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nunca guarde café na geladeira — ele absorve umidade e cheiros</div></div>
+        <div class="callout info">Para colocar em prática: o passo a passo de calibração (dial-in) do KG521.M está no <b>Capítulo 3 — Configurando o Moedor</b>, e o diagnóstico pelo tempo de extração na aba <b>Calibração</b>.</div>
+      </div>
+    `
   }
 };
 
@@ -1271,6 +1471,29 @@ function openChapter(num) {
   showScreen('detail');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   lucide.createIcons();
+  initThemeNav();
+}
+
+// ── NAVEGAÇÃO POR TEMAS (Teoria do Café) ──
+function scrollToTheme(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function initThemeNav() {
+  if (window._themeNavScroll) window.removeEventListener('scroll', window._themeNavScroll);
+  const themes = Array.from(document.querySelectorAll('.g-theme[id]'));
+  if (!themes.length) return;
+  const chips = Array.from(document.querySelectorAll('.g-nav-chip'));
+  const onScroll = () => {
+    const offset = window.innerHeight * 0.35;
+    let current = 0;
+    themes.forEach((t, i) => { if (t.getBoundingClientRect().top < offset) current = i; });
+    chips.forEach((c, i) => c.classList.toggle('active', i === current));
+  };
+  window._themeNavScroll = onScroll;
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 function closeDetail() {
