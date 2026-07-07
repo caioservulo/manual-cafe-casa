@@ -13,44 +13,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
+  /* Tema único: dark mode */
   :root {
-    --espresso: #0C3344;
+    --espresso: #071620;
     --roast: #0E4558;
     --crema: #C4673C;
     --crema-light: #D6CFC4;
-    --milk: #F4EFE6;
-    --steam: #EAE5DC;
-    --bark: #1A5570;
-    --text: #0E4558;
-    --muted: rgba(14,69,88,0.55);
-    --good: #1E6B3A;
-    --good-bg: #E6F4EC;
-    --warn: #8B2000;
-    --warn-bg: #FDE8E0;
-    --info: #0E4558;
-    --info-bg: rgba(196,103,60,0.07);
+    --milk: #0A1E28;
+    --steam: #0F2D3D;
+    --bark: #C4673C;
+    --text: #F4EFE6;
+    --muted: rgba(244,239,230,0.5);
+    --good: #4CAF70;
+    --good-bg: #0A2010;
+    --warn: #FF8060;
+    --warn-bg: #200A00;
+    --info: #D6CFC4;
+    --info-bg: rgba(14,69,88,0.3);
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --espresso: #071620;
-      --roast: #0E4558;
-      --crema: #C4673C;
-      --crema-light: #D6CFC4;
-      --milk: #0A1E28;
-      --steam: #0F2D3D;
-      --bark: #C4673C;
-      --text: #F4EFE6;
-      --muted: rgba(244,239,230,0.5);
-      --good: #4CAF70;
-      --good-bg: #0A2010;
-      --warn: #FF8060;
-      --warn-bg: #200A00;
-      --info: #D6CFC4;
-      --info-bg: rgba(14,69,88,0.3);
-    }
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -63,46 +44,6 @@
     min-height: 100vh;
     overscroll-behavior: none;
   }
-
-  /* ── SPLASH / COVER ── */
-  #splash {
-    position: fixed; inset: 0; z-index: 100;
-    background: var(--espresso);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 40px 32px calc(40px + var(--safe-bottom));
-    transition: opacity 0.5s, transform 0.5s;
-  }
-  #splash.hidden { opacity: 0; transform: scale(1.05); pointer-events: none; }
-  .splash-steam {
-    font-size: 52px; margin-bottom: 8px;
-    animation: rise 3s ease-in-out infinite;
-  }
-  @keyframes rise {
-    0%,100% { transform: translateY(0) scale(1); opacity: .7; }
-    50% { transform: translateY(-8px) scale(1.05); opacity: 1; }
-  }
-  .splash-brand {
-    font-size: 11px; letter-spacing: 4px; color: var(--crema);
-    text-transform: uppercase; margin-bottom: 4px;
-  }
-  .splash-title {
-    font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 28px; color: #fff;
-    text-align: center; line-height: 1.2; margin-bottom: 6px;
-  }
-  .splash-model {
-    font-size: 13px; color: var(--crema-light); margin-bottom: 40px;
-  }
-  .splash-btn {
-    background: var(--crema); color: var(--milk);
-    border: none; border-radius: 50px;
-    padding: 16px 48px; font-size: 15px; font-weight: 400;
-    font-family: 'Inter', sans-serif; letter-spacing: 0.5px;
-    cursor: pointer; width: 100%; max-width: 280px;
-    transition: transform 0.1s, opacity 0.1s;
-  }
-  .splash-btn:active { transform: scale(0.97); opacity: 0.9; }
 
   /* ── BOTTOM NAV ── */
   #bottom-nav {
@@ -492,15 +433,6 @@
 </head>
 <body>
 
-<!-- SPLASH -->
-<div id="splash">
-  <div class="splash-steam"><i data-lucide="coffee" style="width:52px;height:52px;stroke:var(--crema);"></i></div>
-  <div class="splash-brand">De'Longhi</div>
-  <div class="splash-title">Manual<br>Dedica EC685</div>
-  <div class="splash-model">+ Moedor KG520</div>
-  <button class="splash-btn" onclick="hideSplash()">Abrir Manual</button>
-</div>
-
 <!-- TOP BAR -->
 <div id="topbar">
   <div class="topbar-inner">
@@ -514,7 +446,7 @@
   <!-- HOME -->
   <div id="screen-home" class="screen active">
     <div class="home-hero">
-      <div class="home-greeting">De'Longhi Dedica EC685</div>
+      <div class="home-greeting">De'Longhi Dedica EC685 + Moedor KG521.M</div>
       <div class="home-headline">Seu manual<br>completo de barista</div>
     </div>
 
@@ -587,8 +519,8 @@
       <div class="chapter-item" onclick="openChapter(9)">
         <div class="chapter-num">9</div>
         <div class="chapter-info">
-          <div class="chapter-title">Descalcificação</div>
-          <div class="chapter-sub">Quando e como fazer</div>
+          <div class="chapter-title">Limpeza e Descalcificação</div>
+          <div class="chapter-sub">Rotinas, periodicidade e descalcificação</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -839,7 +771,7 @@
       <div class="checklist-section-title"><i data-lucide="sliders" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:6px;stroke:var(--crema);"></i>Extração</div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c5">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Moer o café fresco na hora (posição 2–3 no KG520)</div>
+        <div class="check-text">Moer o café fresco na hora (posição 3–5 no KG521.M)</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c6">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
@@ -901,15 +833,16 @@
       </div>
 
       <div class="calib-card">
-        <div class="calib-header"><i data-lucide="wrench" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Posições do Moedor KG520</div>
+        <div class="calib-header"><i data-lucide="wrench" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Posições do Moedor KG521.M (1–18)</div>
         <div class="calib-body">
           <table class="d-table" style="margin:0">
             <tr><th>Posição</th><th>Moagem</th><th>Uso</th></tr>
-            <tr><td><b>1</b></td><td>Muito fina</td><td class="warn-cell">Entope — evitar</td></tr>
-            <tr><td><b>2–3</b></td><td>Fina</td><td class="good-cell">✔ Espresso ideal</td></tr>
-            <tr><td><b>4</b></td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
-            <tr><td><b>5</b></td><td>Média</td><td>Coado / Drip</td></tr>
-            <tr><td><b>6+</b></td><td>Grossa</td><td>French Press</td></tr>
+            <tr><td><b>1–2</b></td><td>Extra fina</td><td class="warn-cell">Risco de entupir</td></tr>
+            <tr><td><b>3–5</b></td><td>Fina</td><td class="good-cell">✔ Espresso ideal</td></tr>
+            <tr><td><b>6</b></td><td>Fina-média</td><td>Espresso torra escura</td></tr>
+            <tr><td><b>7–9</b></td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
+            <tr><td><b>10–12</b></td><td>Média</td><td>Coado / Drip</td></tr>
+            <tr><td><b>13–18</b></td><td>Grossa</td><td>French Press</td></tr>
           </table>
         </div>
       </div>
@@ -966,12 +899,6 @@
 </div>
 
 <script>
-// ── SPLASH ──
-function hideSplash() {
-  document.getElementById('splash').classList.add('hidden');
-  setTimeout(() => document.getElementById('splash').style.display = 'none', 600);
-}
-
 // ── NAVIGATION ──
 function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1166,7 +1093,7 @@ const chapterData = {
         <table class="d-table" style="margin-top:12px">
           <tr><th>Componente</th><th>Função</th></tr>
           <tr><td><b>Cafeteira EC685</b></td><td>Corpo principal — 15 bar de pressão</td></tr>
-          <tr><td><b>Moedor KG520</b></td><td>Mós cônicas de aço inox</td></tr>
+          <tr><td><b>Moedor KG521.M</b></td><td>Mós cônicas de aço inox — 18 posições, suporte para moer direto no portafiltro</td></tr>
           <tr><td><b>Portafiltro</b></td><td>Suporte que encaixa no grupo</td></tr>
           <tr><td><b>Cesta simples</b></td><td>~7g / 1 espresso de ~30ml</td></tr>
           <tr><td><b>Cesta dupla</b></td><td>~14g / dose dupla ~60ml</td></tr>
@@ -1210,23 +1137,25 @@ const chapterData = {
     cap: 'Capítulo 3', title: 'Configurando o Moedor',
     content: `
       <div class="d-section">
-        <div class="d-section-title">Escala de Moagem</div>
-        <div class="d-body">Para espresso, use sempre posição 2–3. O teste real é o tempo de extração.</div>
+        <div class="d-section-title">Escala de Moagem — 18 Posições</div>
+        <div class="d-body">O KG521.M tem 18 posições. Para espresso, fique na faixa 1–6: comece na <b>5</b> e vá afinando conforme o tempo de extração. O teste real é sempre o cronômetro.</div>
         <table class="d-table" style="margin-top:10px">
           <tr><th>Posição</th><th>Resultado</th><th>Uso</th></tr>
-          <tr><td>1</td><td>Muito fina</td><td class="warn-cell">Entope — evitar</td></tr>
-          <tr style="background:var(--good-bg)"><td><b>2–3</b></td><td><b>Fina</b></td><td class="good-cell"><b>✔ Espresso</b></td></tr>
-          <tr><td>4</td><td>Média-fina</td><td>Moka</td></tr>
-          <tr><td>5</td><td>Média</td><td>Coado</td></tr>
-          <tr><td>6+</td><td>Grossa</td><td>French Press</td></tr>
+          <tr><td>1–2</td><td>Extra fina</td><td class="warn-cell">Risco de entupir a Dedica</td></tr>
+          <tr style="background:var(--good-bg)"><td><b>3–5</b></td><td><b>Fina</b></td><td class="good-cell"><b>✔ Espresso</b></td></tr>
+          <tr><td>6</td><td>Fina-média</td><td>Espresso torra escura</td></tr>
+          <tr><td>7–9</td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
+          <tr><td>10–12</td><td>Média</td><td>Coado / Drip</td></tr>
+          <tr><td>13–18</td><td>Grossa</td><td>French Press</td></tr>
         </table>
+        <div class="callout tip">Use o <b>suporte de portafiltro</b> do KG521.M para moer direto na cesta — menos sujeira e menos perda de pó. Ajuste a moagem sempre <b>com o motor ligado</b> para não forçar as mós.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Calibração pelo Tempo</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Menos de 20s:</b> Moagem muito grossa → afinar (número menor)</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>25–30s:</b> ✔ Perfeito — manter</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mais de 35s:</b> Moagem muito fina → engrossar (número maior)</div></div>
-        <div class="callout tip">Mude <b>meia posição por vez</b> e sempre teste antes de ajustar de novo. Pequenas mudanças = grande impacto.</div>
+        <div class="callout tip">Mude <b>uma posição por vez</b> e sempre teste antes de ajustar de novo. Pequenas mudanças = grande impacto.</div>
         <div class="callout warn"><b>Ao trocar de café:</b> Recalibre sempre. Cada grão e cada torra se comportam de forma diferente.</div>
       </div>
       <div class="d-section">
@@ -1243,7 +1172,7 @@ const chapterData = {
       <div class="d-section">
         <div class="d-section-title">Passo a Passo</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>PRÉ-AQUECER:</b> Ligue e faça a purga. Pré-aqueça xícaras.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa fresco na posição calibrada (2–3 no KG520).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa fresco na posição calibrada (3–5 no KG521.M).</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>DOSAR:</b> 14–18g na cesta dupla. Nivelar com o dedo.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>DISTRIBUIR:</b> Bater suavemente na palma para distribuir uniformemente.</div></div>
         <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>TAMPAR:</b> Perpendicular, ~15kg de pressão, leve giro no final.</div></div>
@@ -1281,13 +1210,27 @@ const chapterData = {
     `
   },
   9: {
-    cap: 'Capítulo 9', title: 'Descalcificação',
+    cap: 'Capítulo 9', title: 'Limpeza e Descalcificação',
     content: `
       <div class="d-section">
+        <div class="d-section-title">Rotina de Limpeza — Periodicidade</div>
+        <div class="d-body">Limpeza regular é o que mais prolonga a vida útil do setup. A regra de ouro: resíduo de café e leite se limpam <b>na hora</b>; o resto segue o calendário.</div>
+        <table class="d-table" style="margin-top:10px">
+          <tr><th>Quando</th><th>O que fazer</th></tr>
+          <tr><td><b>Após cada café</b></td><td>Bater a borra, enxaguar portafiltro e cesta, passar água pelo grupo (2–3s sem portafiltro)</td></tr>
+          <tr><td><b>Após cada leite</b></td><td>Purgar o vaporizador 2s + pano úmido na lança <b>imediatamente</b> — leite seco entope o bocal</td></tr>
+          <tr><td><b>Diário</b></td><td>Esvaziar e enxaguar bandeja de gotejamento; trocar a água do reservatório (nunca deixar água parada)</td></tr>
+          <tr><td><b>Semanal</b></td><td>Lavar reservatório, bandeja e cestas com detergente neutro; escovar a ducha do grupo; desmontar o bocal do vaporizador e deixar de molho em água morna</td></tr>
+          <tr><td><b>Mensal</b></td><td>Limpar as mós do moedor com pincel seco; lavar o recipiente de grãos (remove óleos rançosos)</td></tr>
+          <tr><td><b>1–3 meses</b></td><td>Descalcificação completa (ver abaixo)</td></tr>
+        </table>
+        <div class="callout tip">Nada de máquina de lavar louça: portafiltro, cestas e tamper são <b>só água quente + detergente neutro</b>. Produtos abrasivos arranham e deixam resíduo de sabor.</div>
+      </div>
+      <div class="d-section">
         <div class="d-section-title">Quando Descalcificar</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água de torneira: <b>a cada 2–3 meses</b></div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água filtrada/mineral: <b>a cada 4–6 meses</b></div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">A máquina avisa automaticamente com luzes piscando</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água de torneira dura: <b>a cada 1–2 meses</b></div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água filtrada ou branda: <b>a cada 3–4 meses</b></div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">A máquina avisa automaticamente com luzes piscando — mas não espere o aviso se notar fluxo fraco ou espresso mais frio</div></div>
         <div class="callout info">Use <b>EcoDecalk De'Longhi</b> — o produto oficial. Vinagre funciona mas requer 2 ciclos extras de enxágue e tem cheiro forte.</div>
       </div>
       <div class="d-section">
@@ -1303,11 +1246,13 @@ const chapterData = {
         <div class="callout warn"><b>NUNCA</b> use descalcificante de cafeteira automática comum — a concentração é diferente e pode danificar os componentes internos.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Limpeza do Moedor</div>
+        <div class="d-section-title">Limpeza do Moedor KG521.M</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Semanal:</b> pincel seco no canal de saída e no suporte do portafiltro; pano seco no corpo</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mensal:</b> esvaziar os grãos, remover a mó superior e escovar as mós; lavar o recipiente de grãos e a tampa (secar bem antes de remontar)</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Desconecte</b> da tomada antes de qualquer limpeza</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Use apenas <b>pincel seco</b> nas mós — NUNCA água</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Air duster é ótimo para remover pó fino dos cantos</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nas mós, use apenas <b>pincel seco</b> — NUNCA água. Air duster ajuda a tirar o pó fino dos cantos</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Após limpeza, moa uma pequena quantidade "de descarte" para limpar os canais</div></div>
+        <div class="callout tip">Café oleoso (torra escura) suja o moedor muito mais rápido — se usar, encurte a limpeza profunda para a cada 2–3 semanas.</div>
       </div>
     `
   }
