@@ -373,6 +373,28 @@
   .recipe-val { font-weight: 600; }
   .drink-tip { margin-top: 10px; }
 
+  /* ── FILTER TOGGLE ── */
+  .filter-toggle {
+    display: flex; gap: 6px; margin: 12px 0 10px;
+  }
+  .filter-btn {
+    flex: 1; border: 1.5px solid rgba(196,103,60,0.3);
+    background: none; border-radius: 20px; padding: 7px 8px;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    cursor: pointer; transition: all 0.2s; text-align: center;
+  }
+  .filter-btn.active {
+    background: var(--crema); border-color: var(--crema);
+    color: var(--espresso);
+  }
+  .filter-params { display: none; }
+  .filter-params.active { display: block; }
+  .filter-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 6px;
+  }
+
   /* ── CHECKLIST SCREEN ── */
   .checklist-section { padding: 12px 16px; }
   .checklist-section-title {
@@ -555,6 +577,14 @@
         </div>
         <div class="chapter-arrow">›</div>
       </div>
+      <div class="chapter-item" onclick="openChapter(11)">
+        <div class="chapter-num">11</div>
+        <div class="chapter-info">
+          <div class="chapter-title">Filtros: Pressurizado vs Não-Pressurizado</div>
+          <div class="chapter-sub">Diferenças, configurações e quando usar cada um</div>
+        </div>
+        <div class="chapter-arrow">›</div>
+      </div>
     </div>
 
     <div class="section-label">Conhecimentos Gerais</div>
@@ -685,13 +715,34 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–18g (cesta dupla)</span></div>
-            <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">60ml</span></div>
-            <div class="recipe-row"><span class="recipe-key">Tempo de extração</span><span class="recipe-val good-cell">25–30 segundos</span></div>
-            <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'espresso-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'espresso-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout tip drink-tip"><b>Dica:</b> A cesta dupla sempre produz resultado melhor que dois simples — mais crema e sabor mais equilibrado.</div>
+          <div class="filter-params active" id="espresso-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Firme ~15kg, perpendicular</span></div>
+              <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">36ml (ratio 1:2)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">25–30 segundos</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
+            </div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Café aguado = moagem muito grossa ou tampagem fraca. Afina para C3 e tamp mais firme.</div>
+          </div>
+          <div class="filter-params" id="espresso-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Moderada</span></div>
+              <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">~60ml</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">20–28 segundos</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Dica:</b> A cesta pressurizada aceita café de pacote pré-moído em caso de necessidade. Crema sempre presente.</div>
+          </div>
         </div>
       </div>
 
@@ -702,13 +753,34 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Espresso</span><span class="recipe-val">1 dose dupla (~60ml)</span></div>
-            <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
-            <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
-            <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'capp-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'capp-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout tip drink-tip"><b>Ordem:</b> Extraia o espresso PRIMEIRO. Vaporizando o leite depois, você usa o tempo de extração para aquecer o jarro.</div>
+          <div class="filter-params active" id="capp-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Ordem:</b> Espresso PRIMEIRO. Use o tempo de extração para aquecer o jarro de leite.</div>
+          </div>
+          <div class="filter-params" id="capp-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Dica:</b> Com cesta pressurizada a crema é garantida mesmo com tampagem leve — foca na qualidade do leite vaporizado.</div>
+          </div>
         </div>
       </div>
 
@@ -719,13 +791,34 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Espresso</span><span class="recipe-val">1 dose dupla (~60ml)</span></div>
-            <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
-            <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
-            <div class="recipe-row"><span class="recipe-key">Temperatura</span><span class="recipe-val">60–65°C</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'latte-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'latte-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout info drink-tip"><b>Flat White:</b> Menos leite e microespuma mais densa — o sabor do café domina. Latte é mais suave e volumoso.</div>
+          <div class="filter-params active" id="latte-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
+            </div>
+            <div class="callout info drink-tip"><b>Flat White:</b> Microespuma mais densa — o café domina. Com cesta NP o sabor é mais complexo e o flat white fica excepcional.</div>
+          </div>
+          <div class="filter-params" id="latte-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Dica:</b> Com cesta pressurizada o latte fica mais suave e consistente — boa opção para bebidas com muito leite.</div>
+          </div>
         </div>
       </div>
 
@@ -736,13 +829,34 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Espresso</span><span class="recipe-val">1 dose simples ou dupla</span></div>
-            <div class="recipe-row"><span class="recipe-key">Leite</span><span class="recipe-val">~30ml quente</span></div>
-            <div class="recipe-row"><span class="recipe-key">Temperatura</span><span class="recipe-val">60–65°C</span></div>
-            <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'cortado-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'cortado-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout tip drink-tip"><b>Dica de Valladolid:</b> O leite "corta" o amargor do espresso. Proporção aprox. 1:1. Perfeito para o seu café-bar!</div>
+          <div class="filter-params active" id="cortado-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30–36ml</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Dica de Valladolid:</b> Com NP o sabor é mais intenso e complexo — o cortado perfeito para o café-bar de vocês!</div>
+          </div>
+          <div class="filter-params" id="cortado-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30ml</span></div>
+              <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Dica:</b> Proporção 1:1 — espresso e leite em partes iguais. O leite "corta" o amargor.</div>
+          </div>
         </div>
       </div>
 
@@ -753,12 +867,32 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Espresso</span><span class="recipe-val">1 dose dupla (~60ml)</span></div>
-            <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
-            <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'americano-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'americano-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout warn drink-tip"><b>Atenção:</b> Sempre espresso PRIMEIRO, água depois. Inverter destrói a crema e o aroma. A Dedica tem saída de água quente — use-a!</div>
+          <div class="filter-params active" id="americano-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
+            </div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Espresso PRIMEIRO, água depois. Com NP o sabor base é mais rico — americano mais aromático.</div>
+          </div>
+          <div class="filter-params" id="americano-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
+            </div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Sempre espresso PRIMEIRO. A Dedica tem saída de água quente — use-a!</div>
+          </div>
         </div>
       </div>
 
@@ -769,12 +903,32 @@
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-recipe">
-            <div class="recipe-row"><span class="recipe-key">Espresso</span><span class="recipe-val">1 dose simples</span></div>
-            <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres</span></div>
-            <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
+          <div class="filter-toggle">
+            <button class="filter-btn active" onclick="switchFilter(this,'mac-np')">★ Não-Pressurizada</button>
+            <button class="filter-btn" onclick="switchFilter(this,'mac-p')">✦ Pressurizada</button>
           </div>
-          <div class="callout tip drink-tip"><b>Técnica:</b> Extraia o espresso. Pegue apenas a espuma do topo do jarro com uma colher e coloque sobre o café.</div>
+          <div class="filter-params active" id="mac-np">
+            <div class="filter-label">Cesta não-pressurizada (a tua)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Técnica:</b> Com NP a crema é natural e densa — a espuma por cima contrasta bonito. Pegue só a espuma do topo do jarro.</div>
+          </div>
+          <div class="filter-params" id="mac-p">
+            <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
+            <div class="drink-recipe">
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
+              <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
+            </div>
+            <div class="callout tip drink-tip"><b>Técnica:</b> A crema pressurizada já é generosa — a espuma é só um toque final de decoração e textura.</div>
+          </div>
         </div>
       </div>
 
@@ -897,6 +1051,26 @@
           <div class="calib-row"><span class="calib-key">Nível 2</span><span class="calib-val good">~92°C — ✔ Recomendado</span></div>
           <div class="calib-row"><span class="calib-key">Nível 3</span><span class="calib-val">~96°C — Torra escura / corpo</span></div>
           <div class="callout info" style="margin-top:12px;font-size:12px;"><b>Como ajustar:</b> Segurar botão de energia 3s → piscar indica nível → botão 1 dose para ciclar → confirmar.</div>
+        </div>
+      </div>
+
+      <div class="calib-card">
+        <div class="calib-header"><i data-lucide="filter" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Cesta Pressurizada vs Não-Pressurizada</div>
+        <div class="calib-body">
+          <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Pressurizada ✦</span></div>
+          <div class="calib-row"><span class="calib-key">Moagem KG521.M</span><span class="calib-val">C4–C6</span></div>
+          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val">14–16g</span></div>
+          <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Moderada</span></div>
+          <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val">20–28s</span></div>
+          <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val good">Alta</span></div>
+          <div style="height:1px;background:rgba(196,103,60,0.2);margin:10px 0;"></div>
+          <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Não-Pressurizada ★ (a tua)</span></div>
+          <div class="calib-row"><span class="calib-key">Moagem KG521.M</span><span class="calib-val good">C2–C4</span></div>
+          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val good">16–18g</span></div>
+          <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Firme (~15kg)</span></div>
+          <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val good">25–30s</span></div>
+          <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val warn">Baixa — exige precisão</span></div>
+          <div class="callout info" style="margin-top:12px;font-size:12px;">Ver <b>Capítulo 11</b> para guia completo de cada tipo de cesta.</div>
         </div>
       </div>
 
@@ -1094,6 +1268,15 @@ function switchTimer(name) {
   document.getElementById('timer-milk').style.display = 'none';
   document.getElementById('timer-bloom').style.display = 'none';
   document.getElementById('timer-' + name).style.display = 'block';
+}
+
+// ── FILTER TOGGLE ──
+function switchFilter(btn, targetId) {
+  const card = btn.closest('.drink-detail');
+  card.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  card.querySelectorAll('.filter-params').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(targetId).classList.add('active');
 }
 
 // ── DRINKS ──
@@ -1453,6 +1636,70 @@ const chapterData = {
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Grão inteiro bem guardado (pote hermético, escuro, longe do calor) dura semanas; moído, minutos</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nunca guarde café na geladeira — ele absorve umidade e cheiros</div></div>
         <div class="callout info">Para colocar em prática: o passo a passo de calibração (dial-in) do KG521.M está no <b>Capítulo 3 — Configurando o Moedor</b>, e o diagnóstico pelo tempo de extração na aba <b>Calibração</b>.</div>
+      </div>
+    `
+  },
+  11: {
+    cap: 'Capítulo 11', title: 'Filtros: Pressurizado vs Não-Pressurizado',
+    content: `
+      <div class="d-section">
+        <div class="d-section-title">O Que é um Filtro Pressurizado?</div>
+        <div class="d-body">A EC685 Dedica vem de fábrica com cestas <b>pressurizadas</b> (também chamadas de "parede dupla" ou "crema perfeita"). São projetadas para facilitar a vida do barista iniciante — produzem crema mesmo com moagem irregular ou café pré-moído de pacote.</div>
+        <div class="d-body" style="margin-top:8px">A cesta <b>não-pressurizada</b> (a tua atual) tem apenas uma parede e furos abertos — é o padrão profissional, usado em cafeterias, e revela o sabor real do grão sem nenhuma "ajuda".</div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-title">Como Funcionam por Dentro</div>
+        <div class="d-step"><div class="d-step-num">P</div><div class="d-step-text"><b>Pressurizada:</b> Tem uma câmara interna com um único furo minúsculo no fundo. A pressão se acumula dentro da cesta antes de sair — isso cria crema artificialmente mesmo se a moagem ou tampagem não estiverem perfeitas.</div></div>
+        <div class="d-step"><div class="d-step-num">N</div><div class="d-step-text"><b>Não-pressurizada:</b> Fundo com múltiplos furos abertos. A pressão é controlada 100% pela resistência do disco de café — moagem fina + tampagem firme = pressão correta. Exige calibração precisa.</div></div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-title">Comparação Completa</div>
+        <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+        <table class="d-table" style="min-width:420px;margin-top:8px">
+          <tr><th>Característica</th><th>Pressurizada ✦</th><th>Não-Pressurizada ★</th></tr>
+          <tr><td><b>Crema</b></td><td>Sempre presente (artificial)</td><td>Depende da extração</td></tr>
+          <tr><td><b>Sabor</b></td><td>Suavizado, menos complexo</td><td>Fiel ao grão — mais complexo</td></tr>
+          <tr><td><b>Exigência de moagem</b></td><td>Baixa — aceita café de pacote</td><td>Alta — exige moagem calibrada</td></tr>
+          <tr><td><b>Exigência de tampagem</b></td><td>Baixa</td><td>Alta — pressão e nivelamento</td></tr>
+          <tr><td><b>Tolerância a erros</b></td><td>Alta — perdoa erros</td><td>Baixa — expõe qualquer falha</td></tr>
+          <tr><td><b>Ideal para</b></td><td>Iniciantes / café rápido</td><td>Quem quer qualidade real</td></tr>
+          <tr><td><b>Moagem KG521.M</b></td><td>C4–C6</td><td>C2–C4</td></tr>
+          <tr><td><b>A tua atual</b></td><td>—</td><td><span style="color:var(--good)">✔ Esta é a tua</span></td></tr>
+        </table>
+        </div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-title">Configuração para Cesta Pressurizada</div>
+        <div class="d-body">Se usares a cesta pressurizada original da De'Longhi (vem na caixa):</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> C4–C6 no KG521.M — não precisa ir tão fino</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 14–16g é suficiente</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> moderada — não precisa de muita pressão</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 20–28s (ligeiramente mais rápida)</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote pré-moído:</b> funciona razoavelmente bem</div></div>
+        <div class="callout tip">A cesta pressurizada é ótima para <b>visitas ou situações rápidas</b> onde não queres calibrar. Guarda ela como backup.</div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-title">Configuração para Cesta Não-Pressurizada (a tua)</div>
+        <div class="d-body">Exige mais atenção mas entrega resultado profissional:</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> C2–C4 no KG521.M — mais fino que a pressurizada</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 16–18g — cesta cheia é fundamental</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Distribuição:</b> essencial — sem canais de extração</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> firme (~15kg) e perfeitamente perpendicular</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 25–30s obrigatório</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote:</b> não funciona bem — usa sempre grão moído na hora</div></div>
+        <div class="callout warn"><b>Se o café sair aguado</b> com cesta não-pressurizada, a causa é quase sempre moagem grossa ou tampagem fraca — não a máquina. Afina para C3 e tamp mais firme.</div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-title">Como Identificar Qual Tens Encaixada</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> fundo com pouquíssimos furos (às vezes 1 único furo central visível por fora) + parece ter duas camadas</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> fundo com muitos furos pequenos uniformes — olhando contra a luz, vês claramente todos os furos</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">A tua cesta atual com marcação <b>"2"</b> na borda e furos visíveis = <b>não-pressurizada dupla</b> ✔</div></div>
+        <div class="callout info">A De'Longhi vende ambas as cestas separadamente. Vale ter as duas e alternar conforme o tipo de café e a situação do dia.</div>
       </div>
     `
   }
