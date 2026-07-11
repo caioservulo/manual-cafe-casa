@@ -10,58 +10,106 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <title>De'Longhi Dedica — Manual</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Inter:wght@300;400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
-  /* Tema único: dark mode */
+  /* Tema único: dark premium — modo noite Pausa */
   :root {
-    --espresso: #071620;
-    --roast: #0E4558;
-    --crema: #C4673C;
-    --crema-light: #D6CFC4;
-    --milk: #0A1E28;
-    --steam: #0F2D3D;
-    --bark: #C4673C;
-    --text: #F4EFE6;
-    --muted: rgba(244,239,230,0.5);
+    /* superfícies em camadas */
+    --bg-0: #06141C;
+    --bg-1: #0A1E28;
+    --surface: #0E2836;
+    --surface-2: #133142;
+    --petroleo: #0E4558;
+    --terracota: #C4673C;
+    --terracota-deep: #A04E2B;
+    --terracota-soft: rgba(196,103,60,0.14);
+    --areia: #D6CFC4;
+    --creme: #F4EFE6;
+    --muted: rgba(244,239,230,0.52);
+    --hairline: rgba(244,239,230,0.08);
+    --hairline-strong: rgba(244,239,230,0.14);
     --good: #4CAF70;
-    --good-bg: #0A2010;
+    --good-bg: rgba(76,175,112,0.10);
     --warn: #FF8060;
-    --warn-bg: #200A00;
+    --warn-bg: rgba(255,128,96,0.10);
     --info: #D6CFC4;
-    --info-bg: rgba(14,69,88,0.3);
+    --info-bg: rgba(14,69,88,0.35);
+    /* aliases legados (referenciados em styles inline) */
+    --espresso: #06141C;
+    --roast: var(--petroleo);
+    --crema: var(--terracota);
+    --crema-light: var(--areia);
+    --milk: var(--bg-1);
+    --steam: var(--surface);
+    --bark: var(--terracota);
+    --text: var(--creme);
+    /* elevação */
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.30), 0 4px 12px rgba(0,0,0,0.25);
+    --shadow-2: 0 2px 4px rgba(0,0,0,0.35), 0 12px 28px rgba(0,0,0,0.35);
+    /* radius */
+    --r-sm: 12px;
+    --r-md: 18px;
+    --r-lg: 24px;
+    --r-pill: 100px;
+    /* motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 0.35s;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+  /* Scroll estilo app nativo: rolagem existe, barra nunca aparece */
+  * { scrollbar-width: none; -ms-overflow-style: none; }
+  *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+  /* clip corta o vazamento lateral SEM criar contêiner de scroll
+     (overflow-x:hidden no body trava o scroll vertical no iOS) */
+  html, body { overflow-x: clip; }
+
   body {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    background: var(--milk);
-    color: var(--text);
+    background: var(--bg-0);
+    background-image: radial-gradient(1200px 600px at 50% -10%, #0C2432 0%, var(--bg-0) 60%);
+    background-attachment: fixed;
+    color: var(--creme);
     min-height: 100vh;
     overscroll-behavior: none;
+    line-height: 1.65;
   }
 
   /* ── BOTTOM NAV ── */
   #bottom-nav {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-    background: var(--roast);
+    background: rgba(10,30,40,0.82);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     display: flex;
     padding-bottom: var(--safe-bottom);
-    border-top: 1px solid rgba(200,146,42,0.3);
+    border-top: 1px solid var(--hairline);
   }
   .nav-btn {
     flex: 1; border: none; background: none;
-    color: var(--muted); padding: 8px 4px 10px;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    cursor: pointer; transition: color 0.2s;
-    font-size: 10px; font-weight: 500;
+    color: var(--muted); padding: 9px 4px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    cursor: pointer; transition: color 0.25s var(--ease-out);
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2px;
+    position: relative;
   }
   .nav-btn .icon { display: flex; align-items: center; justify-content: center; }
-  .nav-btn.active { color: var(--crema); }
+  .nav-btn::before {
+    content: ''; position: absolute; top: 0; left: 50%;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--terracota);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s var(--ease-out);
+  }
+  .nav-btn.active { color: var(--terracota); }
+  .nav-btn.active::before { transform: translateX(-50%) scale(1); }
+  .nav-btn:active { transform: scale(0.96); }
 
   /* ── LUCIDE ICONS ── */
   [data-lucide] {
@@ -84,132 +132,175 @@
   #topbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 40;
     padding-top: var(--safe-top);
-    background: var(--roast);
-    border-bottom: 1px solid rgba(200,146,42,0.3);
+    background: rgba(10,30,40,0.82);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--hairline);
   }
   .topbar-inner {
     height: 56px; display: flex; align-items: center;
-    padding: 0 16px; gap: 12px;
+    padding: 0 18px; gap: 11px;
   }
-  .topbar-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 17px; color: #fff; flex: 1; }
+  .topbar-symbol { height: 17px; width: auto; flex-shrink: 0; }
+  .topbar-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 16px; color: var(--creme); flex: 1; letter-spacing: 0.2px; }
   .topbar-badge {
-    font-size: 10px; letter-spacing: 2px; color: var(--crema);
-    text-transform: uppercase;
+    font-size: 9px; letter-spacing: 2.5px; color: var(--terracota);
+    text-transform: uppercase; font-weight: 400;
   }
 
   /* ── SCREENS ── */
   .screen { display: none; padding: 0 0 8px; }
-  .screen.active { display: block; }
+  .screen.active { display: block; animation: screenIn var(--dur) var(--ease-out); }
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* ── HOME SCREEN ── */
   .home-hero {
-    background: linear-gradient(160deg, var(--roast) 0%, var(--espresso) 100%);
-    padding: 24px 20px 28px;
+    background: linear-gradient(170deg, var(--petroleo) 0%, #0A2E3E 55%, var(--bg-1) 100%);
+    padding: 30px 22px 30px;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--hairline);
   }
-  .home-greeting { font-size: 13px; color: var(--crema); margin-bottom: 2px; }
-  .home-headline { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 22px; color: #fff; line-height: 1.2; }
+  .home-hero::after {
+    content: ''; position: absolute; right: -26px; bottom: -48px;
+    width: 130px; height: 246px; opacity: 0.06; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 72'%3E%3Crect x='0' width='13' height='72' rx='2' fill='%23F4EFE6'/%3E%3Crect x='25' width='13' height='72' rx='2' fill='%23F4EFE6'/%3E%3C/svg%3E") no-repeat center / contain;
+    transform: rotate(12deg);
+  }
+  .hero-logo { width: 118px; height: auto; display: block; margin-bottom: 2px; position: relative; z-index: 1; }
+  .hero-tagline {
+    font-family: 'Caveat', cursive; font-weight: 400;
+    font-size: 19px; color: var(--terracota);
+    margin-bottom: 18px; position: relative; z-index: 1;
+  }
+  .home-headline {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 26px; color: var(--creme); line-height: 1.15;
+    position: relative; z-index: 1;
+  }
+  .home-greeting {
+    font-size: 12px; color: var(--areia); margin-top: 10px;
+    letter-spacing: 0.3px; position: relative; z-index: 1;
+  }
 
   .quick-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; padding: 16px;
+    gap: 12px; padding: 18px 16px;
   }
   .quick-card {
-    background: var(--steam); border-radius: 16px;
-    padding: 18px 14px; cursor: pointer;
-    border: 1.5px solid transparent;
-    transition: border-color 0.2s, transform 0.1s;
-    display: flex; flex-direction: column; gap: 8px;
+    background: var(--surface); border-radius: var(--r-md);
+    padding: 18px 15px; cursor: pointer;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
+    transition: transform 0.15s var(--ease-out), box-shadow 0.15s;
+    display: flex; flex-direction: column; gap: 9px;
   }
-  .quick-card:active { transform: scale(0.97); }
-  .quick-card.accent { background: var(--crema); }
+  .quick-card:active { transform: scale(0.97); box-shadow: none; }
+  .quick-card.accent {
+    background: linear-gradient(150deg, var(--terracota) 0%, var(--terracota-deep) 100%);
+    border-color: rgba(244,239,230,0.18);
+    box-shadow: var(--shadow-2);
+  }
   .quick-card .qc-icon { font-size: 28px; }
-  .quick-card .qc-label { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.2; }
-  .quick-card.accent .qc-label { color: var(--espresso); }
+  .quick-card .qc-label { font-size: 13px; font-weight: 700; color: var(--creme); line-height: 1.25; }
+  .quick-card.accent .qc-label { color: var(--creme); }
   .quick-card .qc-sub { font-size: 11px; color: var(--muted); }
-  .quick-card.accent .qc-sub { color: var(--roast); opacity: 0.7; }
+  .quick-card.accent .qc-sub { color: rgba(244,239,230,0.75); }
 
   .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-    color: var(--muted); text-transform: uppercase;
-    padding: 8px 16px 4px;
+    font-family: 'Inter', sans-serif; font-weight: 400;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--terracota); text-transform: uppercase;
+    padding: 12px 18px 6px;
   }
 
   /* ── TIMER CARD ── */
   .timer-card {
     margin: 0 16px 16px;
-    background: var(--espresso);
-    border-radius: 20px; overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: var(--shadow-2);
   }
   .timer-header {
-    background: linear-gradient(90deg, var(--bark), var(--roast));
-    padding: 14px 20px;
+    background: var(--petroleo);
+    border-bottom: 1px solid var(--hairline);
+    padding: 15px 20px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .timer-header-text { font-size: 15px; font-weight: 700; color: #fff; }
-  .timer-header-sub { font-size: 11px; color: var(--crema-light); margin-top: 2px; }
+  .timer-header-text { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 15px; color: var(--creme); }
+  .timer-header-sub { font-size: 11px; color: var(--areia); margin-top: 2px; }
   .timer-tabs {
-    display: flex; border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; border-bottom: 1px solid var(--hairline);
   }
   .timer-tab {
-    flex: 1; padding: 10px; border: none; background: none;
+    flex: 1; padding: 11px; border: none; background: none;
     color: var(--muted); font-size: 12px; font-weight: 600;
-    cursor: pointer; transition: color 0.2s, background 0.2s;
+    cursor: pointer; transition: color 0.25s, background 0.25s;
+    border-bottom: 2px solid transparent;
   }
   .timer-tab.active {
-    color: var(--crema); background: rgba(200,146,42,0.1);
-    border-bottom: 2px solid var(--crema);
+    color: var(--terracota); background: var(--terracota-soft);
+    border-bottom-color: var(--terracota);
   }
-  .timer-body { padding: 20px; }
+  .timer-body { padding: 22px 20px; }
   .timer-display {
     text-align: center; margin-bottom: 16px;
   }
   .timer-time {
     font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 64px; color: #fff;
+    font-size: 72px; color: var(--creme);
     font-variant-numeric: tabular-nums; letter-spacing: -2px;
     line-height: 1;
+    transition: color 0.3s;
   }
-  .timer-time.running { color: var(--crema); }
-  .timer-time.success { color: #4CAF70; }
-  .timer-time.over { color: #FF6B4A; }
-  .timer-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .timer-time.running { color: var(--terracota); }
+  .timer-time.success { color: var(--good); }
+  .timer-time.over { color: var(--warn); }
+  .timer-label { font-size: 12px; color: var(--muted); margin-top: 6px; }
   .timer-zone {
-    display: flex; gap: 4px; justify-content: center; margin-bottom: 16px;
+    display: flex; gap: 3px; justify-content: center; margin-bottom: 18px;
   }
   .timer-zone-seg {
-    height: 4px; border-radius: 2px; flex: 1;
-    background: rgba(255,255,255,0.1);
-    transition: background 0.3s;
+    height: 5px; border-radius: 3px; flex: 1;
+    background: rgba(244,239,230,0.09);
+    transition: background 0.3s, box-shadow 0.3s;
   }
-  .timer-zone-seg.early { background: rgba(200,146,42,0.3); }
-  .timer-zone-seg.good { background: #4CAF70; }
-  .timer-zone-seg.late { background: #FF6B4A; }
+  .timer-zone-seg.early { background: rgba(196,103,60,0.55); box-shadow: 0 0 6px rgba(196,103,60,0.35); }
+  .timer-zone-seg.good { background: var(--good); box-shadow: 0 0 8px rgba(76,175,112,0.45); }
+  .timer-zone-seg.late { background: var(--warn); box-shadow: 0 0 8px rgba(255,128,96,0.45); }
 
   .timer-btns { display: flex; gap: 10px; }
   .timer-start {
-    flex: 2; background: var(--crema); color: var(--espresso);
-    border: none; border-radius: 50px; padding: 14px;
-    font-size: 16px; font-weight: 700; cursor: pointer;
-    transition: transform 0.1s, opacity 0.1s;
+    flex: 2; background: var(--terracota); color: var(--creme);
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    border: none; border-radius: var(--r-pill); padding: 15px;
+    font-size: 15px; letter-spacing: 0.5px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(196,103,60,0.35);
+    transition: transform 0.15s var(--ease-out), box-shadow 0.15s;
   }
-  .timer-start:active { transform: scale(0.97); }
+  .timer-start:active { transform: scale(0.97); box-shadow: none; }
   .timer-reset {
-    flex: 1; background: rgba(255,255,255,0.08); color: var(--muted);
-    border: none; border-radius: 50px; padding: 14px;
-    font-size: 14px; cursor: pointer;
+    flex: 1; background: none; color: var(--muted);
+    border: 1px solid var(--hairline-strong); border-radius: var(--r-pill); padding: 15px;
+    font-size: 13px; cursor: pointer;
+    transition: transform 0.15s var(--ease-out);
   }
+  .timer-reset:active { transform: scale(0.97); }
 
   .milk-temp-bar {
     margin: 12px 0 4px;
   }
   .milk-temp-track {
     height: 8px; border-radius: 4px;
-    background: linear-gradient(90deg, #4FC3F7 0%, #4CAF70 40%, #FF9800 70%, #FF5722 100%);
+    background: linear-gradient(90deg, rgba(214,207,196,0.55) 0%, #4CAF70 42%, #FF8060 72%, #E04E2F 100%);
     position: relative; margin-bottom: 4px;
   }
   .milk-temp-needle {
     position: absolute; top: -4px; width: 2px; height: 16px;
-    background: #fff; border-radius: 1px;
+    background: var(--creme); border-radius: 1px;
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
     transition: left 0.3s;
   }
@@ -220,7 +311,7 @@
   .milk-temp-current {
     font-family: 'Nunito', sans-serif; font-weight: 900;
     text-align: center; font-size: 32px;
-    color: #fff; margin-bottom: 4px;
+    color: var(--creme); margin-bottom: 4px;
   }
   .milk-temp-status {
     text-align: center; font-size: 12px; font-weight: 600;
@@ -230,23 +321,25 @@
   /* ── CHAPTERS SCREEN ── */
   .chapter-list { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
   .chapter-item {
-    background: var(--steam); border-radius: 14px;
+    background: var(--surface); border-radius: var(--r-md);
     display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px; cursor: pointer;
-    transition: transform 0.1s;
-    border: 1px solid rgba(200,146,42,0.1);
+    padding: 15px 16px; cursor: pointer;
+    transition: transform 0.15s var(--ease-out), box-shadow 0.15s;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
   }
-  .chapter-item:active { transform: scale(0.98); }
+  .chapter-item:active { transform: scale(0.98); box-shadow: none; }
   .chapter-num {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: var(--crema); color: var(--espresso);
+    width: 38px; height: 38px; border-radius: 12px;
+    background: var(--terracota-soft); color: var(--terracota);
+    border: 1px solid rgba(196,103,60,0.30);
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 800; flex-shrink: 0;
+    font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; flex-shrink: 0;
   }
   .chapter-info { flex: 1; }
-  .chapter-title { font-size: 15px; font-weight: 700; }
-  .chapter-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .chapter-arrow { color: var(--muted); font-size: 16px; }
+  .chapter-title { font-size: 15px; font-weight: 700; color: var(--creme); }
+  .chapter-sub { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .chapter-arrow { color: var(--terracota); font-size: 17px; opacity: 0.7; }
 
   /* ── DETAIL SCREEN ── */
   #detail-screen { animation: slideIn 0.3s ease; }
@@ -256,48 +349,59 @@
   }
   .detail-back {
     display: flex; align-items: center; gap: 6px;
-    padding: 16px 16px 8px; cursor: pointer;
-    color: var(--crema); font-size: 15px; font-weight: 600;
+    padding: 16px 18px 8px; cursor: pointer;
+    color: var(--terracota); font-size: 15px; font-weight: 600;
     background: none; border: none;
+    transition: opacity 0.15s;
   }
+  .detail-back:active { opacity: 0.6; }
   .detail-hero {
-    background: linear-gradient(160deg, var(--bark), var(--espresso));
-    padding: 20px 20px 24px;
+    background: linear-gradient(170deg, var(--petroleo) 0%, #0A2E3E 70%, var(--bg-1) 100%);
+    padding: 22px 20px 26px;
     margin: 0 0 4px;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--hairline);
   }
-  .detail-cap { font-size: 11px; letter-spacing: 2px; color: var(--crema); text-transform: uppercase; margin-bottom: 4px; }
-  .detail-title { font-size: 24px; font-weight: 800; color: #fff; }
+  .detail-hero::after {
+    content: ''; position: absolute; right: -18px; bottom: -34px;
+    width: 92px; height: 174px; opacity: 0.055; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 72'%3E%3Crect x='0' width='13' height='72' rx='2' fill='%23F4EFE6'/%3E%3Crect x='25' width='13' height='72' rx='2' fill='%23F4EFE6'/%3E%3C/svg%3E") no-repeat center / contain;
+    transform: rotate(12deg);
+  }
+  .detail-cap { font-size: 10px; letter-spacing: 2.5px; color: var(--terracota); text-transform: uppercase; margin-bottom: 6px; font-weight: 400; }
+  .detail-title { font-family: 'Nunito', sans-serif; font-size: 25px; font-weight: 900; color: var(--creme); line-height: 1.15; position: relative; z-index: 1; }
 
   .detail-body { padding: 0 16px 16px; }
 
-  .d-section { margin-top: 20px; }
+  .d-section { margin-top: 24px; }
   .d-section-title {
-    font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 13px; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--crema);
-    border-bottom: 1px solid rgba(196,103,60,0.2);
-    padding-bottom: 6px; margin-bottom: 12px;
+    font-family: 'Inter', sans-serif; font-weight: 400;
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--terracota);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 8px; margin-bottom: 14px;
   }
-  .d-body { font-size: 15px; line-height: 1.6; color: var(--text); }
+  .d-body { font-size: 15px; line-height: 1.65; color: var(--creme); }
 
   .d-step {
-    display: flex; gap: 12px; margin-bottom: 12px;
+    display: flex; gap: 12px; margin-bottom: 13px;
     align-items: flex-start;
   }
   .d-step-num {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: var(--crema); color: var(--espresso);
+    width: 27px; height: 27px; border-radius: 50%;
+    background: var(--terracota-soft); color: var(--terracota);
+    border: 1px solid rgba(196,103,60,0.30);
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+    font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 900; flex-shrink: 0; margin-top: 1px;
   }
-  .d-step-text { font-size: 14px; line-height: 1.55; padding-top: 3px; }
+  .d-step-text { font-size: 14px; line-height: 1.6; padding-top: 3px; }
 
   .g-theme {
     display: flex; align-items: center; gap: 10px;
-    margin-top: 34px; padding-top: 22px;
-    border-top: 1px solid rgba(196,103,60,0.3);
+    margin-top: 36px; padding-top: 24px;
+    border-top: 1px solid var(--hairline-strong);
     font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 17px; color: var(--crema);
+    font-size: 17px; color: var(--terracota);
     scroll-margin-top: calc(56px + var(--safe-top) + 54px);
   }
   .g-theme.first { margin-top: 4px; padding-top: 0; border-top: none; }
@@ -306,182 +410,233 @@
     position: sticky; top: calc(56px + var(--safe-top)); z-index: 30;
     display: flex; gap: 8px; overflow-x: auto;
     margin: 0 -16px; padding: 10px 16px;
-    background: var(--milk);
+    background: rgba(10,30,40,0.88);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--hairline);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   .g-nav::-webkit-scrollbar { display: none; }
   .g-nav-chip {
-    flex-shrink: 0; border: 1px solid rgba(196,103,60,0.4);
-    background: var(--steam); color: var(--text);
-    border-radius: 20px; padding: 6px 14px;
+    flex-shrink: 0; border: 1px solid var(--hairline-strong);
+    background: var(--surface); color: var(--areia);
+    border-radius: var(--r-pill); padding: 7px 15px;
     font-family: 'Inter', sans-serif; font-size: 12px; cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
+  .g-nav-chip:active { transform: scale(0.96); }
   .g-nav-chip.active {
-    background: var(--crema); border-color: var(--crema);
-    color: #fff; font-weight: 700;
+    background: var(--terracota); border-color: var(--terracota);
+    color: var(--creme); font-weight: 700;
   }
 
-  .d-bullet { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
-  .d-bullet-dot { color: var(--crema); font-size: 16px; flex-shrink: 0; line-height: 1.4; }
-  .d-bullet-text { font-size: 14px; line-height: 1.5; }
+  .d-bullet { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
+  .d-bullet-dot { color: var(--terracota); font-size: 16px; flex-shrink: 0; line-height: 1.4; }
+  .d-bullet-text { font-size: 14px; line-height: 1.6; }
 
   .callout {
-    border-radius: 12px; padding: 12px 14px;
-    margin: 12px 0; font-size: 13px; line-height: 1.5;
-    border-left: 4px solid;
+    border-radius: var(--r-sm); padding: 13px 15px;
+    margin: 14px 0; font-size: 13px; line-height: 1.6;
+    border-left: 3px solid;
+    color: var(--creme);
+    background: var(--surface);
+    border-top: 1px solid var(--hairline);
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
   }
-  .callout.tip { background: var(--good-bg); border-color: var(--good); color: var(--good); }
-  .callout.warn { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
-  .callout.info { background: var(--info-bg); border-color: var(--info); color: var(--info); }
-  .callout b { font-weight: 800; }
+  .callout.tip { border-left-color: var(--good); background: linear-gradient(90deg, var(--good-bg), var(--surface) 65%); }
+  .callout.warn { border-left-color: var(--warn); background: linear-gradient(90deg, var(--warn-bg), var(--surface) 65%); }
+  .callout.info { border-left-color: var(--areia); background: linear-gradient(90deg, var(--info-bg), var(--surface) 65%); }
+  .callout b { font-weight: 700; }
+  .callout.tip b { color: var(--good); }
+  .callout.warn b { color: var(--warn); }
+  .callout.info b { color: var(--areia); }
 
-  .d-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 12px; }
+  .d-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0 14px; }
   .d-table th {
-    background: var(--roast); color: #fff;
-    padding: 8px 10px; text-align: left; font-size: 11px;
-    font-weight: 700; letter-spacing: 0.5px;
+    background: var(--surface-2); color: var(--terracota);
+    padding: 9px 10px; text-align: left; font-size: 10px;
+    font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase;
+    border-bottom: 1px solid var(--hairline-strong);
   }
-  .d-table td { padding: 8px 10px; border-bottom: 1px solid rgba(200,146,42,0.1); }
-  .d-table tr:nth-child(even) td { background: rgba(200,146,42,0.05); }
+  .d-table td { padding: 9px 10px; border-bottom: 1px solid var(--hairline); }
+  .d-table tr:nth-child(even) td { background: rgba(244,239,230,0.03); }
   .d-table .good-cell { color: var(--good); font-weight: 600; }
   .d-table .warn-cell { color: var(--warn); }
 
   /* ── DRINKS SCREEN ── */
   .drinks-grid { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
   .drink-card {
-    background: var(--steam); border-radius: 16px; overflow: hidden;
-    cursor: pointer; transition: transform 0.1s;
+    background: var(--surface); border-radius: var(--r-md); overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
+    transition: transform 0.15s var(--ease-out), box-shadow 0.15s;
   }
-  .drink-card:active { transform: scale(0.98); }
+  .drink-card:active { transform: scale(0.985); box-shadow: none; }
   .drink-card-header {
-    padding: 16px 16px 12px;
-    background: linear-gradient(90deg, var(--roast), var(--espresso));
-    display: flex; align-items: center; gap: 12px;
+    padding: 16px 16px 13px;
+    background: var(--petroleo);
+    border-bottom: 1px solid var(--hairline);
+    display: flex; align-items: center; gap: 13px;
   }
   .drink-emoji { font-size: 32px; }
-  .drink-name { font-size: 17px; font-weight: 700; color: #fff; }
-  .drink-desc { font-size: 12px; color: var(--crema-light); margin-top: 2px; }
-  .drink-expand { color: var(--crema); margin-left: auto; font-size: 18px; transition: transform 0.3s; }
+  .drink-name { font-family: 'Nunito', sans-serif; font-size: 17px; font-weight: 900; color: var(--creme); }
+  .drink-desc { font-size: 12px; color: var(--areia); margin-top: 2px; }
+  .drink-expand { color: var(--terracota); margin-left: auto; font-size: 18px; transition: transform 0.3s var(--ease-out); }
   .drink-expand.open { transform: rotate(180deg); }
-  .drink-detail { display: none; padding: 14px 16px; }
-  .drink-detail.open { display: block; }
+  .drink-detail { display: none; padding: 14px 16px 16px; }
+  .drink-detail.open { display: block; animation: detailIn 0.3s var(--ease-out); }
+  @keyframes detailIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .drink-recipe { font-size: 13px; line-height: 1.8; }
-  .recipe-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(200,146,42,0.08); }
+  .recipe-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--hairline); }
   .recipe-key { color: var(--muted); }
-  .recipe-val { font-weight: 600; }
+  .recipe-val { font-weight: 600; color: var(--creme); }
   .drink-tip { margin-top: 10px; }
 
   /* ── FILTER TOGGLE ── */
   .filter-toggle {
-    display: flex; gap: 6px; margin: 12px 0 10px;
+    display: flex; gap: 6px; margin: 12px 0 12px;
+    background: var(--bg-1); border: 1px solid var(--hairline);
+    border-radius: var(--r-pill); padding: 3px;
   }
   .filter-btn {
-    flex: 1; border: 1.5px solid rgba(196,103,60,0.3);
-    background: none; border-radius: 20px; padding: 7px 8px;
+    flex: 1; border: none;
+    background: none; border-radius: var(--r-pill); padding: 8px;
     font-size: 11px; font-weight: 700; color: var(--muted);
-    cursor: pointer; transition: all 0.2s; text-align: center;
+    cursor: pointer; transition: all 0.25s var(--ease-out); text-align: center;
   }
   .filter-btn.active {
-    background: var(--crema); border-color: var(--crema);
-    color: var(--espresso);
+    background: var(--terracota);
+    color: var(--creme);
+    box-shadow: 0 2px 8px rgba(196,103,60,0.35);
   }
   .filter-params { display: none; }
-  .filter-params.active { display: block; }
+  .filter-params.active { display: block; animation: detailIn 0.3s var(--ease-out); }
   .filter-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 6px;
+    font-size: 10px; font-weight: 400; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--terracota);
+    margin-bottom: 7px;
   }
 
   /* ── CHECKLIST SCREEN ── */
   .checklist-section { padding: 12px 16px; }
   .checklist-section-title {
-    font-size: 13px; font-weight: 800; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--crema);
-    margin-bottom: 10px; padding-bottom: 6px;
-    border-bottom: 1px solid rgba(200,146,42,0.2);
+    font-size: 11px; font-weight: 400; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--terracota);
+    margin-bottom: 10px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
   }
   .check-item {
     display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px; background: var(--steam); border-radius: 12px;
-    margin-bottom: 8px; cursor: pointer; transition: opacity 0.2s;
+    padding: 13px; background: var(--surface); border-radius: var(--r-sm);
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
+    margin-bottom: 8px; cursor: pointer;
+    transition: opacity 0.3s var(--ease-out), transform 0.15s var(--ease-out);
   }
-  .check-item.done { opacity: 0.5; }
+  .check-item:active { transform: scale(0.98); }
+  .check-item.done { opacity: 0.45; box-shadow: none; }
   .check-box {
     width: 24px; height: 24px; border-radius: 50%;
-    border: 2px solid var(--crema); flex-shrink: 0;
+    border: 1.5px solid var(--terracota); flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
+    transition: background 0.25s var(--ease-out);
   }
-  .check-item.done .check-box { background: var(--crema); border-color: var(--crema); }
-  .check-box-inner { color: var(--espresso); font-size: 13px; font-weight: 800; display: none; }
-  .check-item.done .check-box-inner { display: block; }
-  .check-text { font-size: 14px; line-height: 1.45; padding-top: 2px; }
+  .check-item.done .check-box { background: var(--terracota); border-color: var(--terracota); }
+  .check-box-inner { color: var(--creme); font-size: 13px; font-weight: 800; display: none; }
+  .check-item.done .check-box-inner { display: block; animation: checkPop 0.3s var(--ease-out); }
+  @keyframes checkPop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+  .check-text { font-size: 14px; line-height: 1.5; padding-top: 2px; }
   .check-item.done .check-text { text-decoration: line-through; }
 
   .checklist-progress {
     margin: 0 16px 16px;
-    background: var(--steam); border-radius: 16px; padding: 16px;
+    background: var(--surface); border-radius: var(--r-md); padding: 17px;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
   }
   .progress-bar-track {
-    height: 8px; background: rgba(200,146,42,0.15);
-    border-radius: 4px; overflow: hidden; margin: 8px 0;
+    height: 7px; background: var(--terracota-soft);
+    border-radius: 4px; overflow: hidden; margin: 9px 0;
   }
   .progress-bar-fill {
-    height: 100%; background: var(--crema);
-    border-radius: 4px; transition: width 0.4s ease;
+    height: 100%; background: linear-gradient(90deg, var(--terracota-deep), var(--terracota));
+    border-radius: 4px; transition: width 0.5s var(--ease-out);
   }
-  .progress-label { font-size: 13px; font-weight: 600; }
+  .progress-label { font-size: 13px; font-weight: 600; color: var(--creme); }
   .progress-count { font-size: 12px; color: var(--muted); }
   .reset-btn {
-    background: none; border: 1px solid rgba(200,146,42,0.3);
-    color: var(--crema); border-radius: 20px; padding: 6px 14px;
-    font-size: 12px; cursor: pointer; margin-top: 8px;
+    background: none; border: 1px solid var(--hairline-strong);
+    color: var(--terracota); border-radius: var(--r-pill); padding: 7px 15px;
+    font-size: 12px; cursor: pointer; margin-top: 10px;
+    transition: transform 0.15s var(--ease-out);
   }
+  .reset-btn:active { transform: scale(0.96); }
 
   /* ── CALIBRATION SCREEN ── */
   .calib-container { padding: 16px; }
   .calib-card {
-    background: var(--steam); border-radius: 16px;
+    background: var(--surface); border-radius: var(--r-md);
     overflow: hidden; margin-bottom: 12px;
+    border: 1px solid var(--hairline);
+    box-shadow: var(--shadow-1);
   }
   .calib-header {
-    background: linear-gradient(90deg, var(--roast), var(--espresso));
+    background: var(--petroleo);
+    border-bottom: 1px solid var(--hairline);
     padding: 14px 16px;
-    font-size: 15px; font-weight: 700; color: #fff;
+    font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 900; color: var(--creme);
   }
   .calib-body { padding: 16px; }
-  .calib-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(200,146,42,0.08); }
+  .calib-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--hairline); }
   .calib-key { font-size: 13px; color: var(--muted); }
-  .calib-val { font-size: 14px; font-weight: 700; }
+  .calib-val { font-size: 14px; font-weight: 700; color: var(--creme); }
   .calib-val.good { color: var(--good); }
   .calib-val.warn { color: var(--warn); }
 
   .diagnosis-grid { display: grid; gap: 8px; }
   .diag-card {
-    border-radius: 12px; padding: 14px;
-    border-left: 4px solid;
+    border-radius: var(--r-sm); padding: 14px;
+    border: 1px solid var(--hairline);
+    border-left: 3px solid;
+    background: var(--bg-1);
   }
-  .diag-card.slow { background: var(--warn-bg); border-color: var(--warn); }
-  .diag-card.perfect { background: var(--good-bg); border-color: var(--good); }
-  .diag-card.fast { background: var(--info-bg); border-color: var(--info); }
-  .diag-title { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+  .diag-card.slow { border-left-color: var(--warn); background: linear-gradient(90deg, var(--warn-bg), var(--bg-1) 70%); }
+  .diag-card.perfect { border-left-color: var(--good); background: linear-gradient(90deg, var(--good-bg), var(--bg-1) 70%); }
+  .diag-card.fast { border-left-color: var(--areia); background: linear-gradient(90deg, var(--info-bg), var(--bg-1) 70%); }
+  .diag-title { font-size: 13px; font-weight: 800; margin-bottom: 5px; }
   .diag-slow .diag-title { color: var(--warn); }
   .diag-perfect .diag-title { color: var(--good); }
-  .diag-fast .diag-title { color: var(--info); }
-  .diag-text { font-size: 12px; line-height: 1.5; }
+  .diag-fast .diag-title { color: var(--areia); }
+  .diag-text { font-size: 12px; line-height: 1.55; color: var(--creme); }
 
   /* ── UTIL ── */
   .tag {
-    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    display: inline-block; padding: 2px 9px; border-radius: var(--r-pill);
     font-size: 11px; font-weight: 700;
   }
   .tag.green { background: var(--good-bg); color: var(--good); }
   .tag.red { background: var(--warn-bg); color: var(--warn); }
 
   .scroll-hint { text-align: center; color: var(--muted); font-size: 12px; padding: 8px; }
+
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -489,7 +644,12 @@
 <!-- TOP BAR -->
 <div id="topbar">
   <div class="topbar-inner">
+    <svg class="topbar-symbol" viewBox="0 0 38 72" xmlns="http://www.w3.org/2000/svg" aria-label="Pausa">
+      <rect x="0" y="0" width="13" height="72" rx="2" fill="#C4673C"/>
+      <rect x="25" y="0" width="13" height="72" rx="2" fill="#C4673C"/>
+    </svg>
     <span class="topbar-title" id="topbar-title">Início</span>
+    <span class="topbar-badge">Pausa</span>
   </div>
 </div>
 
@@ -499,14 +659,35 @@
   <!-- HOME -->
   <div id="screen-home" class="screen active">
     <div class="home-hero">
-      <div class="home-greeting">De'Longhi Dedica EC685 + Moedor KG521.M</div>
+      <svg class="hero-logo" viewBox="0 0 290 82" xmlns="http://www.w3.org/2000/svg" aria-label="Pausa">
+        <g transform="translate(28,5)" stroke="#F4EFE6" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 0,72 V 0 H 16 C 30,0 34,6 34,20 C 34,34 28,40 16,40 H 0"/>
+        </g>
+        <g transform="translate(77,5)" stroke="#F4EFE6" stroke-width="4.5" fill="none" stroke-linecap="round">
+          <path d="M 0,72 C 6,50 12,26 18,2 C 24,26 30,50 36,72"/>
+          <line x1="7" y1="47" x2="29" y2="47"/>
+        </g>
+        <g transform="translate(128,5)" stroke="#C4673C" stroke-linecap="round" fill="none">
+          <line x1="6.5" y1="6.5" x2="6.5" y2="65.5" stroke-width="13"/>
+          <line x1="29.5" y1="6.5" x2="29.5" y2="65.5" stroke-width="13"/>
+        </g>
+        <g transform="translate(179,5)" stroke="#F4EFE6" stroke-width="4.5" fill="none" stroke-linecap="round">
+          <path d="M 34,0 C 10,0 0,8 0,24 C 0,40 34,40 34,56 C 34,68 22,72 0,72"/>
+        </g>
+        <g transform="translate(227,5)" stroke="#F4EFE6" stroke-width="4.5" fill="none" stroke-linecap="round">
+          <path d="M 0,72 C 6,50 12,26 18,2 C 24,26 30,50 36,72"/>
+          <line x1="7" y1="47" x2="29" y2="47"/>
+        </g>
+      </svg>
+      <div class="hero-tagline">café · cocktails · valladolid</div>
       <div class="home-headline">Seu manual<br>completo de barista</div>
+      <div class="home-greeting">De'Longhi Dedica EC685 · Moedor HiBREW G7</div>
     </div>
 
     <div class="section-label">Ferramentas Rápidas</div>
     <div class="quick-grid">
       <div class="quick-card accent" onclick="showScreen('timers'); setBottomNav('timers')">
-        <div class="qc-icon"><i data-lucide="timer" style="width:28px;height:28px;stroke:var(--espresso);"></i></div>
+        <div class="qc-icon"><i data-lucide="timer" style="width:28px;height:28px;stroke:var(--creme);"></i></div>
         <div class="qc-label">Timer de Extração</div>
         <div class="qc-sub">25–30s ideal</div>
       </div>
@@ -549,7 +730,7 @@
         <div class="chapter-num">3</div>
         <div class="chapter-info">
           <div class="chapter-title">Configurando o Moedor</div>
-          <div class="chapter-sub">Escala, calibração, dosagem</div>
+          <div class="chapter-sub">Escala, painel, porta-filtro, tempos de dose</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -577,14 +758,6 @@
         </div>
         <div class="chapter-arrow">›</div>
       </div>
-      <div class="chapter-item" onclick="openChapter(11)">
-        <div class="chapter-num">11</div>
-        <div class="chapter-info">
-          <div class="chapter-title">Filtros: Pressurizado vs Não-Pressurizado</div>
-          <div class="chapter-sub">Diferenças, configurações e quando usar cada um</div>
-        </div>
-        <div class="chapter-arrow">›</div>
-      </div>
     </div>
 
     <div class="section-label">Conhecimentos Gerais</div>
@@ -593,7 +766,7 @@
         <div class="chapter-num"><i data-lucide="book-open" style="width:14px;height:14px;"></i></div>
         <div class="chapter-info">
           <div class="chapter-title">Teoria do Café</div>
-          <div class="chapter-sub">Torras · grãos · métodos · ratios · moagem</div>
+          <div class="chapter-sub">Torras · grãos · métodos e filtros · ratios · moagem</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -695,8 +868,8 @@
           <tr><th>Parâmetro</th><th>Valor Ideal</th></tr>
           <tr><td>Dose (dupla)</td><td><b>14–18g</b></td></tr>
           <tr><td>Extração</td><td><b class="good-cell">25–30 segundos</b></td></tr>
-          <tr><td>Volume espresso</td><td><b>30ml (simples) / 60ml (dupla)</b></td></tr>
-          <tr><td>Temperatura máquina</td><td><b>88–94°C (nível 2)</b></td></tr>
+          <tr><td>Rendimento (dupla)</td><td><b>~36ml (NP, ratio 1:2) / ~60ml (pressurizada)</b></td></tr>
+          <tr><td>Temperatura máquina</td><td><b>~91°C (nível 2)</b></td></tr>
           <tr><td>Temperatura leite</td><td><b>60–68°C (máx 70°C)</b></td></tr>
           <tr><td>Pressão tamp</td><td><b>~15kg</b></td></tr>
         </table>
@@ -710,7 +883,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Espresso Duplo</div><div class="drink-desc">A base de tudo</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -723,19 +896,19 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Firme ~15kg, perpendicular</span></div>
               <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">36ml (ratio 1:2)</span></div>
               <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">25–30 segundos</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
             </div>
-            <div class="callout warn drink-tip"><b>Atenção:</b> Café aguado = moagem muito grossa ou tampagem fraca. Afina para C3 e tamp mais firme.</div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Café aguado = moagem muito grossa ou tampagem fraca. Afina 2 pontos (ex.: de 10 para 8) e tamp mais firme.</div>
           </div>
           <div class="filter-params" id="espresso-p">
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Moderada</span></div>
               <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">~60ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">20–28 segundos</span></div>
@@ -748,7 +921,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Cappuccino</div><div class="drink-desc">1/3 café · 1/3 leite · 1/3 espuma</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -761,7 +934,7 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
@@ -773,7 +946,7 @@
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
@@ -786,7 +959,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Latte / Flat White</div><div class="drink-desc">Mais leite, mais suave</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -799,7 +972,7 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
@@ -811,7 +984,7 @@
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
@@ -824,7 +997,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="scissors" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="scissors" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Cortado</div><div class="drink-desc">Clássico espanhol</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -837,7 +1010,7 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30–36ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
@@ -849,7 +1022,7 @@
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
@@ -862,7 +1035,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Americano</div><div class="drink-desc">Espresso alongado</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -875,7 +1048,7 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
@@ -886,7 +1059,7 @@
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
@@ -898,7 +1071,7 @@
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
-          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:#fff;stroke-width:1.5;"></i></div>
+          <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
           <div><div class="drink-name">Macchiato</div><div class="drink-desc">Espresso com toque de espuma</div></div>
           <div class="drink-expand">⌄</div>
         </div>
@@ -911,7 +1084,7 @@
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C2–C4</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
@@ -922,7 +1095,7 @@
             <div class="filter-label">Cesta pressurizada (original De'Longhi)</div>
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
-              <div class="recipe-row"><span class="recipe-key">Moagem KG521.M</span><span class="recipe-val good-cell">C4–C6</span></div>
+              <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
@@ -952,7 +1125,7 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c2">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Ligar a máquina e aguardar aquecimento (~25s)</div>
+        <div class="check-text">Ligar a máquina e aguardar aquecimento (~40s)</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c3">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
@@ -968,7 +1141,7 @@
       <div class="checklist-section-title"><i data-lucide="sliders" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:6px;stroke:var(--crema);"></i>Extração</div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c5">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Moer o café fresco na hora (posição 3–5 no KG521.M)</div>
+        <div class="check-text">Moer o café fresco na hora (posição 5–10 no G7)</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c6">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
@@ -1030,16 +1203,16 @@
       </div>
 
       <div class="calib-card">
-        <div class="calib-header"><i data-lucide="wrench" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Posições do Moedor KG521.M (1–18)</div>
+        <div class="calib-header"><i data-lucide="wrench" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Posições do Moedor HiBREW G7 (0–48)</div>
         <div class="calib-body">
           <table class="d-table" style="margin:0">
             <tr><th>Posição</th><th>Moagem</th><th>Uso</th></tr>
-            <tr><td><b>1–2</b></td><td>Extra fina</td><td class="warn-cell">Risco de entupir</td></tr>
-            <tr><td><b>3–5</b></td><td>Fina</td><td class="good-cell">✔ Espresso ideal</td></tr>
-            <tr><td><b>6</b></td><td>Fina-média</td><td>Espresso torra escura</td></tr>
-            <tr><td><b>7–9</b></td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
-            <tr><td><b>10–12</b></td><td>Média</td><td>Coado / Drip</td></tr>
-            <tr><td><b>13–18</b></td><td>Grossa</td><td>French Press</td></tr>
+            <tr><td><b>0–4</b></td><td>Extra fina</td><td class="warn-cell">Risco de entupir</td></tr>
+            <tr><td><b>5–10</b></td><td>Fina</td><td class="good-cell">✔ Espresso ideal</td></tr>
+            <tr><td><b>11–16</b></td><td>Fina-média</td><td>Espresso torra escura / pressurizada</td></tr>
+            <tr><td><b>17–22</b></td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
+            <tr><td><b>23–30</b></td><td>Média</td><td>Coado / Drip</td></tr>
+            <tr><td><b>31–48</b></td><td>Grossa</td><td>French Press / Cold brew</td></tr>
           </table>
         </div>
       </div>
@@ -1047,10 +1220,10 @@
       <div class="calib-card">
         <div class="calib-header"><i data-lucide="thermometer" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Temperatura — 3 Níveis</div>
         <div class="calib-body">
-          <div class="calib-row"><span class="calib-key">Nível 1</span><span class="calib-val">~89°C — Torra clara / acidez</span></div>
-          <div class="calib-row"><span class="calib-key">Nível 2</span><span class="calib-val good">~92°C — ✔ Recomendado</span></div>
-          <div class="calib-row"><span class="calib-key">Nível 3</span><span class="calib-val">~96°C — Torra escura / corpo</span></div>
-          <div class="callout info" style="margin-top:12px;font-size:12px;"><b>Como ajustar:</b> Segurar botão de energia 3s → piscar indica nível → botão 1 dose para ciclar → confirmar.</div>
+          <div class="calib-row"><span class="calib-key">Nível 1</span><span class="calib-val">~88°C — Torra escura</span></div>
+          <div class="calib-row"><span class="calib-key">Nível 2</span><span class="calib-val good">~91°C — ✔ Recomendado (torra média)</span></div>
+          <div class="calib-row"><span class="calib-key">Nível 3</span><span class="calib-val">~93°C — Torra clara</span></div>
+          <div class="callout info" style="margin-top:12px;font-size:12px;"><b>Como ajustar:</b> Segurar botão de vapor ~3s até piscar → 1 dose = nível 1 · 2 doses = nível 2 · vapor = nível 3 → piscada confirma.</div>
         </div>
       </div>
 
@@ -1058,19 +1231,19 @@
         <div class="calib-header"><i data-lucide="filter" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Cesta Pressurizada vs Não-Pressurizada</div>
         <div class="calib-body">
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Pressurizada ✦</span></div>
-          <div class="calib-row"><span class="calib-key">Moagem KG521.M</span><span class="calib-val">C4–C6</span></div>
+          <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val">11–16</span></div>
           <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val">14–16g</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Moderada</span></div>
           <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val">20–28s</span></div>
           <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val good">Alta</span></div>
           <div style="height:1px;background:rgba(196,103,60,0.2);margin:10px 0;"></div>
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Não-Pressurizada ★ (a tua)</span></div>
-          <div class="calib-row"><span class="calib-key">Moagem KG521.M</span><span class="calib-val good">C2–C4</span></div>
+          <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val good">5–10</span></div>
           <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val good">16–18g</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Firme (~15kg)</span></div>
           <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val good">25–30s</span></div>
           <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val warn">Baixa — exige precisão</span></div>
-          <div class="callout info" style="margin-top:12px;font-size:12px;">Ver <b>Capítulo 11</b> para guia completo de cada tipo de cesta.</div>
+          <div class="callout info" style="margin-top:12px;font-size:12px;">Ver <b>Teoria do Café → Métodos</b> para o guia completo de cada tipo de cesta.</div>
         </div>
       </div>
 
@@ -1186,7 +1359,7 @@ function updateTimerDisplay() {
     label.textContent = s >= 25 ? '✔ ZONA IDEAL — pode parar!' : 'Quase lá... zona ideal em breve';
   } else {
     el.classList.add('over');
-    label.textContent = '⚠ Sobre-extraído — afinar menos ou moagem mais grossa';
+    label.textContent = '⚠ Sobre-extraído — engrossar a moagem (posição maior)';
     for (let i = 25; i < 30; i++) {
       const seg = document.getElementById('z' + i);
       if (seg) { seg.className = 'timer-zone-seg late'; }
@@ -1228,7 +1401,7 @@ function updateMilkDisplay() {
   document.getElementById('milk-needle').style.left = pct + '%';
   const status = document.getElementById('milk-temp-status');
   if (temp < 40) { status.textContent = 'Esquentando...'; status.style.color = 'var(--muted)'; }
-  else if (temp < 60) { status.textContent = '🔥 Aquecendo — ainda não'; status.style.color = '#FF9800'; }
+  else if (temp < 60) { status.textContent = 'Aquecendo — ainda não'; status.style.color = '#FF8060'; }
   else if (temp <= 68) { status.textContent = '✔ ZONA IDEAL — pare agora!'; status.style.color = 'var(--good)'; }
   else { status.textContent = '⚠ QUENTE DEMAIS — parou acima de 70°C!'; status.style.color = 'var(--warn)'; }
 }
@@ -1301,7 +1474,7 @@ function updateProgress() {
   const pct = total > 0 ? (done / total * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-count').textContent = `${done} de ${total} tarefas concluídas`;
-  document.getElementById('progress-label').textContent = done === total ? '🎉 Tudo pronto!' : 'Limpeza do dia';
+  document.getElementById('progress-label').textContent = done === total ? '✓ Tudo pronto' : 'Limpeza do dia';
 }
 function resetChecklist() {
   document.querySelectorAll('.check-item').forEach(i => i.classList.remove('done'));
@@ -1319,10 +1492,10 @@ const chapterData = {
         <table class="d-table" style="margin-top:12px">
           <tr><th>Componente</th><th>Função</th></tr>
           <tr><td><b>Cafeteira EC685</b></td><td>Corpo principal — 15 bar de pressão</td></tr>
-          <tr><td><b>Moedor KG521.M</b></td><td>Mós cônicas de aço inox — 18 posições, suporte para moer direto no portafiltro</td></tr>
+          <tr><td><b>Moedor HiBREW G7</b></td><td>Mós cônicas de aço inox 420 — 48 posições, dosagem por tempo (0,1s) e suporte para moer direto no portafiltro</td></tr>
           <tr><td><b>Portafiltro</b></td><td>Suporte que encaixa no grupo</td></tr>
           <tr><td><b>Cesta simples</b></td><td>~7g / 1 espresso de ~30ml</td></tr>
-          <tr><td><b>Cesta dupla</b></td><td>~14g / dose dupla ~60ml</td></tr>
+          <tr><td><b>Cesta dupla</b></td><td>14–18g — a dose padrão deste manual</td></tr>
           <tr><td><b>Tamper</b></td><td>Prensa o pó — essencial</td></tr>
           <tr><td><b>Vaporizador</b></td><td>Texturiza o leite</td></tr>
           <tr><td><b>Reservatório</b></td><td>1,1L — use água filtrada</td></tr>
@@ -1342,20 +1515,20 @@ const chapterData = {
       <div class="d-section">
         <div class="d-section-title">Primeira Ligada / Purga Diária</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Encha o reservatório com água filtrada até o MAX.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue a máquina. Aguarde a luz parar de piscar (~25 segundos).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue a máquina. Aguarde a luz parar de piscar (~40 segundos).</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Com o portafiltro <b>sem café</b>, encaixe no grupo e pressione extração.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Deixe passar ~100ml — limpa o circuito e estabiliza a temperatura.</div></div>
-        <div class="callout tip">A Dedica aquece em 25s, mas a temperatura do grupo leva 3–4 minutos para estabilizar. Sempre faça a purga no primeiro café do dia.</div>
+        <div class="callout tip">A Dedica aquece em ~40s, mas a temperatura do grupo leva 3–4 minutos para estabilizar. Sempre faça a purga no primeiro café do dia.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Regulagem de Temperatura</div>
         <table class="d-table">
           <tr><th>Nível</th><th>Temp.</th><th>Ideal Para</th></tr>
-          <tr><td>1</td><td>~89°C</td><td>Torra clara — acidez e notas frutadas</td></tr>
-          <tr><td><b>2 ✔</b></td><td><b>~92°C</b></td><td><b>Torra média — RECOMENDADO</b></td></tr>
-          <tr><td>3</td><td>~96°C</td><td>Torra escura — corpo e amargor</td></tr>
+          <tr><td>1</td><td>~88°C</td><td>Torra escura — muito solúvel, menos calor evita amargor</td></tr>
+          <tr><td><b>2 ✔</b></td><td><b>~91°C</b></td><td><b>Torra média — RECOMENDADO</b></td></tr>
+          <tr><td>3</td><td>~93°C</td><td>Torra clara — pouco solúvel, precisa de mais calor</td></tr>
         </table>
-        <div class="callout info"><b>Como ajustar:</b> Segurar botão de energia 3s → botão de 1 dose cicla entre os níveis → confirmar com o botão de energia.</div>
+        <div class="callout info"><b>Como ajustar:</b> Segurar o botão de vapor ~3s até os botões piscarem → escolher direto: <b>1 dose = nível 1 · 2 doses = nível 2 · vapor = nível 3</b> → a máquina pisca confirmando e salva.</div>
       </div>
     `
   },
@@ -1363,18 +1536,50 @@ const chapterData = {
     cap: 'Capítulo 3', title: 'Configurando o Moedor',
     content: `
       <div class="d-section">
-        <div class="d-section-title">Escala de Moagem — 18 Posições</div>
-        <div class="d-body">O KG521.M tem 18 posições. Para espresso, fique na faixa 1–6: comece na <b>5</b> e vá afinando conforme o tempo de extração. O teste real é sempre o cronômetro.</div>
+        <div class="d-section-title">Escala de Moagem — 48 Posições</div>
+        <div class="d-body">O HiBREW G7 tem 48 posições: <b>0 é a mais fina, 48 a mais grossa</b>. Para espresso, fique na faixa 0–16: comece na <b>10</b> e vá afinando conforme o tempo de extração. O teste real é sempre o cronômetro.</div>
         <table class="d-table" style="margin-top:10px">
           <tr><th>Posição</th><th>Resultado</th><th>Uso</th></tr>
-          <tr><td>1–2</td><td>Extra fina</td><td class="warn-cell">Risco de entupir a Dedica</td></tr>
-          <tr style="background:var(--good-bg)"><td><b>3–5</b></td><td><b>Fina</b></td><td class="good-cell"><b>✔ Espresso</b></td></tr>
-          <tr><td>6</td><td>Fina-média</td><td>Espresso torra escura</td></tr>
-          <tr><td>7–9</td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
-          <tr><td>10–12</td><td>Média</td><td>Coado / Drip</td></tr>
-          <tr><td>13–18</td><td>Grossa</td><td>French Press</td></tr>
+          <tr><td>0–4</td><td>Extra fina</td><td class="warn-cell">Risco de entupir a Dedica</td></tr>
+          <tr style="background:var(--good-bg)"><td><b>5–10</b></td><td><b>Fina</b></td><td class="good-cell"><b>✔ Espresso</b></td></tr>
+          <tr><td>11–16</td><td>Fina-média</td><td>Espresso torra escura / cesta pressurizada</td></tr>
+          <tr><td>17–22</td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
+          <tr><td>23–30</td><td>Média</td><td>Coado / Drip</td></tr>
+          <tr><td>31–48</td><td>Grossa</td><td>French Press / Cold brew</td></tr>
         </table>
-        <div class="callout tip">Use o <b>suporte de portafiltro</b> do KG521.M para moer direto na cesta — menos sujeira e menos perda de pó. Ajuste a moagem sempre <b>com o motor ligado</b> para não forçar as mós.</div>
+        <div class="callout tip">Use o <b>suporte de portafiltro</b> do G7 (o encaixe removível serve o portafiltro de 51mm da Dedica) para moer direto na cesta — menos sujeira e menos perda de pó. Ajuste a moagem sempre <b>com o motor ligado</b> para não forçar as mós, e <b>segure o recipiente de grãos</b> ao girar o anel — se ele desalinhar, o painel acusa erro de encaixe.</div>
+        <div class="callout info"><b>Variação de fábrica:</b> cada exemplar do G7 zera um pouco diferente — em alguns, abaixo da posição ~10 quase não sai pó. Se for o teu caso, a tua faixa real de espresso fica em torno de 10–14. O cronômetro é quem manda, não o número.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Painel e Modos de Operação</div>
+        <div class="d-body">O painel touch do G7 tem 4 controles e um display que mostra o tempo (em segundos) e o tamanho do porta-filtro selecionado:</div>
+        <table class="d-table" style="margin-top:10px">
+          <tr><th>Controle</th><th>Função</th></tr>
+          <tr><td><b>Liga/desliga</b></td><td>Energia do moedor</td></tr>
+          <tr><td><b>1 xícara</b></td><td>Dose simples automática — mói pelo tempo gravado no preset</td></tr>
+          <tr><td><b>2 xícaras</b></td><td>Dose dupla automática — preset independente do de 1 xícara</td></tr>
+          <tr><td><b>Play/pause</b></td><td>Modo manual — mói enquanto estiver ativo, sem tempo definido</td></tr>
+        </table>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Modo automático:</b> toque em 1 ou 2 xícaras e o G7 mói exatamente o tempo gravado (precisão de 0,1s) — é o modo do dia a dia depois de calibrado.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Modo manual:</b> play/pause inicia e para na hora. Use para calibrar com a balança, completar uma dose que faltou ou moer quantidades fora do padrão.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Luzes de aviso:</b> o painel acusa superaquecimento do motor e recipiente de grãos mal encaixado — nos dois casos o moedor trava até resolver.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Seleção do Tamanho do Porta-filtro</div>
+        <div class="d-body">O suporte removível aceita porta-filtros de <b>51, 54 e 58mm</b> — e o G7 ajusta a posição de despejo conforme o tamanho selecionado no painel:</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Pressione os ícones de <b>1 xícara e 2 xícaras ao mesmo tempo</b> — o tamanho atual aparece no display.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Repita o toque duplo para alternar entre <b>51 → 54 → 58mm</b>.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Selecione <b>51mm</b> — é o tamanho do portafiltro da Dedica EC685. A escolha fica gravada na memória.</div></div>
+        <div class="callout warn">O G7 <b>vem de fábrica em 58mm</b>. Se o pó estiver caindo fora da cesta, é quase certo que a seleção ainda está no padrão de fábrica.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Configurando os Tempos de Dose</div>
+        <div class="d-body">Cada preset (1 e 2 xícaras) guarda o próprio tempo de moagem. Para gravar o teu:</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>Descubra o tempo-alvo:</b> em modo manual, moa no portafiltro sobre a balança e cronometre quantos segundos rendem a tua dose (16–18g na cesta dupla).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>Entre na edição:</b> segure o botão da dose (1 ou 2 xícaras) por <b>~2 segundos</b> até o display piscar.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Ajuste o tempo</b> com os toques de <b>+ / −</b> em passos de 0,1s até o valor cronometrado.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>Confirme e valide:</b> aguarde salvar, rode o preset e pese o resultado. Ajuste 0,1–0,3s se preciso.</div></div>
+        <div class="callout tip">Os tempos de fábrica são <b>generosos demais</b> — o G7 rende muito pó por segundo. Sempre valide com a balança antes de confiar no preset.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Calibração pelo Tempo</div>
@@ -1388,7 +1593,9 @@ const chapterData = {
         <div class="d-section-title">Dosagem</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose simples:</b> 7–9g de café moído</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose dupla:</b> 14–18g — sempre preferida</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dosagem por tempo:</b> o G7 dosa por tempo com precisão de 0,1s — o passo a passo para gravar os presets está na seção <b>Configurando os Tempos de Dose</b>, acima</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Uma balancinha de cozinha faz muita diferença para consistência</div></div>
+        <div class="callout warn"><b>Ao mudar a moagem, recalibre o tempo:</b> moagem mais fina rende menos gramas por segundo — confira o peso na balança depois de qualquer ajuste de posição.</div>
       </div>
     `
   },
@@ -1398,7 +1605,7 @@ const chapterData = {
       <div class="d-section">
         <div class="d-section-title">Passo a Passo</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>PRÉ-AQUECER:</b> Ligue e faça a purga. Pré-aqueça xícaras.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa fresco na posição calibrada (3–5 no KG521.M).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa fresco na posição calibrada (5–10 no G7).</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>DOSAR:</b> 14–18g na cesta dupla. Nivelar com o dedo.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>DISTRIBUIR:</b> Bater suavemente na palma para distribuir uniformemente.</div></div>
         <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>TAMPAR:</b> Perpendicular, ~15kg de pressão, leve giro no final.</div></div>
@@ -1421,17 +1628,26 @@ const chapterData = {
     cap: 'Capítulo 7', title: 'Workflow Multi-Bebida',
     content: `
       <div class="d-section">
+        <div class="d-section-title">Entre Uma Extração e Outra</div>
+        <div class="d-body">Antes de passar o segundo café, há dois cuidados obrigatórios — um de <b>pressão</b>, outro de <b>temperatura</b>:</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Alivie a pressão antes de destravar o portafiltro.</b> A Dedica não tem válvula de alívio (3 vias): depois da extração, o disco de café continua pressurizado. Destravar na hora espirra borra e água quente — o famoso <b>"espirro do portafiltro"</b>. Espere <b>30–60s</b> ou purgue o vapor por 2s para dissipar, e destrave sempre <b>devagar</b>.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Resfrie o thermoblock depois de vaporizar leite.</b> O vapor aquece o sistema bem acima dos ~91°C de extração — o próximo espresso sairia queimado e amargo. Passe água pelo grupo <b>sem portafiltro</b> (ou abra o vapor até sair água em fluxo constante) e aguarde a luz de café ficar fixa antes de extrair.</div></div>
+      </div>
+      <div class="d-section">
         <div class="d-section-title">2 Cappuccinos em Sequência</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>SETUP:</b> Ligar, purgar, pré-aquecer xícaras e jarro de leite.</div></div>
         <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa as 2 doses de uma vez.</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>1° ESPRESSO:</b> Extraia e deixe aguardando na xícara aquecida.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>LEITE:</b> Vaporize leite suficiente para os dois drinks. Limpe o vaporizador.</div></div>
         <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>1° CAPPUCCINO:</b> Monte com o espresso e metade do leite.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>2° ESPRESSO:</b> Esvaziar portafiltro, preparar e extrair.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>2° CAPPUCCINO:</b> Use o leite restante (já vaporizado).</div></div>
-        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>LIMPEZA:</b> Passar água pelo grupo, limpar vaporizador, esvaziar bandeja.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>ALIVIAR PRESSÃO:</b> Purgue o vapor 2s (a pressão do disco já dissipou durante o leite) e destrave o portafiltro <b>devagar</b>. Bata a borra e enxágue.</div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>RESFRIAR:</b> Passe água pelo grupo sem portafiltro até a luz de café ficar fixa — o thermoblock ainda está na temperatura de vapor.</div></div>
+        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>2° ESPRESSO:</b> Preparar a segunda dose e extrair.</div></div>
+        <div class="d-step"><div class="d-step-num">9</div><div class="d-step-text"><b>2° CAPPUCCINO:</b> Use o leite restante (já vaporizado).</div></div>
+        <div class="d-step"><div class="d-step-num">10</div><div class="d-step-text"><b>LIMPEZA:</b> Aliviar pressão, remover portafiltro devagar, passar água pelo grupo, limpar vaporizador, esvaziar bandeja.</div></div>
         <div class="callout tip">O espresso aguenta até <b>60 segundos</b> na xícara aquecida sem perder qualidade. Use esse tempo para vaporizar o leite.</div>
         <div class="callout warn"><b>Vaporizador:</b> Limpe com pano úmido IMEDIATAMENTE após o leite — seca em segundos e entope o bico.</div>
+        <div class="callout warn"><b>Nunca destrave o portafiltro logo após parar a extração.</b> Se a máquina sobre-pressurizar (moagem fina demais, nada sai), pare a extração, espere 1–2 minutos e destrave com muito cuidado — a liberação pode ser violenta, com água quente.</div>
       </div>
     `
   },
@@ -1461,19 +1677,19 @@ const chapterData = {
       </div>
       <div class="d-section">
         <div class="d-section-title">Processo de Descalcificação</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Esvaziar reservatório. Adicionar 1 sachê de descalcificante + 1L de água.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Posicionar recipiente grande (1,5L+) sob vaporizador e bocal.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Máquina desligada: pressionar botão 1 dose + 2 doses simultaneamente.</div></div>
-        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Ligar enquanto segura os botões. Descalcificação inicia automaticamente.</div></div>
-        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>Não interrompa.</b> Ciclo dura ~30 minutos.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text">Enxágue 1: 1L de água limpa pelo sistema.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text">Enxágue 2: mais 1L. Garante zero resíduo de descalcificante.</div></div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Esvaziar o reservatório. Adicionar descalcificante conforme o rótulo (EcoDecalk: 100ml) + água até a marca <b>MAX</b>.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Retirar o portafiltro e posicionar recipiente grande (1,5L+) sob o vaporizador e o bocal.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Máquina <b>ligada e pronta</b> (luzes fixas): segurar o botão de <b>vapor por ~10s</b> até os 3 botões piscarem em sequência.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Abrir o registro de vapor e pressionar o botão de vapor — o ciclo inicia, alternando jatos e pausas até esvaziar o reservatório.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>Não interrompa.</b> Ciclo completo dura ~25–30 minutos.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text">Enxágue 1: lavar o reservatório, encher com água limpa até MAX e rodar o enxágue com o registro de vapor aberto.</div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text">Enxágue 2: repetir com mais um reservatório cheio. Garante zero resíduo de descalcificante.</div></div>
         <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text">Fazer purga de 200ml antes do próximo café.</div></div>
-        <div class="callout warn"><b>NUNCA</b> use descalcificante de cafeteira automática comum — a concentração é diferente e pode danificar os componentes internos.</div>
+        <div class="callout warn">Use apenas descalcificante indicado pela De'Longhi (EcoDecalk) e <b>respeite a diluição do rótulo</b> — produto concentrado demais ataca as vedações internas.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Limpeza do Moedor KG521.M</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Semanal:</b> pincel seco no canal de saída e no suporte do portafiltro; pano seco no corpo</div></div>
+        <div class="d-section-title">Limpeza do Moedor HiBREW G7</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Semanal:</b> pincel seco na rampa de saída e no suporte do portafiltro; pano seco no corpo — o sistema antiestático reduz o resíduo, mas não elimina</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mensal:</b> esvaziar os grãos, remover a mó superior e escovar as mós; lavar o recipiente de grãos e a tampa (secar bem antes de remontar)</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Desconecte</b> da tomada antes de qualquer limpeza</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nas mós, use apenas <b>pincel seco</b> — NUNCA água. Air duster ajuda a tirar o pó fino dos cantos</div></div>
@@ -1517,7 +1733,7 @@ const chapterData = {
       <div class="d-section">
         <div class="d-section-title">Impacto na Sua Extração</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra clara:</b> menos solúvel → moagem mais fina + temperatura <b>nível 3</b> na Dedica. Aceita sair um pouco mais lenta.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> o ponto de partida de tudo — posição 3–5 no moedor, temperatura <b>nível 2</b>, 1:2 em 25–30s.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> o ponto de partida de tudo — posição 8–10 no moedor, temperatura <b>nível 2</b>, 1:2 em 25–30s.</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra escura:</b> muito solúvel → moagem um passo mais grossa + temperatura <b>nível 1</b>, senão amarga.</div></div>
         <div class="callout info">Regra mental: <b>quanto mais clara a torra, mais energia (moagem fina + calor) você precisa dar</b>. Quanto mais escura, mais suave deve ser a extração.</div>
       </div>
@@ -1578,16 +1794,70 @@ const chapterData = {
         <div class="d-section-title">Tabela Mestre por Método</div>
         <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
         <table class="d-table" style="min-width:480px">
-          <tr><th>Método</th><th>Moagem (KG521.M)</th><th>Ratio</th><th>Tempo</th><th>Água</th></tr>
-          <tr><td><b>Espresso</b></td><td>Fina (3–5)</td><td>1:2</td><td>25–30s</td><td>90–96°C</td></tr>
-          <tr><td><b>Moka</b></td><td>Fina-média (7–8)</td><td>1:10</td><td>~4 min</td><td>Fogo baixo</td></tr>
-          <tr><td><b>AeroPress</b></td><td>Média-fina (8–9)</td><td>1:12–1:15</td><td>1,5–2 min</td><td>85–92°C</td></tr>
-          <tr><td><b>V60 / coado</b></td><td>Média (10–12)</td><td>1:15–1:17</td><td>2,5–3,5 min</td><td>92–96°C</td></tr>
-          <tr><td><b>French press</b></td><td>Grossa (14–16)</td><td>1:15</td><td>4 min</td><td>93–96°C</td></tr>
-          <tr><td><b>Cold brew</b></td><td>Muito grossa (17–18)</td><td>1:8 (concentrado)</td><td>12–18h</td><td>Fria</td></tr>
+          <tr><th>Método</th><th>Moagem (G7)</th><th>Ratio</th><th>Tempo</th><th>Água</th></tr>
+          <tr><td><b>Espresso</b></td><td>Fina (5–10)</td><td>1:2</td><td>25–30s</td><td>90–96°C</td></tr>
+          <tr><td><b>Moka</b></td><td>Fina-média (17–19)</td><td>1:10</td><td>~4 min</td><td>Fogo baixo</td></tr>
+          <tr><td><b>AeroPress</b></td><td>Média-fina (18–22)</td><td>1:12–1:15</td><td>1,5–2 min</td><td>85–92°C</td></tr>
+          <tr><td><b>V60 / coado</b></td><td>Média (23–28)</td><td>1:15–1:17</td><td>2,5–3,5 min</td><td>92–96°C</td></tr>
+          <tr><td><b>French press</b></td><td>Grossa (32–38)</td><td>1:15</td><td>4 min</td><td>93–96°C</td></tr>
+          <tr><td><b>Cold brew</b></td><td>Muito grossa (42–48)</td><td>1:8 (concentrado)</td><td>12–18h</td><td>Fria</td></tr>
         </table>
         </div>
         <div class="callout tip">Repare no padrão: <b>quanto menor o tempo de contato, mais fina a moagem</b>. Espresso = segundos + pó fino. Cold brew = horas + pó grosso. É a mesma física em todos os métodos.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Filtros: O Que é um Filtro Pressurizado?</div>
+        <div class="d-body">A EC685 Dedica vem de fábrica com cestas <b>pressurizadas</b> (também chamadas de "parede dupla" ou "crema perfeita"). São projetadas para facilitar a vida do barista iniciante — produzem crema mesmo com moagem irregular ou café pré-moído de pacote.</div>
+        <div class="d-body" style="margin-top:8px">A cesta <b>não-pressurizada</b> (a tua atual) tem apenas uma parede e furos abertos — é o padrão profissional, usado em cafeterias, e revela o sabor real do grão sem nenhuma "ajuda".</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Como Funcionam por Dentro</div>
+        <div class="d-step"><div class="d-step-num">P</div><div class="d-step-text"><b>Pressurizada:</b> Tem uma câmara interna com um único furo minúsculo no fundo. A pressão se acumula dentro da cesta antes de sair — isso cria crema artificialmente mesmo se a moagem ou tampagem não estiverem perfeitas.</div></div>
+        <div class="d-step"><div class="d-step-num">N</div><div class="d-step-text"><b>Não-pressurizada:</b> Fundo com múltiplos furos abertos. A pressão é controlada 100% pela resistência do disco de café — moagem fina + tampagem firme = pressão correta. Exige calibração precisa.</div></div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Comparação Completa</div>
+        <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+        <table class="d-table" style="min-width:420px;margin-top:8px">
+          <tr><th>Característica</th><th>Pressurizada ✦</th><th>Não-Pressurizada ★</th></tr>
+          <tr><td><b>Crema</b></td><td>Sempre presente (artificial)</td><td>Depende da extração</td></tr>
+          <tr><td><b>Sabor</b></td><td>Suavizado, menos complexo</td><td>Fiel ao grão — mais complexo</td></tr>
+          <tr><td><b>Exigência de moagem</b></td><td>Baixa — aceita café de pacote</td><td>Alta — exige moagem calibrada</td></tr>
+          <tr><td><b>Exigência de tampagem</b></td><td>Baixa</td><td>Alta — pressão e nivelamento</td></tr>
+          <tr><td><b>Tolerância a erros</b></td><td>Alta — perdoa erros</td><td>Baixa — expõe qualquer falha</td></tr>
+          <tr><td><b>Ideal para</b></td><td>Iniciantes / café rápido</td><td>Quem quer qualidade real</td></tr>
+          <tr><td><b>Moagem G7</b></td><td>11–16</td><td>5–10</td></tr>
+          <tr><td><b>A tua atual</b></td><td>—</td><td><span style="color:var(--good)">✔ Esta é a tua</span></td></tr>
+        </table>
+        </div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Configuração para Cesta Pressurizada</div>
+        <div class="d-body">Se usares a cesta pressurizada original da De'Longhi (vem na caixa):</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> 11–16 no G7 — não precisa ir tão fino</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 14–16g é suficiente</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> moderada — não precisa de muita pressão</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 20–28s (ligeiramente mais rápida)</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote pré-moído:</b> funciona razoavelmente bem</div></div>
+        <div class="callout tip">A cesta pressurizada é ótima para <b>visitas ou situações rápidas</b> onde não queres calibrar. Guarda ela como backup.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Configuração para Cesta Não-Pressurizada (a tua)</div>
+        <div class="d-body">Exige mais atenção mas entrega resultado profissional:</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> 5–10 no G7 — mais fino que a pressurizada</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 16–18g — cesta cheia é fundamental</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Distribuição:</b> essencial — sem canais de extração</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> firme (~15kg) e perfeitamente perpendicular</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 25–30s obrigatório</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote:</b> não funciona bem — usa sempre grão moído na hora</div></div>
+        <div class="callout warn"><b>Se o café sair aguado</b> com cesta não-pressurizada, a causa é quase sempre moagem grossa ou tampagem fraca — não a máquina. Afina 2 pontos no G7 (ex.: de 10 para 8) e tamp mais firme.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Como Identificar Qual Tens Encaixada</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> fundo com pouquíssimos furos (às vezes 1 único furo central visível por fora) + parece ter duas camadas</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> fundo com muitos furos pequenos uniformes — olhando contra a luz, vês claramente todos os furos</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">A tua cesta atual com marcação <b>"2"</b> na borda e furos visíveis = <b>não-pressurizada dupla</b> ✔</div></div>
+        <div class="callout info">A De'Longhi vende ambas as cestas separadamente. Vale ter as duas e alternar conforme o tipo de café e a situação do dia.</div>
       </div>
       <div class="g-theme" id="tema-ratios"><i data-lucide="scale" style="width:18px;height:18px;stroke:var(--crema);"></i>Pesos, Ratios e Extração</div>
       <div class="d-section">
@@ -1627,7 +1897,7 @@ const chapterData = {
         <div class="d-section-title">Partículas, Finos e Mós</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Uniformidade importa:</b> partículas do mesmo tamanho extraem juntas. Mistura de grossos + finos = sub e sobre-extração <b>na mesma xícara</b>.</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Finos:</b> todo moedor gera pó ultrafino. Um pouco é bom (corpo); demais entope a cesta e amarga.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mós cônicas</b> (KG521.M): silenciosas, esquentam menos o pó. <b>Mós planas</b> (padrão em cafeteria): mais uniformes, mais caras.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mós cônicas</b> (G7): silenciosas, esquentam menos o pó. <b>Mós planas</b> (padrão em cafeteria): mais uniformes, mais caras.</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moedor de lâmina não serve:</b> ele pica em tamanhos aleatórios em vez de moer — impossível calibrar.</div></div>
       </div>
       <div class="d-section">
@@ -1635,71 +1905,7 @@ const chapterData = {
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Café moído perde a maior parte dos aromas voláteis em <b>~15 minutos</b> — a área exposta ao oxigênio explode</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Grão inteiro bem guardado (pote hermético, escuro, longe do calor) dura semanas; moído, minutos</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nunca guarde café na geladeira — ele absorve umidade e cheiros</div></div>
-        <div class="callout info">Para colocar em prática: o passo a passo de calibração (dial-in) do KG521.M está no <b>Capítulo 3 — Configurando o Moedor</b>, e o diagnóstico pelo tempo de extração na aba <b>Calibração</b>.</div>
-      </div>
-    `
-  },
-  11: {
-    cap: 'Capítulo 11', title: 'Filtros: Pressurizado vs Não-Pressurizado',
-    content: `
-      <div class="d-section">
-        <div class="d-section-title">O Que é um Filtro Pressurizado?</div>
-        <div class="d-body">A EC685 Dedica vem de fábrica com cestas <b>pressurizadas</b> (também chamadas de "parede dupla" ou "crema perfeita"). São projetadas para facilitar a vida do barista iniciante — produzem crema mesmo com moagem irregular ou café pré-moído de pacote.</div>
-        <div class="d-body" style="margin-top:8px">A cesta <b>não-pressurizada</b> (a tua atual) tem apenas uma parede e furos abertos — é o padrão profissional, usado em cafeterias, e revela o sabor real do grão sem nenhuma "ajuda".</div>
-      </div>
-
-      <div class="d-section">
-        <div class="d-section-title">Como Funcionam por Dentro</div>
-        <div class="d-step"><div class="d-step-num">P</div><div class="d-step-text"><b>Pressurizada:</b> Tem uma câmara interna com um único furo minúsculo no fundo. A pressão se acumula dentro da cesta antes de sair — isso cria crema artificialmente mesmo se a moagem ou tampagem não estiverem perfeitas.</div></div>
-        <div class="d-step"><div class="d-step-num">N</div><div class="d-step-text"><b>Não-pressurizada:</b> Fundo com múltiplos furos abertos. A pressão é controlada 100% pela resistência do disco de café — moagem fina + tampagem firme = pressão correta. Exige calibração precisa.</div></div>
-      </div>
-
-      <div class="d-section">
-        <div class="d-section-title">Comparação Completa</div>
-        <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
-        <table class="d-table" style="min-width:420px;margin-top:8px">
-          <tr><th>Característica</th><th>Pressurizada ✦</th><th>Não-Pressurizada ★</th></tr>
-          <tr><td><b>Crema</b></td><td>Sempre presente (artificial)</td><td>Depende da extração</td></tr>
-          <tr><td><b>Sabor</b></td><td>Suavizado, menos complexo</td><td>Fiel ao grão — mais complexo</td></tr>
-          <tr><td><b>Exigência de moagem</b></td><td>Baixa — aceita café de pacote</td><td>Alta — exige moagem calibrada</td></tr>
-          <tr><td><b>Exigência de tampagem</b></td><td>Baixa</td><td>Alta — pressão e nivelamento</td></tr>
-          <tr><td><b>Tolerância a erros</b></td><td>Alta — perdoa erros</td><td>Baixa — expõe qualquer falha</td></tr>
-          <tr><td><b>Ideal para</b></td><td>Iniciantes / café rápido</td><td>Quem quer qualidade real</td></tr>
-          <tr><td><b>Moagem KG521.M</b></td><td>C4–C6</td><td>C2–C4</td></tr>
-          <tr><td><b>A tua atual</b></td><td>—</td><td><span style="color:var(--good)">✔ Esta é a tua</span></td></tr>
-        </table>
-        </div>
-      </div>
-
-      <div class="d-section">
-        <div class="d-section-title">Configuração para Cesta Pressurizada</div>
-        <div class="d-body">Se usares a cesta pressurizada original da De'Longhi (vem na caixa):</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> C4–C6 no KG521.M — não precisa ir tão fino</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 14–16g é suficiente</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> moderada — não precisa de muita pressão</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 20–28s (ligeiramente mais rápida)</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote pré-moído:</b> funciona razoavelmente bem</div></div>
-        <div class="callout tip">A cesta pressurizada é ótima para <b>visitas ou situações rápidas</b> onde não queres calibrar. Guarda ela como backup.</div>
-      </div>
-
-      <div class="d-section">
-        <div class="d-section-title">Configuração para Cesta Não-Pressurizada (a tua)</div>
-        <div class="d-body">Exige mais atenção mas entrega resultado profissional:</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> C2–C4 no KG521.M — mais fino que a pressurizada</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 16–18g — cesta cheia é fundamental</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Distribuição:</b> essencial — sem canais de extração</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> firme (~15kg) e perfeitamente perpendicular</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 25–30s obrigatório</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote:</b> não funciona bem — usa sempre grão moído na hora</div></div>
-        <div class="callout warn"><b>Se o café sair aguado</b> com cesta não-pressurizada, a causa é quase sempre moagem grossa ou tampagem fraca — não a máquina. Afina para C3 e tamp mais firme.</div>
-      </div>
-
-      <div class="d-section">
-        <div class="d-section-title">Como Identificar Qual Tens Encaixada</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> fundo com pouquíssimos furos (às vezes 1 único furo central visível por fora) + parece ter duas camadas</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> fundo com muitos furos pequenos uniformes — olhando contra a luz, vês claramente todos os furos</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">A tua cesta atual com marcação <b>"2"</b> na borda e furos visíveis = <b>não-pressurizada dupla</b> ✔</div></div>
-        <div class="callout info">A De'Longhi vende ambas as cestas separadamente. Vale ter as duas e alternar conforme o tipo de café e a situação do dia.</div>
+        <div class="callout info">Para colocar em prática: o passo a passo de calibração (dial-in) do G7 está no <b>Capítulo 3 — Configurando o Moedor</b>, e o diagnóstico pelo tempo de extração na aba <b>Calibração</b>.</div>
       </div>
     `
   }
