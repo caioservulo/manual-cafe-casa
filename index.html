@@ -486,6 +486,31 @@
   .drink-desc { font-size: 12px; color: var(--areia); margin-top: 2px; }
   .drink-expand { color: var(--terracota); margin-left: auto; font-size: 18px; transition: transform 0.3s var(--ease-out); }
   .drink-expand.open { transform: rotate(180deg); }
+
+  /* composição visual da bebida (café · leite · espuma · água) */
+  .drinks-legend {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    padding: 14px 18px 0;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
+  .drink-comp {
+    display: flex; height: 6px; gap: 2px;
+    margin-top: 10px; max-width: 230px;
+  }
+  .comp-seg { border-radius: 2px; min-width: 6px; }
+  .comp-cafe, .dot-cafe { background: var(--terracota); }
+  .comp-leite, .dot-leite { background: var(--areia); }
+  .comp-espuma, .dot-espuma { background: rgba(244,239,230,0.42); }
+  .comp-agua, .dot-agua { background: #4A87A5; }
+  .drink-diff {
+    font-size: 12px; line-height: 1.6; color: var(--areia);
+    background: var(--bg-1); border: 1px solid var(--hairline);
+    border-radius: var(--r-sm); padding: 11px 13px; margin: 2px 0 4px;
+  }
+  .drink-diff b { color: var(--terracota); font-weight: 700; }
   .drink-detail { display: none; padding: 14px 16px 16px; }
   .drink-detail.open { display: block; animation: detailIn 0.3s var(--ease-out); }
   @keyframes detailIn {
@@ -879,15 +904,24 @@
 
   <!-- DRINKS -->
   <div id="screen-drinks" class="screen">
+    <div class="drinks-legend">
+      <span class="legend-item"><span class="legend-dot dot-cafe"></span>Café</span>
+      <span class="legend-item"><span class="legend-dot dot-leite"></span>Leite</span>
+      <span class="legend-item"><span class="legend-dot dot-espuma"></span>Espuma</span>
+      <span class="legend-item"><span class="legend-dot dot-agua"></span>Água</span>
+    </div>
     <div class="drinks-grid">
 
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Espresso Duplo</div><div class="drink-desc">A base de tudo</div></div>
+          <div style="flex:1"><div class="drink-name">Espresso Duplo</div><div class="drink-desc">36ml puros — a base de tudo</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:100"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> café puro — sem leite, sem água. Tudo o que existe nas outras bebidas começa aqui: 36ml intensos coroados de crema.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'espresso-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'espresso-p')">✦ Pressurizada</button>
@@ -922,10 +956,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Cappuccino</div><div class="drink-desc">1/3 café · 1/3 leite · 1/3 espuma</div></div>
+          <div style="flex:1"><div class="drink-name">Cappuccino</div><div class="drink-desc">1/3 café · 1/3 leite · 1/3 espuma</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:33"></span><span class="comp-seg comp-leite" style="flex:33"></span><span class="comp-seg comp-espuma" style="flex:33"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> o equilíbrio exato dos três terços em xícara de 150–180ml. A espuma <b>densa e espessa</b> é a assinatura — nenhuma outra bebida leva tanta.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'capp-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'capp-p')">✦ Pressurizada</button>
@@ -960,10 +997,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Latte / Flat White</div><div class="drink-desc">Mais leite, mais suave</div></div>
+          <div style="flex:1"><div class="drink-name">Latte / Flat White</div><div class="drink-desc">O leite domina — o mais suave</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:20"></span><span class="comp-seg comp-leite" style="flex:65"></span><span class="comp-seg comp-espuma" style="flex:15"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> aqui o leite é o protagonista (copo de 240–300ml) — a bebida mais suave da carta. O <b>flat white</b> é a versão concentrada: menos leite, microespuma finíssima e o café bem mais presente.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'latte-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'latte-p')">✦ Pressurizada</button>
@@ -998,10 +1038,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="scissors" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Cortado</div><div class="drink-desc">Clássico espanhol</div></div>
+          <div style="flex:1"><div class="drink-name">Cortado</div><div class="drink-desc">Clássico espanhol — 1:1, pequeno e intenso</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:50"></span><span class="comp-seg comp-leite" style="flex:50"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> proporção <b>1:1</b> em xícara pequena (80–100ml) e praticamente sem espuma. O leite só "corta" o amargor — o café continua no comando. É o mais intenso das bebidas com leite.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'cortado-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'cortado-p')">✦ Pressurizada</button>
@@ -1036,10 +1079,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="droplets" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Americano</div><div class="drink-desc">Espresso alongado</div></div>
+          <div style="flex:1"><div class="drink-name">Americano</div><div class="drink-desc">Espresso alongado — zero leite</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:25"></span><span class="comp-seg comp-agua" style="flex:75"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> não leva leite nenhum — só água quente alongando o espresso. Corpo de coado, sabor de espresso, crema por cima.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'americano-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'americano-p')">✦ Pressurizada</button>
@@ -1072,10 +1118,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div><div class="drink-name">Macchiato</div><div class="drink-desc">Espresso com toque de espuma</div></div>
+          <div style="flex:1"><div class="drink-name">Macchiato</div><div class="drink-desc">Espresso "manchado" com espuma</div>
+            <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:85"></span><span class="comp-seg comp-espuma" style="flex:15"></span></div>
+          </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
+          <div class="drink-diff"><b>O que o diferencia:</b> é praticamente um espresso — só uma "mancha" (<b>macchia</b>) de espuma por cima. Não é bebida láctea: aqui o leite é detalhe, não ingrediente.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'mac-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'mac-p')">✦ Pressurizada</button>
