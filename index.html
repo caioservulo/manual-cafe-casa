@@ -839,9 +839,10 @@
               <div class="timer-zone-seg" id="z26"></div><div class="timer-zone-seg" id="z27"></div>
               <div class="timer-zone-seg" id="z28"></div><div class="timer-zone-seg" id="z29"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--muted); margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; font-size:9px; color:var(--muted); margin-bottom:10px;">
               <span>0s</span><span style="color:var(--crema)">25s ← ideal → 30s</span><span>35s+</span>
             </div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;">Tempo e peso andam juntos: pare no peso-alvo (32–36g na balança) e use o timer para validar a janela</div>
             <div class="timer-btns">
               <button class="timer-start" id="timer-btn" onclick="toggleTimer()">▶ Iniciar</button>
               <button class="timer-reset" onclick="resetTimer()">↺ Reset</button>
@@ -892,8 +893,8 @@
         <table class="d-table" style="margin:0">
           <tr><th>Parâmetro</th><th>Valor Ideal</th></tr>
           <tr><td>Dose (dupla)</td><td><b>14–18g</b></td></tr>
-          <tr><td>Extração</td><td><b class="good-cell">25–30 segundos</b></td></tr>
-          <tr><td>Rendimento (dupla)</td><td><b>~36ml (NP, ratio 1:2) / ~60ml (pressurizada)</b></td></tr>
+          <tr><td>Rendimento na balança</td><td><b>32–36g (NP, ratio 1:2) / ~55–60g (pressurizada)</b></td></tr>
+          <tr><td>Tempo até o peso-alvo</td><td><b class="good-cell">25–30 segundos</b></td></tr>
           <tr><td>Temperatura máquina</td><td><b>~91°C (nível 2)</b></td></tr>
           <tr><td>Temperatura leite</td><td><b>60–68°C (máx 70°C)</b></td></tr>
           <tr><td>Pressão tamp</td><td><b>~15kg</b></td></tr>
@@ -915,13 +916,13 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div style="flex:1"><div class="drink-name">Espresso Duplo</div><div class="drink-desc">36ml puros — a base de tudo</div>
+          <div style="flex:1"><div class="drink-name">Espresso Duplo</div><div class="drink-desc">18g → 36g em 25–30s — a base de tudo</div>
             <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:100"></span></div>
           </div>
           <div class="drink-expand">⌄</div>
         </div>
         <div class="drink-detail">
-          <div class="drink-diff"><b>O que o diferencia:</b> café puro — sem leite, sem água. Tudo o que existe nas outras bebidas começa aqui: 36ml intensos coroados de crema.</div>
+          <div class="drink-diff"><b>O que o diferencia:</b> café puro — sem leite, sem água. Tudo o que existe nas outras bebidas começa aqui: 36g intensos coroados de crema — sempre pesados na balança, nunca medidos no olho.</div>
           <div class="filter-toggle">
             <button class="filter-btn active" onclick="switchFilter(this,'espresso-np')">★ Não-Pressurizada</button>
             <button class="filter-btn" onclick="switchFilter(this,'espresso-p')">✦ Pressurizada</button>
@@ -932,10 +933,11 @@
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Firme ~15kg, perpendicular</span></div>
-              <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">36ml (ratio 1:2)</span></div>
-              <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">25–30 segundos</span></div>
+              <div class="recipe-row"><span class="recipe-key">Rendimento (balança)</span><span class="recipe-val">32–36g (ratio 1:2)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tempo até o peso</span><span class="recipe-val good-cell">25–30 segundos</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
             </div>
+            <div class="callout tip drink-tip"><b>Pese, não meça:</b> balança zerada sob a xícara + timer juntos. A crema engana o olho — "36ml" com crema podem ser só 28g de bebida. Pare a extração no peso-alvo (dose × 2) e confira se o tempo caiu na janela.</div>
             <div class="callout warn drink-tip"><b>Atenção:</b> Café aguado = moagem muito grossa ou tampagem fraca. Afina 2 pontos (ex.: de 10 para 8) e tamp mais firme.</div>
           </div>
           <div class="filter-params" id="espresso-p">
@@ -944,8 +946,8 @@
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Moderada</span></div>
-              <div class="recipe-row"><span class="recipe-key">Volume</span><span class="recipe-val">~60ml</span></div>
-              <div class="recipe-row"><span class="recipe-key">Tempo extração</span><span class="recipe-val good-cell">20–28 segundos</span></div>
+              <div class="recipe-row"><span class="recipe-key">Rendimento (balança)</span><span class="recipe-val">~55–60g (≈60ml)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Tempo até o peso</span><span class="recipe-val good-cell">20–28 segundos</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
             </div>
             <div class="callout tip drink-tip"><b>Dica:</b> A cesta pressurizada aceita café de pacote pré-moído em caso de necessidade. Crema sempre presente.</div>
@@ -972,7 +974,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">32–36g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
@@ -984,7 +986,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~55–60g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
@@ -1013,7 +1015,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">32–36g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
@@ -1025,7 +1027,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~55–60g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
@@ -1054,7 +1056,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">32–36g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30–36ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
@@ -1066,7 +1068,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~55–60g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
@@ -1095,7 +1097,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">32–36g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
             </div>
@@ -1106,7 +1108,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~55–60g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
             </div>
@@ -1134,7 +1136,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36ml em 25–30s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">32–36g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
             </div>
@@ -1145,7 +1147,7 @@
             <div class="drink-recipe">
               <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14–16g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~60ml em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~55–60g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
             </div>
@@ -1202,7 +1204,7 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c8">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Extrair em 25–30 segundos</div>
+        <div class="check-text">Extrair sobre a balança: parar em 32–36g, conferindo se levou 25–30 segundos</div>
       </div>
     </div>
 
@@ -1248,6 +1250,7 @@
               <div class="diag-text"><b>Causa:</b> Moagem muito fina ou dose excessiva<br><b>Solução:</b> Engrossar moagem ou reduzir dose<br><b>Sintomas:</b> Amargo, queimado, saindo em gotas</div>
             </div>
           </div>
+          <div class="callout info" style="margin-top:12px;font-size:12px;"><b>O tempo só diz algo junto com o peso:</b> cronometre até a balança marcar o peso-alvo (32–36g na NP). Chegou no peso em menos de 20s = moagem grossa demais; demorou mais de 35s = fina demais. Tempo sem peso fixo não diagnostica nada.</div>
         </div>
       </div>
 
@@ -1282,15 +1285,17 @@
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Pressurizada ✦</span></div>
           <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val">11–16</span></div>
           <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val">14–16g</span></div>
+          <div class="calib-row"><span class="calib-key">Rendimento (balança)</span><span class="calib-val">~55–60g</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Moderada</span></div>
-          <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val">20–28s</span></div>
+          <div class="calib-row"><span class="calib-key">Tempo até o peso</span><span class="calib-val">20–28s</span></div>
           <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val good">Alta</span></div>
           <div style="height:1px;background:rgba(196,103,60,0.2);margin:10px 0;"></div>
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Não-Pressurizada ★ (a tua)</span></div>
           <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val good">5–10</span></div>
           <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val good">16–18g</span></div>
+          <div class="calib-row"><span class="calib-key">Rendimento (balança)</span><span class="calib-val good">32–36g (ratio 1:2)</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Firme (~15kg)</span></div>
-          <div class="calib-row"><span class="calib-key">Tempo extração</span><span class="calib-val good">25–30s</span></div>
+          <div class="calib-row"><span class="calib-key">Tempo até o peso</span><span class="calib-val good">25–30s</span></div>
           <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val warn">Baixa — exige precisão</span></div>
           <div class="callout info" style="margin-top:12px;font-size:12px;">Ver <b>Teoria do Café → Métodos</b> para o guia completo de cada tipo de cesta.</div>
         </div>
@@ -1658,8 +1663,8 @@ const chapterData = {
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>DOSAR:</b> 14–18g na cesta dupla. Nivelar com o dedo.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>DISTRIBUIR:</b> Bater suavemente na palma para distribuir uniformemente.</div></div>
         <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>TAMPAR:</b> Perpendicular, ~15kg de pressão, leve giro no final.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>ENCAIXAR:</b> Limpar borda da cesta, travar o portafiltro firmemente.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>EXTRAIR:</b> Café deve começar em ~7–10s. Timer: 25–30s para ~60ml.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>ENCAIXAR:</b> Limpar borda da cesta, travar o portafiltro firmemente. Balança zerada sob a xícara.</div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>EXTRAIR:</b> Timer e balança juntos. Café deve começar em ~7–10s. Pare no peso-alvo: dose × 2 (ex.: 18g → 36g) — o tempo deve cair em 25–30s.</div></div>
         <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>SERVIR:</b> Imediatamente. Espresso esfria em menos de 1 minuto.</div></div>
       </div>
       <div class="d-section">
