@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="HiBREW H21">
+<meta name="apple-mobile-web-app-title" content="Gaggia Classic">
 <meta name="theme-color" content="#0E4558">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<title>HiBREW H21 — Manual</title>
+<title>Gaggia Classic — Manual</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Inter:wght@300;400&family=Caveat:wght@400&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -706,7 +706,7 @@
       </svg>
       <div class="hero-tagline">café · cocktails · valladolid</div>
       <div class="home-headline">Seu manual<br>completo de barista</div>
-      <div class="home-greeting">Cafeteira HiBREW H21 · Moedor HiBREW G7</div>
+      <div class="home-greeting">Gaggia Classic E24 · Moedor HiBREW G7</div>
     </div>
 
     <div class="section-label">Ferramentas Rápidas</div>
@@ -739,7 +739,7 @@
         <div class="chapter-num">1</div>
         <div class="chapter-info">
           <div class="chapter-title">Conhecendo o Setup</div>
-          <div class="chapter-sub">Peças, portafiltro 58mm, cestas, manômetro</div>
+          <div class="chapter-sub">Peças, interruptores, portafiltro 58mm, cestas</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -747,7 +747,7 @@
         <div class="chapter-num">2</div>
         <div class="chapter-info">
           <div class="chapter-title">Configurando a Máquina</div>
-          <div class="chapter-sub">Menu, temperatura, pré-infusão, água quente, vapor</div>
+          <div class="chapter-sub">Aquecimento, surf de temperatura, vapor, água quente</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -764,6 +764,14 @@
         <div class="chapter-info">
           <div class="chapter-title">Workflow de Extração</div>
           <div class="chapter-sub">Passo a passo completo</div>
+        </div>
+        <div class="chapter-arrow">›</div>
+      </div>
+      <div class="chapter-item" onclick="openChapter('preinf')">
+        <div class="chapter-num">5</div>
+        <div class="chapter-info">
+          <div class="chapter-title">Pré-infusão na Gaggia</div>
+          <div class="chapter-sub">Manopla de vapor, pulso, receita de 18g</div>
         </div>
         <div class="chapter-arrow">›</div>
       </div>
@@ -872,10 +880,10 @@
           <div id="timer-bloom" style="display:none">
             <div class="timer-display">
               <div class="timer-time" id="bloom-display">0:00</div>
-              <div class="timer-label" id="bloom-label">Pré-infusão manual (5–8 segundos)</div>
+              <div class="timer-label" id="bloom-label">Pré-infusão (5–8 segundos)</div>
             </div>
             <div style="font-size:13px;color:var(--muted);text-align:center;margin-bottom:16px;line-height:1.5;">
-              A H21 já faz pré-infusão automática (0–4s, ajustável no menu).<br>Use este timer só se desligar a do menu e quiser fazer na mão.
+              Manopla de vapor aberta + interruptor de café ligado.<br>Feche a manopla na 1ª gota (~5–8s) — ver capítulo Pré-infusão.
             </div>
             <div class="timer-btns">
               <button class="timer-start" id="bloom-btn" onclick="toggleBloomTimer()">▶ Iniciar</button>
@@ -892,12 +900,12 @@
       <div style="background:var(--steam);border-radius:14px;padding:14px;">
         <table class="d-table" style="margin:0">
           <tr><th>Parâmetro</th><th>Valor Ideal</th></tr>
-          <tr><td>Dose (dupla 58mm)</td><td><b>18–20g</b></td></tr>
-          <tr><td>Rendimento na balança</td><td><b>36–40g (NP, ratio 1:2) / ~36–45g (pressurizada)</b></td></tr>
+          <tr><td>Dose (cesta 18g)</td><td><b>18g</b></td></tr>
+          <tr><td>Rendimento na balança</td><td><b>36–40g (NP, ratio 1:2) / ~30–35g (pressurizada)</b></td></tr>
           <tr><td>Tempo até o peso-alvo</td><td><b class="good-cell">25–30 segundos</b></td></tr>
-          <tr><td>Temperatura máquina</td><td><b>92°C (torra média)</b></td></tr>
-          <tr><td>Pré-infusão</td><td><b>2s ON / 3s OFF</b></td></tr>
-          <tr><td>Manômetro na extração</td><td><b>8–10 bar</b></td></tr>
+          <tr><td>Temperatura (surf)</td><td><b>Extrair ~20–30s após a luz "pronto" acender</b></td></tr>
+          <tr><td>Pré-infusão</td><td><b>Manopla aberta até a 1ª gota (~5–8s)</b></td></tr>
+          <tr><td>Tempo total c/ pré-infusão</td><td><b>~30–35s</b></td></tr>
           <tr><td>Temperatura leite</td><td><b>60–68°C (máx 70°C)</b></td></tr>
           <tr><td>Pressão tamp</td><td><b>~15kg</b></td></tr>
         </table>
@@ -918,7 +926,7 @@
       <div class="drink-card">
         <div class="drink-card-header" onclick="toggleDrink(this)">
           <div class="drink-emoji"><i data-lucide="coffee" style="width:32px;height:32px;stroke:var(--creme);stroke-width:1.5;"></i></div>
-          <div style="flex:1"><div class="drink-name">Espresso Duplo</div><div class="drink-desc">18g → 36g em 25–30s (cesta 58mm) — a base de tudo</div>
+          <div style="flex:1"><div class="drink-name">Espresso Duplo</div><div class="drink-desc">18g → 36–40g, ~30–35s com pré-infusão — a base de tudo</div>
             <div class="drink-comp"><span class="comp-seg comp-cafe" style="flex:100"></span></div>
           </div>
           <div class="drink-expand">⌄</div>
@@ -932,7 +940,7 @@
           <div class="filter-params active" id="espresso-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Firme ~15kg, perpendicular</span></div>
               <div class="recipe-row"><span class="recipe-key">Rendimento (balança)</span><span class="recipe-val">36–40g (ratio 1:2)</span></div>
@@ -943,12 +951,12 @@
             <div class="callout warn drink-tip"><b>Atenção:</b> Café aguado = moagem muito grossa ou tampagem fraca. Afina 2 pontos (ex.: de 10 para 8) e tamp mais firme.</div>
           </div>
           <div class="filter-params" id="espresso-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
               <div class="recipe-row"><span class="recipe-key">Tampagem</span><span class="recipe-val">Moderada</span></div>
-              <div class="recipe-row"><span class="recipe-key">Rendimento (balança)</span><span class="recipe-val">~36–45g (ratio ~1:2,5)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Rendimento (balança)</span><span class="recipe-val">~30–35g (ratio ~1:2,5)</span></div>
               <div class="recipe-row"><span class="recipe-key">Tempo até o peso</span><span class="recipe-val good-cell">20–28 segundos</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">100–120ml, pré-aquecida</span></div>
             </div>
@@ -974,21 +982,21 @@
           <div class="filter-params active" id="capp-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36–40g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
             </div>
-            <div class="callout tip drink-tip"><b>Ordem:</b> Espresso PRIMEIRO. Na H21 o vapor tem aquecedor próprio — dá para vaporizar logo em seguida, sem esperar a máquina.</div>
+            <div class="callout tip drink-tip"><b>Ordem:</b> Espresso PRIMEIRO. Na Gaggia (caldeira única), café primeiro e vapor depois — e reabasteça a caldeira pela lança ao terminar.</div>
           </div>
           <div class="filter-params" id="capp-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~36–45g na balança em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~30–35g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite vaporizado</span><span class="recipe-val">~100ml microespuma</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">65–68°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">150–180ml</span></div>
@@ -1015,7 +1023,7 @@
           <div class="filter-params active" id="latte-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36–40g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
@@ -1025,11 +1033,11 @@
             <div class="callout info drink-tip"><b>Flat White:</b> Microespuma mais densa — o café domina. Com cesta NP o sabor é mais complexo e o flat white fica excepcional.</div>
           </div>
           <div class="filter-params" id="latte-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~36–45g na balança em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~30–35g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (latte)</span><span class="recipe-val">150–200ml sedoso</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite (flat white)</span><span class="recipe-val">~100ml denso</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
@@ -1056,7 +1064,7 @@
           <div class="filter-params active" id="cortado-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36–40g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~36–40ml</span></div>
@@ -1066,11 +1074,11 @@
             <div class="callout tip drink-tip"><b>Dica de Valladolid:</b> Com NP o sabor é mais intenso e complexo — o cortado perfeito para o café-bar de vocês!</div>
           </div>
           <div class="filter-params" id="cortado-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~36–45g na balança em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~30–35g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Leite quente</span><span class="recipe-val">~30ml</span></div>
               <div class="recipe-row"><span class="recipe-key">Temperatura leite</span><span class="recipe-val">60–65°C</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">80–100ml</span></div>
@@ -1097,24 +1105,24 @@
           <div class="filter-params active" id="americano-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36–40g na balança em 25–30s</span></div>
-              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml (programável na H21: 50–300ml)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml (chaleira a ~90°C)</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
             </div>
-            <div class="callout warn drink-tip"><b>Atenção:</b> Espresso PRIMEIRO, água depois. A água quente da H21 sai <b>menos quente</b> que a de uma chaleira — pré-aqueça a xícara e, se quiser o americano mais quente, use água da chaleira a ~90°C.</div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Espresso PRIMEIRO, água depois. Prefira água de <b>chaleira</b>: tirar muita água quente pela lança da Gaggia esvazia e esfria a caldeira pequena.</div>
           </div>
           <div class="filter-params" id="americano-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~36–45g na balança em 20–28s</span></div>
-              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml (programável na H21: 50–300ml)</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~30–35g na balança em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Água quente</span><span class="recipe-val">90–120ml (chaleira a ~90°C)</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">180–200ml</span></div>
             </div>
-            <div class="callout warn drink-tip"><b>Atenção:</b> Sempre espresso PRIMEIRO. Programe a saída de água quente da H21 com o volume exato (ex.: 100ml) e ela para sozinha.</div>
+            <div class="callout warn drink-tip"><b>Atenção:</b> Sempre espresso PRIMEIRO. Dá para tirar água quente pela lança (manopla aberta + interruptor de café), mas a chaleira dá mais volume e temperatura.</div>
           </div>
         </div>
       </div>
@@ -1136,7 +1144,7 @@
           <div class="filter-params active" id="mac-np">
             <div class="filter-label">Cesta não-pressurizada (a tua)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18–20g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">18g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">5–10</span></div>
               <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">36–40g na balança em 25–30s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
@@ -1145,11 +1153,11 @@
             <div class="callout tip drink-tip"><b>Técnica:</b> Com NP a crema é natural e densa — a espuma por cima contrasta bonito. Pegue só a espuma do topo do jarro.</div>
           </div>
           <div class="filter-params" id="mac-p">
-            <div class="filter-label">Cesta pressurizada (HiBREW, vem na caixa)</div>
+            <div class="filter-label">Cesta pressurizada (Gaggia, vem na caixa)</div>
             <div class="drink-recipe">
-              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">16–18g</span></div>
+              <div class="recipe-row"><span class="recipe-key">Café moído</span><span class="recipe-val">14g</span></div>
               <div class="recipe-row"><span class="recipe-key">Moagem G7</span><span class="recipe-val good-cell">11–16</span></div>
-              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~36–45g na balança em 20–28s</span></div>
+              <div class="recipe-row"><span class="recipe-key">Espresso extraído</span><span class="recipe-val">~30–35g na balança em 20–28s</span></div>
               <div class="recipe-row"><span class="recipe-key">Espuma</span><span class="recipe-val">1–2 colheres do topo do jarro</span></div>
               <div class="recipe-row"><span class="recipe-key">Xícara</span><span class="recipe-val">60–80ml</span></div>
             </div>
@@ -1178,15 +1186,15 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c2">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Ligar a máquina com o portafiltro encaixado e deixar aquecer ~5 min</div>
+        <div class="check-text">Ligar a máquina com o portafiltro encaixado e deixar aquecer 15–20 min</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c3">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Fazer purga: 3–5s de água pelo grupo sem portafiltro (tira a água mais fria do circuito)</div>
+        <div class="check-text">Purga de 3–5s pelo grupo e esperar a luz "pronto" ciclar (surf)</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c4">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Pré-aquecer as xícaras com a água quente da máquina</div>
+        <div class="check-text">Pré-aquecer as xícaras (água da chaleira ou da lança)</div>
       </div>
     </div>
 
@@ -1198,7 +1206,7 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c6">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Dosar 18–20g na cesta dupla de 58mm</div>
+        <div class="check-text">Dosar 18g na cesta (teste da moeda ok)</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c7">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
@@ -1206,7 +1214,7 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c8">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Extrair sobre a balança: parar em 36–40g, conferindo 25–30s e 8–10 bar no manômetro</div>
+        <div class="check-text">Pré-infusão pela manopla até a 1ª gota e extrair até 36–40g (~30–35s no total)</div>
       </div>
     </div>
 
@@ -1222,7 +1230,7 @@
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c11">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
-        <div class="check-text">Limpar vaporizador com pano úmido + purga de 2s</div>
+        <div class="check-text">Limpar a lança + purga, desligar vapor e reabastecer a caldeira pela lança</div>
       </div>
       <div class="check-item" onclick="toggleCheck(this)" data-id="c12">
         <div class="check-box"><div class="check-box-inner">✓</div></div>
@@ -1241,15 +1249,15 @@
           <div class="diagnosis-grid">
             <div class="diag-card fast">
               <div class="diag-title diag-fast" style="color:var(--info)"><i data-lucide="zap" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:5px;stroke:var(--info);"></i>Extração Rápida — menos de 20s</div>
-              <div class="diag-text"><b>Causa:</b> Moagem muito grossa<br><b>Solução:</b> Afinar o moedor (posição menor)<br><b>Sintomas:</b> Aguado, sem crema, ácido<br><b>Manômetro:</b> abaixo de ~6 bar</div>
+              <div class="diag-text"><b>Causa:</b> Moagem muito grossa<br><b>Solução:</b> Afinar o moedor (posição menor)<br><b>Sintomas:</b> Aguado, sem crema, ácido<br><b>Fluxo:</b> jorra claro já nos primeiros segundos</div>
             </div>
             <div class="diag-card perfect">
               <div class="diag-title diag-perfect" style="color:var(--good)"><i data-lucide="check-circle" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:5px;stroke:var(--good);"></i>Perfeito — 25 a 30s</div>
-              <div class="diag-text"><b>Resultado:</b> Crema dourada espessa, sabor equilibrado<br><b>Manômetro:</b> 8–10 bar estável<br><b>Ação:</b> Manter configuração</div>
+              <div class="diag-text"><b>Resultado:</b> Crema dourada espessa, sabor equilibrado<br><b>Fluxo:</b> "rabo de rato" contínuo, cor de mel<br><b>Ação:</b> Manter configuração</div>
             </div>
             <div class="diag-card slow">
               <div class="diag-title diag-slow" style="color:var(--warn)"><i data-lucide="hourglass" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:5px;stroke:var(--warn);"></i>Extração Lenta — mais de 35s</div>
-              <div class="diag-text"><b>Causa:</b> Moagem muito fina ou dose excessiva<br><b>Solução:</b> Engrossar moagem ou reduzir dose<br><b>Sintomas:</b> Amargo, queimado, saindo em gotas<br><b>Manômetro:</b> encostado no máximo (11 bar+)</div>
+              <div class="diag-text"><b>Causa:</b> Moagem muito fina ou dose excessiva<br><b>Solução:</b> Engrossar moagem ou reduzir dose<br><b>Sintomas:</b> Amargo, queimado, saindo em gotas<br><b>Fluxo:</b> pinga escuro, demora a começar</div>
             </div>
           </div>
           <div class="callout info" style="margin-top:12px;font-size:12px;"><b>O tempo só diz algo junto com o peso:</b> cronometre até a balança marcar o peso-alvo (36–40g na NP). Chegou no peso em menos de 20s = moagem grossa demais; demorou mais de 35s = fina demais. Tempo sem peso fixo não diagnostica nada.</div>
@@ -1272,13 +1280,12 @@
       </div>
 
       <div class="calib-card">
-        <div class="calib-header"><i data-lucide="thermometer" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Temperatura e Pré-infusão — H21</div>
+        <div class="calib-header"><i data-lucide="thermometer" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:7px;stroke:var(--crema-light);"></i>Temperatura (Surf) e Pré-infusão — Gaggia</div>
         <div class="calib-body">
-          <div class="calib-row"><span class="calib-key">Torra escura</span><span class="calib-val">88–90°C · pré-inf. 0–1s</span></div>
-          <div class="calib-row"><span class="calib-key">Torra média</span><span class="calib-val good">92°C · pré-inf. 2s ON / 3s OFF ✔</span></div>
-          <div class="calib-row"><span class="calib-key">Torra clara</span><span class="calib-val">94–96°C · pré-inf. 3–4s</span></div>
-          <div class="calib-row"><span class="calib-key">Tempo programado</span><span class="calib-val">~32s (trava de segurança)</span></div>
-          <div class="callout info" style="margin-top:12px;font-size:12px;"><b>Como ajustar:</b> botão <b>Settings</b> → <b>seta</b> navega entre os parâmetros → <b>✓</b> confirma cada um. Temperatura em passos de 2°C (88–96°C), pré-infusão em passos de 1s, tempo em passos de 0,5s.</div>
+          <div class="calib-row"><span class="calib-key">Torra clara</span><span class="calib-val">0–10s após a luz · pré-inf. ~8s</span></div>
+          <div class="calib-row"><span class="calib-key">Torra média</span><span class="calib-val good">~20–30s após a luz · pré-inf. 5–8s ✔</span></div>
+          <div class="calib-row"><span class="calib-key">Torra escura</span><span class="calib-val">~45–60s após a luz · pré-inf. 0–3s</span></div>
+          <div class="callout info" style="margin-top:12px;font-size:12px;"><b>Surf:</b> purgue até a luz "pronto" apagar, espere ela acender e conte os segundos. <b>Pré-infusão:</b> manopla de vapor aberta, liga o café, fecha a manopla na 1ª gota.</div>
         </div>
       </div>
 
@@ -1287,15 +1294,15 @@
         <div class="calib-body">
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Pressurizada ✦</span></div>
           <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val">11–16</span></div>
-          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val">16–18g</span></div>
-          <div class="calib-row"><span class="calib-key">Rendimento (balança)</span><span class="calib-val">~36–45g</span></div>
+          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val">14g</span></div>
+          <div class="calib-row"><span class="calib-key">Rendimento (balança)</span><span class="calib-val">~30–35g</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Moderada</span></div>
           <div class="calib-row"><span class="calib-key">Tempo até o peso</span><span class="calib-val">20–28s</span></div>
           <div class="calib-row"><span class="calib-key">Tolerância a erros</span><span class="calib-val good">Alta</span></div>
           <div style="height:1px;background:rgba(196,103,60,0.2);margin:10px 0;"></div>
           <div class="calib-row"><span class="calib-key">Tipo</span><span class="calib-val" style="font-size:11px">Não-Pressurizada ★ (a tua)</span></div>
           <div class="calib-row"><span class="calib-key">Moagem G7</span><span class="calib-val good">5–10</span></div>
-          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val good">18–20g</span></div>
+          <div class="calib-row"><span class="calib-key">Dose</span><span class="calib-val good">18g</span></div>
           <div class="calib-row"><span class="calib-key">Rendimento (balança)</span><span class="calib-val good">36–40g (ratio 1:2)</span></div>
           <div class="calib-row"><span class="calib-key">Tampagem</span><span class="calib-val">Firme (~15kg)</span></div>
           <div class="calib-row"><span class="calib-key">Tempo até o peso</span><span class="calib-val good">25–30s</span></div>
@@ -1486,7 +1493,7 @@ function resetBloomTimer() {
   clearInterval(bloomInterval); bloomRunning = false; bloomSeconds = 0;
   document.getElementById('bloom-display').textContent = '0:00';
   document.getElementById('bloom-display').className = 'timer-time';
-  document.getElementById('bloom-label').textContent = 'Pré-infusão manual (5–8 segundos)';
+  document.getElementById('bloom-label').textContent = 'Pré-infusão (5–8 segundos)';
   document.getElementById('bloom-btn').textContent = '▶ Iniciar';
 }
 
@@ -1548,26 +1555,26 @@ const chapterData = {
         <div class="d-body">Familiarize-se com cada componente antes de começar. Conhecer o equipamento evita erros e prolonga a vida útil dos acessórios.</div>
         <table class="d-table" style="margin-top:12px">
           <tr><th>Componente</th><th>Função</th></tr>
-          <tr><td><b>Cafeteira HiBREW H21</b></td><td>Bomba de 15 bar, controle de temperatura PID, aquecimento separado para café e vapor, válvula solenoide de 3 vias</td></tr>
-          <tr><td><b>Painel / display</b></td><td>Botão Settings, seta e ✓ — ajusta temperatura, pré-infusão, tempo de extração e volume de água quente</td></tr>
-          <tr><td><b>Manômetro</b></td><td>Mostra a pressão em tempo real — o teu "fiscal" da moagem</td></tr>
+          <tr><td><b>Gaggia Classic E24</b></td><td>Caldeira única de <b>latão</b> (café e vapor), bomba vibratória, OPV regulada para ~9 bar, válvula solenoide de 3 vias</td></tr>
+          <tr><td><b>3 interruptores</b></td><td><b>Liga/desliga</b> · <b>Café</b> (liga a bomba) · <b>Vapor</b> (sobe a caldeira para temperatura de vapor)</td></tr>
+          <tr><td><b>Luz "pronto"</b></td><td>Acesa = caldeira na temperatura. Apaga quando a resistência volta a aquecer — é a tua referência de temperatura (não há PID)</td></tr>
+          <tr><td><b>Manopla lateral</b></td><td>Abre a lança: sai vapor (com o interruptor de vapor) ou água quente (com o interruptor de café)</td></tr>
+          <tr><td><b>Lança de vapor</b></td><td>Profissional, articulada — sem panarello</td></tr>
           <tr><td><b>Moedor HiBREW G7</b></td><td>Mós cônicas de aço inox 420 — 48 posições, dosagem por tempo (0,1s) e suporte para moer direto no portafiltro (selecionar 58mm)</td></tr>
-          <tr><td><b>Portafiltro 58mm</b></td><td>Padrão profissional — aceita cestas, tampers e acessórios de mercado</td></tr>
-          <tr><td><b>Cesta simples NP</b></td><td>9–11g / 1 espresso</td></tr>
-          <tr><td><b>Cesta dupla NP</b></td><td>18–20g — a dose padrão deste manual</td></tr>
-          <tr><td><b>Cesta dupla pressurizada</b></td><td>16–18g — para café de pacote ou visitas</td></tr>
-          <tr><td><b>Tamper 58mm</b></td><td>Prensa o pó — essencial</td></tr>
-          <tr><td><b>Lança de vapor</b></td><td>Articulada; bico de <b>1 furo</b> instalado (mais controle) e bico de <b>3 furos</b> na caixa (mais rápido, exige prática)</td></tr>
-          <tr><td><b>Saída de água quente</b></td><td>Circuito próprio, volume programável (50–300ml)</td></tr>
-          <tr><td><b>Disco de silicone / cesta cega</b></td><td>Para backflush — confira se veio na caixa; se não, compre um disco cego de silicone 58mm ou cesta cega padrão</td></tr>
-          <tr><td><b>Reservatório</b></td><td>Removível — use água filtrada</td></tr>
+          <tr><td><b>Portafiltro 58mm</b></td><td>Latão cromado, bico duplo — padrão profissional, aceita cestas e acessórios de mercado</td></tr>
+          <tr><td><b>Cestas na caixa</b></td><td>Simples (~7g), dupla (~14g) e <b>pressurizada</b> (também aceita sachê ESE)</td></tr>
+          <tr><td><b>Cesta 18g (recomendada)</b></td><td>Para a tua dose de 18g, uma cesta de precisão 18g (tipo IMS / VST / Gaggia "commercial") — a dupla de fábrica é pequena para 18g</td></tr>
+          <tr><td><b>Tamper</b></td><td>Vem um de plástico 58mm — vale trocar por um de metal 58mm (ou 58,5mm)</td></tr>
+          <tr><td><b>Cesta cega / disco de silicone</b></td><td>Para backflush — normalmente <b>não</b> vem na caixa; custa pouco</td></tr>
+          <tr><td><b>Reservatório</b></td><td>~2,1L, removível por cima — use água filtrada</td></tr>
         </table>
       </div>
       <div class="d-section">
         <div class="d-section-title">Tipos de Cesta</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> Parede dupla — facilita a crema, menos exigente com a moagem. Vem na caixa (dupla).</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> Fundo aberto — revela o sabor real, exige moagem precisa. Vem na caixa (simples e dupla) — é a padrão deste manual.</div></div>
-        <div class="callout info"><b>Válvula de 3 vias:</b> ao terminar a extração, a solenoide alivia a pressão do disco direto para a bandeja (você ouve um "tchss"). Resultado: borra mais seca, portafiltro sai na hora sem espirro, e o <b>backflush passa a ser possível</b> (ver Capítulo 9).</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> Parede dupla — facilita a crema, menos exigente com a moagem. Vem na caixa.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> Fundo aberto — revela o sabor real, exige moagem precisa. É a padrão deste manual.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Teste da moeda (headspace):</b> com 18g tampados, encaixe e desencaixe o portafiltro com uma moeda sobre o disco. Se a moeda marcar fundo o café, a cesta está cheia demais — use uma cesta de 18g ou reduza a dose.</div></div>
+        <div class="callout info"><b>Válvula de 3 vias:</b> ao desligar o interruptor de café, a solenoide alivia a pressão do disco para a bandeja (o "tchss"). Resultado: borra mais seca, portafiltro sai na hora sem espirro, e o <b>backflush é possível</b> (ver Capítulo 9).</div>
         <div class="callout tip">Use <b>água filtrada ou mineral</b> sempre. O calcário é o maior inimigo da máquina e o número 1 que reduz a vida útil.</div>
       </div>
     `
@@ -1578,73 +1585,51 @@ const chapterData = {
       <div class="d-section">
         <div class="d-section-title">Primeiro Uso (máquina nova)</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Lave reservatório, bandeja, portafiltro e cestas com água e detergente neutro. Enxágue bem.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Encha o reservatório com água filtrada até o MAX e ligue a máquina.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Escorve o circuito:</b> passe 1 reservatório inteiro dividido entre grupo (sem portafiltro), saída de água quente e lança de vapor. Tira o gosto de fábrica e o ar das bombas.</div></div>
-        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Faça 2–3 cafés de descarte para "temperar" a cesta e calibrar o G7 na moagem nova.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Encha o reservatório com água filtrada até o MAX. Ligue a máquina.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Escorve a caldeira:</b> abra a manopla de vapor, ligue o interruptor de <b>café</b> e deixe sair água pela lança até o fluxo ficar contínuo. Feche a manopla e desligue o interruptor.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Passe ~1 reservatório entre grupo (sem portafiltro) e lança — tira o gosto de fábrica.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Faça 2–3 cafés de descarte para calibrar o G7.</div></div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Ligada Diária / Purga</div>
+        <div class="d-section-title">Aquecimento Diário</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Confira a água do reservatório (fresca e filtrada).</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue a máquina <b>com o portafiltro vazio encaixado</b> — assim ele aquece junto com o grupo.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Quando o display indicar pronto, espere mais <b>~5 minutos</b>: o PID estabiliza a água rápido, mas o grupo e o portafiltro de 58mm (metal pesado) demoram mais.</div></div>
-        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Antes de cada café, purgue <b>3–5s</b> de água pelo grupo sem portafiltro — tira a água mais fria parada no circuito e limpa a ducha.</div></div>
-        <div class="callout tip">Reviews da H21 relatam que os <b>primeiros segundos saem mais frios</b> sem a purga. Não pule esse passo — é o que mais faz diferença na consistência.</div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue <b>com o portafiltro vazio encaixado</b> — o grupo e o portafiltro de latão precisam esquentar junto.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">A luz "pronto" acende em poucos minutos, mas o grupo só estabiliza depois de <b>15–20 minutos</b>. É o tempo que a comunidade recomenda.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Antes do café, faça a <b>purga</b>: ligue o interruptor de café sem portafiltro por 3–5s (ou ~60ml). Isso troca a água parada e dispara a resistência — o ponto de partida do "surf" de temperatura (abaixo).</div></div>
+        <div class="callout info">A E24 tem <b>modo eco</b>: desliga sozinha depois de um tempo sem uso. Se a máquina "morrer" no meio da manhã, é isso — é só ligar de novo.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Navegando no Menu</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Pressione o botão <b>Settings</b> para entrar no modo de configuração.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Use a <b>seta</b> para passar de um parâmetro ao outro e para mudar o valor.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Pressione <b>✓</b> para confirmar cada mudança. Os valores ficam gravados.</div></div>
+        <div class="d-section-title">Temperatura — Sem Ajuste, Mas Controlável</div>
+        <div class="d-body">A Classic não tem PID nem regulagem de temperatura: um termostato liga e desliga a resistência. A temperatura da água oscila alguns graus ao longo do ciclo — e você escolhe <b>em que ponto do ciclo</b> extrair. Isso se chama <b>temperature surfing</b>. A E24 tem termostato mais preciso que as versões antigas, então a oscilação é menor, mas a técnica continua valendo.</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Faça a purga até a luz "pronto" <b>apagar</b> (a resistência ligou).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Espere a luz <b>acender de novo</b> — a caldeira chegou ao topo do ciclo.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Prepare/encaixe o portafiltro e escolha quando apertar o botão, conforme a torra (tabela).</div></div>
         <table class="d-table" style="margin-top:10px">
-          <tr><th>Parâmetro</th><th>Faixa</th><th>Passo</th><th>Sugestão</th></tr>
-          <tr><td><b>Temperatura de extração</b></td><td>88–96°C</td><td>2°C</td><td><b>92°C</b></td></tr>
-          <tr><td><b>Pré-infusão</b></td><td>0–4s (ON + OFF)</td><td>1s</td><td><b>2s ON / 3s OFF</b></td></tr>
-          <tr><td><b>Tempo de extração</b></td><td>20–40s</td><td>0,5s</td><td><b>~32s</b></td></tr>
-          <tr><td><b>Água quente</b></td><td>50–300ml</td><td>—</td><td><b>100ml</b> (americano)</td></tr>
+          <tr><th>Torra</th><th>Quando extrair</th><th>Efeito</th></tr>
+          <tr><td>Clara</td><td>Logo que a luz acende (0–10s)</td><td>Mais quente — puxa mais doçura e menos acidez</td></tr>
+          <tr><td><b>Média ✔</b></td><td><b>~20–30s depois da luz acender</b></td><td><b>Ponto de partida</b></td></tr>
+          <tr><td>Escura</td><td>~45–60s depois da luz acender</td><td>Mais frio — menos amargor</td></tr>
         </table>
-        <div class="callout info">Os nomes exatos no display e a ordem dos parâmetros podem variar por lote — confira no manual impresso que veio na caixa.</div>
+        <div class="callout tip">O que importa é <b>repetir sempre a mesma rotina</b>. Os segundos acima são ponto de partida — ajuste pelo gosto: azedo = extraia mais cedo; amargo = espere mais.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Temperatura de Extração</div>
-        <table class="d-table">
-          <tr><th>Temp.</th><th>Ideal Para</th></tr>
-          <tr><td>88–90°C</td><td>Torra escura — muito solúvel, menos calor evita amargor</td></tr>
-          <tr><td><b>92°C ✔</b></td><td><b>Torra média — RECOMENDADO (ponto de partida)</b></td></tr>
-          <tr><td>94–96°C</td><td>Torra clara — pouco solúvel, precisa de mais calor</td></tr>
-        </table>
-        <div class="callout tip">Ajuste temperatura só <b>depois</b> de acertar a moagem. Se o espresso está no tempo certo mas amarga, desça 2°C; se está no tempo certo mas azedo, suba 2°C.</div>
+        <div class="d-section-title">Pressão (OPV)</div>
+        <div class="d-body">A válvula de sobrepressão (OPV) da E24 vem regulada de fábrica para cerca de <b>9 bar</b> — o padrão do espresso. Não tem manômetro, então quem diz se a pressão está certa é o <b>fluxo</b>: o café deve começar a pingar entre 6–10s após a bomba ligar (depois da pré-infusão) e escorrer como um "rabo de rato" contínuo e cor de mel.</div>
+        <div class="callout info">Quer ver a pressão? Existe manômetro de portafiltro 58mm para teste — útil uma vez, para confirmar a OPV.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Pré-infusão</div>
-        <div class="d-body">A bomba molha o disco por alguns segundos (<b>ON</b>), pausa (<b>OFF</b>) para o café inchar e liberar CO₂, e só então entra a pressão total. Resultado: menos canais e extração mais uniforme — especialmente útil na cesta de 58mm, que é larga.</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra escura / café velho:</b> 0–1s — pouco gás, não precisa</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> 2s ON / 3s OFF ✔</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra clara / grão muito fresco (&lt;7 dias):</b> 3–4s — mais gás para liberar</div></div>
-        <div class="callout warn">O tempo da pré-infusão <b>entra no cronômetro</b>. Com 2s+3s, uma extração de 28s tem ~23s de pressão total. Conte sempre desde o botão, para comparar dia a dia.</div>
+        <div class="d-section-title">Vapor</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Ligue o interruptor de <b>vapor</b>. A luz "pronto" apaga; espere ela <b>acender</b> de novo (~30–45s).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Com a lança sobre a bandeja (ou um copo), abra a manopla e deixe sair a <b>água condensada</b> até virar vapor seco. Feche.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Vaporize o leite (ponta logo abaixo da superfície para incorporar ar, depois mais funda para girar). A caldeira é pequena: trabalhe com jarro de <b>350ml</b> e até ~200ml de leite.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Feche a manopla, limpe a lança com pano úmido e purgue 1–2s.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Desligue o interruptor de vapor.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>Reabasteça e resfrie a caldeira:</b> abra a manopla, ligue o interruptor de <b>café</b> e deixe sair água pela lança até o fluxo ficar contínuo (sem chiado). Feche e desligue. Esse passo é <b>obrigatório</b> — o vapor esvazia parte da caldeira, e a resistência não pode trabalhar a seco.</div></div>
+        <div class="callout warn">Depois de vaporizar, a caldeira está bem acima da temperatura de café. Faça o passo 6 e espere a luz "pronto" ciclar antes do próximo espresso, senão ele sai queimado.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Tempo de Extração Programado</div>
-        <div class="d-body">A H21 para a bomba sozinha no tempo programado (20–40s). Como neste manual quem manda é a <b>balança</b>, use o tempo programado como <b>trava de segurança</b>: ~32s. Se a balança chegar no peso-alvo antes, interrompa a extração manualmente (normalmente, apertando o botão de café de novo).</div>
-        <div class="callout tip">Depois de calibrado um café, dá para programar o tempo exato (ex.: 28s) e deixar a máquina parar sozinha — prático no dia a dia, mas confira o peso de vez em quando.</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Lendo o Manômetro</div>
-        <table class="d-table">
-          <tr><th>Pressão na extração</th><th>Leitura</th></tr>
-          <tr><td>&lt; 6 bar</td><td class="warn-cell">Moagem grossa demais / dose baixa / tamp fraco</td></tr>
-          <tr style="background:var(--good-bg)"><td><b>8–10 bar</b></td><td class="good-cell"><b>✔ Ideal com cesta NP</b></td></tr>
-          <tr><td>11 bar+ (no máximo)</td><td class="warn-cell">Moagem fina demais ou dose excessiva</td></tr>
-        </table>
-        <div class="callout info">Com a <b>cesta pressurizada</b> o manômetro sobe alto mesmo com moagem grossa — a leitura não serve para diagnosticar. Na cesta cega (backflush), ele vai ao máximo: é normal.</div>
-      </div>
-      <div class="d-section">
-        <div class="d-section-title">Vapor e Água Quente</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Vapor independente:</b> aquecedor e bomba próprios. Não precisa esperar entre café e leite, nem resfriar a máquina depois de vaporizar — diferença enorme para máquinas de thermoblock único.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Antes de vaporizar:</b> abra a lança 1–2s sobre a bandeja para soltar a água condensada.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Bico de 1 furo</b> (instalado): mais lento e controlável — ideal para aprender latte art e para jarros pequenos (até ~350ml).</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Bico de 3 furos</b> (na caixa): muito mais potente e rápido — bom para 2+ bebidas, mas exige prática para não fazer bolhas grandes.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Água quente:</b> programe o volume (50–300ml) e a máquina para sozinha. Sai menos quente que água de chaleira — ótima para pré-aquecer xícaras e para americano.</div></div>
-        <div class="callout info">Ajuste de temperatura do vapor e desligamento automático (auto-off): nenhuma fonte confirmou se a H21 tem essas opções — confira no manual impresso.</div>
+        <div class="d-section-title">Água Quente</div>
+        <div class="d-body">Sem o interruptor de vapor ligado: abra a manopla e ligue o interruptor de <b>café</b> — sai água quente pela lança. Serve para pré-aquecer xícaras e para americano, mas puxa água fria para a caldeira; não faça logo antes do espresso.</div>
       </div>
     `
   },
@@ -1656,14 +1641,14 @@ const chapterData = {
         <div class="d-body">O HiBREW G7 tem 48 posições: <b>0 é a mais fina, 48 a mais grossa</b>. Para espresso, fique na faixa 0–16: comece na <b>10</b> e vá afinando conforme o tempo de extração. O teste real é sempre o cronômetro.</div>
         <table class="d-table" style="margin-top:10px">
           <tr><th>Posição</th><th>Resultado</th><th>Uso</th></tr>
-          <tr><td>0–4</td><td>Extra fina</td><td class="warn-cell">Risco de travar o fluxo (manômetro no máximo)</td></tr>
+          <tr><td>0–4</td><td>Extra fina</td><td class="warn-cell">Risco de travar o fluxo (nada sai)</td></tr>
           <tr style="background:var(--good-bg)"><td><b>5–10</b></td><td><b>Fina</b></td><td class="good-cell"><b>✔ Espresso</b></td></tr>
           <tr><td>11–16</td><td>Fina-média</td><td>Espresso torra escura / cesta pressurizada</td></tr>
           <tr><td>17–22</td><td>Média-fina</td><td>Moka / Aeropress</td></tr>
           <tr><td>23–30</td><td>Média</td><td>Coado / Drip</td></tr>
           <tr><td>31–48</td><td>Grossa</td><td>French Press / Cold brew</td></tr>
         </table>
-        <div class="callout tip">Use o <b>suporte de portafiltro</b> do G7 (o encaixe removível serve o portafiltro de 58mm da H21) para moer direto na cesta — menos sujeira e menos perda de pó. Ajuste a moagem sempre <b>com o motor ligado</b> para não forçar as mós, e <b>segure o recipiente de grãos</b> ao girar o anel — se ele desalinhar, o painel acusa erro de encaixe.</div>
+        <div class="callout tip">Use o <b>suporte de portafiltro</b> do G7 (o encaixe removível serve o portafiltro de 58mm da Gaggia) para moer direto na cesta — menos sujeira e menos perda de pó. Ajuste a moagem sempre <b>com o motor ligado</b> para não forçar as mós, e <b>segure o recipiente de grãos</b> ao girar o anel — se ele desalinhar, o painel acusa erro de encaixe.</div>
         <div class="callout info"><b>Variação de fábrica:</b> cada exemplar do G7 zera um pouco diferente — em alguns, abaixo da posição ~10 quase não sai pó. Se for o teu caso, a tua faixa real de espresso fica em torno de 10–14. O cronômetro é quem manda, não o número.</div>
       </div>
       <div class="d-section">
@@ -1685,13 +1670,13 @@ const chapterData = {
         <div class="d-body">O suporte removível aceita porta-filtros de <b>51, 54 e 58mm</b> — e o G7 ajusta a posição de despejo conforme o tamanho selecionado no painel:</div>
         <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Pressione os ícones de <b>1 xícara e 2 xícaras ao mesmo tempo</b> — o tamanho atual aparece no display.</div></div>
         <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Repita o toque duplo para alternar entre <b>51 → 54 → 58mm</b>.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Selecione <b>58mm</b> — é o tamanho do portafiltro da HiBREW H21. A escolha fica gravada na memória.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Selecione <b>58mm</b> — é o tamanho do portafiltro da Gaggia Classic. A escolha fica gravada na memória.</div></div>
         <div class="callout warn">O G7 vem de fábrica em 58mm, mas se você tinha mudado para <b>51mm</b> por causa da Dedica, <b>volte para 58mm</b> — senão o pó cai descentralizado na cesta nova.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Configurando os Tempos de Dose</div>
         <div class="d-body">Cada preset (1 e 2 xícaras) guarda o próprio tempo de moagem. Para gravar o teu:</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>Descubra o tempo-alvo:</b> em modo manual, moa no portafiltro sobre a balança e cronometre quantos segundos rendem a tua dose (18–20g na cesta dupla de 58mm). Os presets antigos eram para a cesta de 51mm — <b>regrave os dois</b>.</div></div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>Descubra o tempo-alvo:</b> em modo manual, moa no portafiltro sobre a balança e cronometre quantos segundos rendem a tua dose (18g). Os presets antigos eram para a cesta de 51mm — <b>regrave os dois</b>.</div></div>
         <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>Entre na edição:</b> segure o botão da dose (1 ou 2 xícaras) por <b>~2 segundos</b> até o display piscar.</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>Ajuste o tempo</b> com os toques de <b>+ / −</b> em passos de 0,1s até o valor cronometrado.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>Confirme e valide:</b> aguarde salvar, rode o preset e pese o resultado. Ajuste 0,1–0,3s se preciso.</div></div>
@@ -1707,8 +1692,8 @@ const chapterData = {
       </div>
       <div class="d-section">
         <div class="d-section-title">Dosagem</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose simples:</b> 9–11g de café moído</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose dupla:</b> 18–20g na cesta de 58mm — sempre preferida</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose simples:</b> 7–9g de café moído</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose dupla:</b> 18g (a tua dose) — numa cesta de 18g</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dosagem por tempo:</b> o G7 dosa por tempo com precisão de 0,1s — o passo a passo para gravar os presets está na seção <b>Configurando os Tempos de Dose</b>, acima</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Uma balancinha de cozinha faz muita diferença para consistência</div></div>
         <div class="callout warn"><b>Ao mudar a moagem, recalibre o tempo:</b> moagem mais fina rende menos gramas por segundo — confira o peso na balança depois de qualquer ajuste de posição.</div>
@@ -1720,13 +1705,13 @@ const chapterData = {
     content: `
       <div class="d-section">
         <div class="d-section-title">Passo a Passo</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>PRÉ-AQUECER:</b> Ligue com o portafiltro encaixado (~5 min), faça a purga de 3–5s e pré-aqueça as xícaras com a água quente.</div></div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>PRÉ-AQUECER:</b> Ligue com o portafiltro encaixado (15–20 min) e pré-aqueça as xícaras.</div></div>
         <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa fresco na posição calibrada (5–10 no G7).</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>DOSAR:</b> 18–20g na cesta dupla de 58mm. Nivelar com o dedo (ou WDT).</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>DOSAR:</b> 18g na cesta. Distribuir com WDT (agulhas) ou nivelar com o dedo.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>DISTRIBUIR:</b> Bater suavemente na palma para distribuir uniformemente.</div></div>
         <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>TAMPAR:</b> Perpendicular, ~15kg de pressão, leve giro no final.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>ENCAIXAR:</b> Limpar borda da cesta, travar o portafiltro firmemente. Balança zerada sob a xícara.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>EXTRAIR:</b> Timer e balança juntos, contando desde o botão (inclui a pré-infusão). Café deve começar em ~7–10s e o manômetro subir para 8–10 bar. Pare no peso-alvo: dose × 2 (ex.: 18g → 36g) — o tempo deve cair em 25–30s.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>SURF + ENCAIXAR:</b> Purgue 3–5s até a luz "pronto" apagar. Limpe a borda da cesta, trave o portafiltro, balança zerada. Espere a luz acender e conte ~20–30s (torra média).</div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>PRÉ-INFUNDIR + EXTRAIR:</b> Abra a manopla de vapor, ligue o café e dispare o timer. Na 1ª gota (~5–8s) feche a manopla. Pare no peso-alvo: 18g → 36–40g, em ~30–35s no total.</div></div>
         <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>SERVIR:</b> Imediatamente. Graças à válvula de 3 vias, já pode destravar o portafiltro na hora — a borra sai seca.</div></div>
       </div>
       <div class="d-section">
@@ -1735,8 +1720,8 @@ const chapterData = {
           <tr><th></th><th>✔ Bom</th><th>✗ Problema</th></tr>
           <tr><td><b>Crema</b></td><td class="good-cell">Marrom-avelã, espessa</td><td class="warn-cell">Clara ou inexistente</td></tr>
           <tr><td><b>Sabor</b></td><td class="good-cell">Equilibrado</td><td class="warn-cell">Aguado ou amargo</td></tr>
-          <tr><td><b>Tempo</b></td><td class="good-cell">25–30s</td><td class="warn-cell">&lt;20s ou &gt;35s</td></tr>
-          <tr><td><b>Manômetro</b></td><td class="good-cell">8–10 bar estável</td><td class="warn-cell">&lt;6 bar ou no máximo</td></tr>
+          <tr><td><b>Tempo total</b></td><td class="good-cell">~30–35s (c/ pré-inf.)</td><td class="warn-cell">&lt;22s ou &gt;40s</td></tr>
+          <tr><td><b>Fluxo</b></td><td class="good-cell">Contínuo, cor de mel</td><td class="warn-cell">Jorrando claro ou pingando</td></tr>
           <tr><td><b>Borra</b></td><td class="good-cell">Disco firme e seco</td><td class="warn-cell">Sopa de água por cima</td></tr>
         </table>
       </div>
@@ -1747,25 +1732,23 @@ const chapterData = {
     content: `
       <div class="d-section">
         <div class="d-section-title">Entre Uma Extração e Outra</div>
-        <div class="d-body">A H21 simplifica muito o fluxo de várias bebidas, por dois motivos:</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Válvula de 3 vias:</b> a pressão do disco é aliviada para a bandeja assim que a extração termina. Pode destravar o portafiltro <b>na hora</b>, sem espirro — a borra sai como um disco seco.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Vapor com aquecimento próprio:</b> vaporizar não superaquece o circuito do café. Não precisa resfriar nada entre o leite e o próximo espresso — só a purga normal de 3–5s do grupo.</div></div>
-        <div class="callout info">Como a H21 tem bombas separadas para café e vapor, pode ser possível vaporizar <b>enquanto</b> o espresso extrai. Teste com cuidado (e confira no manual) antes de adotar no dia a dia.</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Válvula de 3 vias:</b> a pressão do disco é aliviada na hora em que você desliga o interruptor de café. Pode destravar o portafiltro logo em seguida — a borra sai como um disco seco.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Caldeira única:</b> café e vapor dividem a mesma caldeira. Por isso a ordem importa: <b>todos os espressos primeiro, vapor por último</b>. Se precisar de café depois do vapor, reabasteça a caldeira pela lança (Capítulo 2 → Vapor, passo 6) e espere a luz "pronto" ciclar.</div></div>
       </div>
       <div class="d-section">
         <div class="d-section-title">2 Cappuccinos em Sequência</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>SETUP:</b> Ligar, purgar, pré-aquecer xícaras e jarro de leite.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa as 2 doses de uma vez.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>1° ESPRESSO:</b> Extraia e deixe aguardando na xícara aquecida.</div></div>
-        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>LEITE:</b> Vaporize leite suficiente para os dois drinks. Limpe o vaporizador.</div></div>
-        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>1° CAPPUCCINO:</b> Monte com o espresso e metade do leite.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>TROCAR A DOSE:</b> Destrave o portafiltro (a válvula de 3 vias já aliviou a pressão), bata a borra, enxágue a cesta e purgue o grupo 3–5s.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>2° ESPRESSO:</b> Preparar a segunda dose e extrair — sem esperar resfriar, o vapor não interfere.</div></div>
-        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>2° CAPPUCCINO:</b> Use o leite restante (já vaporizado). Se tiver separado, gire o jarro para reintegrar a espuma.</div></div>
-        <div class="d-step"><div class="d-step-num">9</div><div class="d-step-text"><b>LIMPEZA:</b> Remover portafiltro, passar água pelo grupo, limpar e purgar a lança de vapor, esvaziar bandeja.</div></div>
-        <div class="callout tip">O espresso aguenta até <b>60 segundos</b> na xícara aquecida sem perder qualidade. Use esse tempo para vaporizar o leite. Para 2+ bebidas, o <b>bico de 3 furos</b> vaporiza bem mais rápido.</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text"><b>SETUP:</b> Máquina ligada há 15–20 min, purga, xícaras pré-aquecidas.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>MOER:</b> Moa a 1ª dose (18g).</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text"><b>1° ESPRESSO:</b> Extraia e deixe na xícara aquecida.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>TROCAR A DOSE:</b> Destrave o portafiltro, bata a borra, purgue 2–3s, moa e prepare a 2ª dose.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text"><b>2° ESPRESSO:</b> Espere a luz "pronto" ciclar e extraia.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>VAPOR:</b> Ligue o vapor, purgue a condensação e vaporize leite para os dois drinks (até ~200ml num jarro de 350ml; se precisar de mais, vaporize em duas levas).</div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text"><b>MONTAR:</b> Divida o leite entre as duas xícaras.</div></div>
+        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>REABASTECER:</b> Desligue o vapor e passe água pela lança com o interruptor de café até o fluxo ficar contínuo.</div></div>
+        <div class="d-step"><div class="d-step-num">9</div><div class="d-step-text"><b>LIMPEZA:</b> Passar água pelo grupo, limpar a lança, esvaziar bandeja.</div></div>
+        <div class="callout tip">O espresso aguenta até <b>60–90 segundos</b> na xícara aquecida sem perder muito. Prepare tudo antes para que o vapor venha logo depois do 2° café.</div>
         <div class="callout warn"><b>Vaporizador:</b> Limpe com pano úmido IMEDIATAMENTE após o leite — seca em segundos e entope o bico.</div>
-        <div class="callout warn"><b>Se a extração travar</b> (moagem fina demais, manômetro no máximo e nada sai): pare a extração e aguarde a válvula aliviar (o "tchss" na bandeja) antes de destravar. Depois, engrosse a moagem.</div>
+        <div class="callout warn"><b>Se a extração travar</b> (moagem fina demais, nada sai): desligue o interruptor de café e aguarde o "tchss" da válvula antes de destravar. Depois, engrosse a moagem.</div>
       </div>
     `
   },
@@ -1778,64 +1761,63 @@ const chapterData = {
         <table class="d-table" style="margin-top:10px">
           <tr><th>Quando</th><th>O que fazer</th></tr>
           <tr><td><b>Após cada café</b></td><td>Bater a borra, enxaguar portafiltro e cesta, passar água pelo grupo (2–3s sem portafiltro)</td></tr>
-          <tr><td><b>Após cada leite</b></td><td>Purgar a lança 2s + pano úmido <b>imediatamente</b> — leite seco entope o bico</td></tr>
-          <tr><td><b>Diário (fim do dia)</b></td><td>Esvaziar e enxaguar a bandeja (com a válvula de 3 vias ela enche mais rápido); trocar a água do reservatório; passar um pano na borracha do grupo</td></tr>
-          <tr><td><b>Semanal</b></td><td><b>Backflush só com água</b> (ver abaixo); lavar reservatório, bandeja e cestas com detergente neutro; desrosquear o bico de vapor e deixar de molho em água morna</td></tr>
-          <tr><td><b>A cada 2–4 semanas</b></td><td><b>Backflush com detergente</b> (pastilha ou pó para máquina de espresso); deixar portafiltro e cestas de molho na solução</td></tr>
-          <tr><td><b>Mensal</b></td><td>Limpar as mós do moedor com pincel seco; lavar o recipiente de grãos; inspecionar a ducha e a borracha do grupo</td></tr>
-          <tr><td><b>Quando aparecer "CLEAN" ou a cada 2–6 meses</b></td><td>Descalcificação completa (ver abaixo)</td></tr>
-          <tr><td><b>12–18 meses</b></td><td>Trocar a borracha (gaxeta) do grupo se estiver endurecida ou vazando pelas laterais</td></tr>
+          <tr><td><b>Após cada leite</b></td><td>Pano úmido na lança + purga de 1–2s <b>imediatamente</b>; reabastecer a caldeira pela lança</td></tr>
+          <tr><td><b>Diário (fim do dia)</b></td><td>Esvaziar e enxaguar a bandeja; trocar a água do reservatório; escovar a borracha do grupo</td></tr>
+          <tr><td><b>Semanal</b></td><td><b>Backflush só com água</b>; lavar reservatório, bandeja e cestas com detergente neutro</td></tr>
+          <tr><td><b>Mensal</b></td><td><b>Backflush com detergente</b>; molho de portafiltro e cestas; tirar e limpar a ducha do grupo; limpar as mós do G7</td></tr>
+          <tr><td><b>A cada 2 meses</b></td><td>Descalcificação (recomendação da Gaggia — com água filtrada/branda dá para esticar para 3–4 meses)</td></tr>
+          <tr><td><b>12–18 meses</b></td><td>Trocar a borracha (gaxeta) do grupo se estiver endurecida ou vazando</td></tr>
         </table>
         <div class="callout tip">Nada de máquina de lavar louça: portafiltro, cestas e tamper são <b>só água quente + detergente neutro</b>. Produtos abrasivos arranham e deixam resíduo de sabor.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Backflush — O Que é e Por Que Fazer</div>
-        <div class="d-body">Com a cesta cega (ou o disco de silicone dentro de uma cesta comum), a água não tem saída: a bomba pressuriza o grupo e, ao desligar, a <b>válvula de 3 vias</b> despeja essa água de volta pelo caminho da válvula até a bandeja — levando óleo e borra acumulados atrás da ducha e no próprio canal da válvula. Só é seguro porque a H21 tem essa válvula.</div>
-        <div class="callout warn">Confira no manual impresso se a HiBREW define um <b>limite de segundos por ciclo</b>. Na falta de indicação, use pulsos de <b>5–10s</b> com pausa igual — pulsos longos com saída bloqueada forçam a bomba vibratória.</div>
+        <div class="d-body">Com a <b>cesta cega</b> (ou o disco de silicone dentro de uma cesta comum), a água não tem saída: a bomba pressuriza o grupo e, ao desligar, a <b>válvula de 3 vias</b> despeja essa água pela válvula até a bandeja — levando óleo e borra acumulados atrás da ducha e no canal da solenoide. Na Classic, isso também evita que a solenoide trave com borra (problema clássico do modelo).</div>
+        <div class="callout warn">Pulsos curtos: <b>~10s ligado / ~10s desligado</b>. Não deixe a bomba vibratória trabalhando muito tempo contra a saída bloqueada.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Backflush Semanal (só água)</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Máquina quente. Coloque o <b>disco de silicone</b> dentro da cesta (ou encaixe a cesta cega) e trave o portafiltro.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue a extração por <b>~10s</b> (o manômetro vai ao máximo — normal) e desligue. Ouça o "tchss" e veja a água suja sair na bandeja.</div></div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Máquina quente. Cesta cega (ou disco de silicone na cesta) no portafiltro, trave no grupo.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Ligue o interruptor de café por <b>~10s</b>, desligue. Ouça o "tchss" e veja a água suja sair na bandeja.</div></div>
         <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Pause ~10s. Repita <b>5 vezes</b>.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Retire o portafiltro, enxágue e passe 5s de água pelo grupo.</div></div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Backflush com Detergente (a cada 2–4 semanas)</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Coloque <b>1 pastilha</b> de limpeza para grupo (ou ~3g de pó tipo Cafiza/Puly Caff) no disco/cesta cega. Trave o portafiltro.</div></div>
+        <div class="d-section-title">Backflush com Detergente (mensal)</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Coloque ~3g (meia colher de chá) de pó para máquina de espresso (tipo Cafiza / Puly Caff) ou 1 pastilha na cesta cega. Trave o portafiltro.</div></div>
         <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text"><b>5 ciclos de 10s ligado / 10s pausa.</b> Na última pausa, deixe agir ~1 min.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Retire o portafiltro, enxágue bem a cesta e a borracha do grupo.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Retire o portafiltro, enxágue a cesta e a borracha do grupo.</div></div>
         <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text"><b>Enxágue:</b> mais 5–10 ciclos de 10s só com água, até a água da bandeja sair limpa e sem espuma.</div></div>
-        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Faça um espresso de descarte — remove qualquer gosto de detergente.</div></div>
-        <div class="callout tip">Na mesma solução (água quente + 1 colher de chá do pó), deixe portafiltro e cestas de molho 15–20 min — <b>sem</b> mergulhar o cabo de plástico.</div>
-        <div class="callout warn">Não use descalcificante no backflush, nem detergente na descalcificação — são produtos diferentes: detergente tira <b>óleo de café</b>, descalcificante tira <b>calcário</b>.</div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Faça um espresso de descarte.</div></div>
+        <div class="callout tip">Na mesma solução (água quente + 1 colher de chá do pó), deixe portafiltro e cestas de molho 15–20 min — <b>sem</b> mergulhar o cabo.</div>
+        <div class="callout warn">Detergente tira <b>óleo de café</b>; descalcificante tira <b>calcário</b>. Não troque um pelo outro.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Quando Descalcificar</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Aviso da máquina:</b> o display mostra <b>"CLEAN"</b> com luz vermelha piscando. Qualquer botão dispensa o aviso — mas só faça isso <b>depois</b> de descalcificar.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água de torneira dura: <b>a cada 2–3 meses</b></div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água filtrada ou branda: <b>a cada 3–6 meses</b> (recomendação da HiBREW)</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Não espere o aviso se notar fluxo mais fraco, vapor mais fraco ou espresso mais frio</div></div>
-        <div class="callout info">Use descalcificante <b>à base de ácido cítrico</b> para máquinas de espresso (é o que a HiBREW recomenda), na diluição do rótulo. <b>Evite vinagre</b>: deixa cheiro e é mais agressivo com vedações.</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>A Classic não tem aviso de descalcificação</b> — a agenda é tua. Coloque um lembrete.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Recomendação da Gaggia: <b>a cada 2 meses</b>.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Com água filtrada ou branda: dá para esticar para <b>3–4 meses</b>.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Sinais de que passou da hora: fluxo mais fraco no grupo, vapor fraco, pingos brancos na bandeja.</div></div>
+        <div class="callout info">A Gaggia recomenda o <b>descalcificante Gaggia</b> e desaconselha vinagre e outros produtos. Muita gente usa ácido cítrico próprio para máquinas de espresso sem problemas, mas o oficial é o mais seguro para a garantia.</div>
       </div>
       <div class="d-section">
-        <div class="d-section-title">Processo de Descalcificação</div>
-        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Retire o portafiltro (e o filtro de água do reservatório, se usar). Esvazie a bandeja.</div></div>
-        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Esvazie o reservatório. Coloque o descalcificante diluído conforme o rótulo, até o MAX.</div></div>
-        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Posicione um recipiente grande (1,5L+) sob o grupo e outro sob a lança de vapor / saída de água quente.</div></div>
-        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Entre no <b>modo de descalcificação</b>: segundo a HiBREW, segurando o botão indicado por <b>~3s</b> — confirme qual botão no manual impresso.</div></div>
-        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Passe a solução pelos <b>três circuitos</b>: grupo de café → água quente → lança de vapor. Use cerca de metade do reservatório.</div></div>
-        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>Deixe agir ~15 minutos</b> com a máquina ligada.</div></div>
-        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text">Passe o restante da solução pelos três circuitos.</div></div>
-        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>Enxágue:</b> lave o reservatório, encha com água limpa e passe pelos três circuitos. Repita <b>no mínimo 3 reservatórios</b> — até não sentir gosto/cheiro ácido.</div></div>
-        <div class="d-step"><div class="d-step-num">9</div><div class="d-step-text">Saia do modo/dispense o aviso "CLEAN", purgue 5s o grupo e faça um espresso de descarte.</div></div>
-        <div class="callout warn"><b>Respeite a diluição do rótulo</b> — descalcificante concentrado demais ataca as vedações internas. Se o manual da H21 tiver um passo a passo diferente deste, siga o do manual.</div>
+        <div class="d-section-title">Processo de Descalcificação (manual Gaggia)</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Retire o portafiltro e o filtro de água do reservatório (se usar). Esvazie a bandeja.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Coloque <b>metade do frasco</b> de descalcificante Gaggia no reservatório e complete com água até o MAX.</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Ligue a máquina e espere a luz "pronto".</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Com um recipiente sob a lança, abra a manopla e ligue o interruptor de café: deixe sair <b>~2 xícaras (~300ml)</b> pela lança. Feche a manopla.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Com o recipiente sob o grupo, ligue o interruptor de café e deixe sair mais <b>~2 xícaras (~300ml)</b>.</div></div>
+        <div class="d-step"><div class="d-step-num">6</div><div class="d-step-text"><b>Desligue a máquina e deixe agir ~20 minutos.</b></div></div>
+        <div class="d-step"><div class="d-step-num">7</div><div class="d-step-text">Ligue de novo e passe o restante da solução, alternando grupo e lança, até esvaziar o reservatório.</div></div>
+        <div class="d-step"><div class="d-step-num">8</div><div class="d-step-text"><b>Enxágue:</b> lave o reservatório, encha com água limpa e passe tudo, alternando grupo e lança. Repita com <b>2–3 reservatórios</b> até não sentir gosto/cheiro ácido.</div></div>
+        <div class="d-step"><div class="d-step-num">9</div><div class="d-step-text">Faça um backflush só com água e um espresso de descarte.</div></div>
+        <div class="callout warn"><b>Respeite a diluição do rótulo</b> e nunca deixe o reservatório esvaziar com a bomba ligada — a bomba não pode trabalhar a seco.</div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Ducha e Borracha do Grupo</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Semanal:</b> escova de grupo (cerdas em ângulo) na borracha e na ducha, com a máquina quente e água correndo 2–3s.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mensal:</b> se a ducha for presa por parafuso central, remova (máquina fria e desligada), escove ducha e difusor e deixe de molho na solução de detergente. Se não for removível, o backflush com detergente cobre essa limpeza.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Sinal de troca da borracha:</b> o portafiltro trava cada vez mais para a direita ou vaza água pela lateral durante a extração. Por ser 58mm, as peças de reposição são fáceis de achar.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Mensal:</b> com a máquina <b>fria e desligada</b>, solte o parafuso central da ducha, tire a ducha e o difusor, escove e deixe de molho na solução de detergente. Na remontagem, não aperte demais o parafuso.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Sinal de troca da borracha:</b> o portafiltro trava cada vez mais para a direita ou vaza água pela lateral. A gaxeta da Classic é padrão e barata.</div></div>
       </div>
       <div class="d-section">
         <div class="d-section-title">Limpeza do Moedor HiBREW G7</div>
@@ -1845,6 +1827,47 @@ const chapterData = {
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Nas mós, use apenas <b>pincel seco</b> — NUNCA água. Air duster ajuda a tirar o pó fino dos cantos</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Após limpeza, moa uma pequena quantidade "de descarte" para limpar os canais</div></div>
         <div class="callout tip">Café oleoso (torra escura) suja o moedor muito mais rápido — se usar, encurte a limpeza profunda para a cada 2–3 semanas.</div>
+      </div>
+    `
+  },
+  preinf: {
+    cap: 'Capítulo 5', title: 'Pré-infusão na Gaggia',
+    content: `
+      <div class="d-section">
+        <div class="d-section-title">Por Que Pré-infundir</div>
+        <div class="d-body">A pré-infusão molha o disco com pressão baixa por alguns segundos antes da pressão total. O café incha, solta o CO₂ e "sela" as falhas — menos canais, extração mais uniforme, e dá para moer um pouco mais fino. Com <b>18g numa cesta de 58mm</b>, é o que mais melhora a consistência na Classic.</div>
+        <div class="d-body" style="margin-top:8px">A E24 <b>não tem pré-infusão automática</b>. A comunidade usa dois métodos manuais:</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Método 1 — Manopla de Vapor ✔ (o mais recomendado)</div>
+        <div class="d-body">Abrir a lança durante a extração desvia parte da água: a pressão no disco fica baixa (~2–3 bar) e o café é molhado devagar, sem "pancada".</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Máquina no ponto do surf (Capítulo 2). Portafiltro com 18g encaixado, balança zerada, <b>jarro ou copo sob a lança</b>.</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Abra a manopla de vapor <b>meia volta a uma volta</b> (interruptor de vapor <b>desligado</b>).</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Ligue o interruptor de café e dispare o timer. Sai água pela lança e o disco vai sendo molhado.</div></div>
+        <div class="d-step"><div class="d-step-num">4</div><div class="d-step-text">Quando aparecerem as <b>primeiras gotas no fundo da cesta</b> / no bico (normalmente <b>5–8s</b> com 18g), <b>feche a manopla rápido</b>. A pressão total entra.</div></div>
+        <div class="d-step"><div class="d-step-num">5</div><div class="d-step-text">Siga até o peso-alvo (18g → 36–40g). Tempo <b>total</b> (contando a pré-infusão): <b>~30–35s</b>.</div></div>
+        <div class="callout warn">Com a manopla aberta, entra mais água fria na caldeira pequena — se demorar para fechar, o shot esfria. Feche logo que gotejar e, se estiver pré-infundindo sempre, extraia um pouco <b>mais cedo</b> no surf (mais perto da luz acender).</div>
+        <div class="callout tip">Teste com o timer da aba <b>Pré-infusão</b>: ele marca os 8s de referência.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Método 2 — Pulso no Interruptor (bloom)</div>
+        <div class="d-step"><div class="d-step-num">1</div><div class="d-step-text">Ligue o interruptor de café por <b>3–4s</b> (até o disco encharcar — às vezes já aparece a primeira gota).</div></div>
+        <div class="d-step"><div class="d-step-num">2</div><div class="d-step-text">Desligue e espere <b>5–10s</b> (o disco "floresce").</div></div>
+        <div class="d-step"><div class="d-step-num">3</div><div class="d-step-text">Ligue de novo e siga até o peso-alvo.</div></div>
+        <div class="callout warn">Ao desligar, a válvula de 3 vias alivia a pressão de uma vez — isso pode <b>rachar o disco</b> e causar canais. Muita gente prefere o Método 1 por isso. Use o pulso só se o Método 1 não estiver dando certo.</div>
+      </div>
+      <div class="d-section">
+        <div class="d-section-title">Receita de Partida — 18g</div>
+        <table class="d-table">
+          <tr><th>Parâmetro</th><th>Valor</th></tr>
+          <tr><td>Cesta</td><td>18g (ou dupla de fábrica, se passar no teste da moeda)</td></tr>
+          <tr><td>Moagem G7</td><td>Comece <b>1–2 pontos mais fino</b> do que sem pré-infusão</td></tr>
+          <tr><td>Pré-infusão</td><td>Manopla aberta até a 1ª gota (~5–8s)</td></tr>
+          <tr><td>Rendimento</td><td>36–40g (1:2 a 1:2,2)</td></tr>
+          <tr><td>Tempo total</td><td>~30–35s (pré-infusão + ~25s de pressão total)</td></tr>
+        </table>
+        <div class="callout info">Ajuste pelo gosto: <b>azedo/ralo</b> = moa mais fino ou alongue a pré-infusão; <b>amargo/seco</b> = moa mais grosso ou encurte. Torras escuras e café com mais de 3 semanas precisam de pouca ou nenhuma pré-infusão.</div>
+        <div class="callout tip">Upgrades de comunidade (opcionais, sem necessidade no começo): <b>dimmer/flow control</b> na bomba ou kits como Gaggiuino dão pré-infusão programável — mas mexem na parte elétrica.</div>
       </div>
     `
   },
@@ -1882,9 +1905,9 @@ const chapterData = {
       </div>
       <div class="d-section">
         <div class="d-section-title">Impacto na Sua Extração</div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra clara:</b> menos solúvel → moagem mais fina + temperatura <b>94–96°C</b> na H21 + pré-infusão de 3–4s. Aceita sair um pouco mais lenta.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> o ponto de partida de tudo — posição 8–10 no moedor, temperatura <b>92°C</b>, 1:2 em 25–30s.</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra escura:</b> muito solúvel → moagem um passo mais grossa + temperatura <b>88–90°C</b>, senão amarga.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra clara:</b> menos solúvel → moagem mais fina + extração <b>logo que a luz "pronto" acende</b> (mais quente) + pré-infusão mais longa. Aceita sair um pouco mais lenta.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra média:</b> o ponto de partida de tudo — posição 8–10 no moedor, surf de ~20–30s após a luz, 1:2.</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Torra escura:</b> muito solúvel → moagem um passo mais grossa + esperar ~45–60s após a luz (mais frio), senão amarga.</div></div>
         <div class="callout info">Regra mental: <b>quanto mais clara a torra, mais energia (moagem fina + calor) você precisa dar</b>. Quanto mais escura, mais suave deve ser a extração.</div>
       </div>
       <div class="d-section">
@@ -1957,7 +1980,7 @@ const chapterData = {
       </div>
       <div class="d-section">
         <div class="d-section-title">Filtros: O Que é um Filtro Pressurizado?</div>
-        <div class="d-body">A HiBREW H21 traz na caixa uma cesta dupla <b>pressurizada</b> (também chamada de "parede dupla" ou "crema perfeita"), além das cestas simples e dupla não-pressurizadas. São projetadas para facilitar a vida do barista iniciante — produzem crema mesmo com moagem irregular ou café pré-moído de pacote.</div>
+        <div class="d-body">A Gaggia Classic E24 traz na caixa uma cesta <b>pressurizada</b> (também chamada de "parede dupla" ou "crema perfetta"), além das cestas simples e dupla não-pressurizadas. São projetadas para facilitar a vida do barista iniciante — produzem crema mesmo com moagem irregular ou café pré-moído de pacote.</div>
         <div class="d-body" style="margin-top:8px">A cesta <b>não-pressurizada</b> (a tua atual) tem apenas uma parede e furos abertos — é o padrão profissional, usado em cafeterias, e revela o sabor real do grão sem nenhuma "ajuda".</div>
       </div>
       <div class="d-section">
@@ -1983,9 +2006,9 @@ const chapterData = {
       </div>
       <div class="d-section">
         <div class="d-section-title">Configuração para Cesta Pressurizada</div>
-        <div class="d-body">Se usares a cesta pressurizada da HiBREW (vem na caixa da H21):</div>
+        <div class="d-body">Se usares a cesta pressurizada da Gaggia (vem na caixa):</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> 11–16 no G7 — não precisa ir tão fino</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 16–18g é suficiente</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> ~14g</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> moderada — não precisa de muita pressão</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 20–28s (ligeiramente mais rápida)</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote pré-moído:</b> funciona razoavelmente bem</div></div>
@@ -1995,10 +2018,10 @@ const chapterData = {
         <div class="d-section-title">Configuração para Cesta Não-Pressurizada (a tua)</div>
         <div class="d-body">Exige mais atenção mas entrega resultado profissional:</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Moagem:</b> 5–10 no G7 — mais fino que a pressurizada</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 18–20g na cesta de 58mm — cesta cheia é fundamental</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Dose:</b> 18g numa cesta de 18g — cesta no tamanho certo é fundamental</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Distribuição:</b> essencial — sem canais de extração</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tampagem:</b> firme (~15kg) e perfeitamente perpendicular</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> 25–30s obrigatório</div></div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Tempo de extração:</b> ~30–35s com pré-infusão</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Café de pacote:</b> não funciona bem — usa sempre grão moído na hora</div></div>
         <div class="callout warn"><b>Se o café sair aguado</b> com cesta não-pressurizada, a causa é quase sempre moagem grossa ou tampagem fraca — não a máquina. Afina 2 pontos no G7 (ex.: de 10 para 8) e tamp mais firme.</div>
       </div>
@@ -2006,8 +2029,8 @@ const chapterData = {
         <div class="d-section-title">Como Identificar Qual Tens Encaixada</div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Pressurizada:</b> fundo com pouquíssimos furos (às vezes 1 único furo central visível por fora) + parece ter duas camadas</div></div>
         <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text"><b>Não-pressurizada:</b> fundo com muitos furos pequenos uniformes — olhando contra a luz, vês claramente todos os furos</div></div>
-        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Na H21, a cesta dupla com furos visíveis em todo o fundo = <b>não-pressurizada dupla</b> ✔ (a tua padrão)</div></div>
-        <div class="callout info">A H21 já vem com as duas (e o padrão de 58mm aceita cestas de mercado, como as de precisão tipo IMS/VST). Vale alternar conforme o tipo de café e a situação do dia.</div>
+        <div class="d-bullet"><div class="d-bullet-dot">•</div><div class="d-bullet-text">Na Gaggia, a cesta com furos visíveis em todo o fundo = <b>não-pressurizada</b> ✔ (a tua padrão)</div></div>
+        <div class="callout info">A Gaggia já vem com as duas, e o padrão de 58mm aceita cestas de mercado — para 18g, uma cesta de precisão de 18g (IMS/VST) é o upgrade mais útil.</div>
       </div>
       <div class="g-theme" id="tema-ratios"><i data-lucide="scale" style="width:18px;height:18px;stroke:var(--crema);"></i>Pesos, Ratios e Extração</div>
       <div class="d-section">
